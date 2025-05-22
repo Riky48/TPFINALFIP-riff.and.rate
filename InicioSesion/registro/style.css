@@ -1,0 +1,13 @@
+.contenedor {
+    background-color: #03243C;
+}
+
+#menu {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #082032;
+    object-fit: scale-down;
+}
