@@ -17,10 +17,7 @@ document.addEventListener('click', (e) => {
 
 
 
-// API PRODUCTOS MUSICALES (ASIDE)
-
-
-
+// API PRODUCTOS (Cambiar por una de productos musicales proximamente) (ASIDE)
 
 
 fetch('https://fakestoreapi.com/products')
@@ -51,7 +48,46 @@ data.slice(0,2).forEach( product => {
 })
             .catch(error => {
 
-              console.log('A ocurrido un error al consumir la API:',error);
+              console.log('A ocurrido un error al consumir la API(Productos):',error);
               
             });
 
+// Api para generar usuarios random
+
+const usuariosApi = 'https://randomuser.me/api/?results=3';
+
+fetch(usuariosApi)
+            .then(res => res.json())
+            .then(usuarios => {
+              console.log(usuarios);
+
+let contenedorImg = document.getElementById('userImg');
+let contenedorImg2 = document.getElementById('publishusr')
+
+usuarios.results.slice(0,1).forEach(usuarioUnico =>{
+  contenedorImg.innerHTML = `<a href="#"><img src="${usuarioUnico.picture.medium}" alt=""></a>`
+  contenedorImg2.innerHTML = `<a href="#"><img src="${usuarioUnico.picture.medium}" alt=""></a>`
+
+}
+)
+
+
+
+
+
+
+
+let contenedor = document.getElementById('contentPosted');
+
+usuarios.results.forEach( usr => {
+let divusr = document.createElement('div');
+
+  divusr.innerHTML = `<p>${usr.gender}</p>
+                      <p>${usr.name.title}</p>    
+                      <p>${usr.name.first}</p>
+                      <p>${usr.name.last}</p>               
+  `;
+  contenedor.appendChild(divusr);
+
+});
+            });
