@@ -14,3 +14,44 @@ document.addEventListener('click', (e) => {
     dropdown.classList.remove('show');
   }
 });
+
+
+
+// API PRODUCTOS MUSICALES (ASIDE)
+
+
+
+
+
+fetch('https://fakestoreapi.com/products')
+            .then(res=>res.json())
+            .then(data => {
+              console.log(data);
+              
+            
+let aside = document.querySelector('aside');
+        
+data.slice(0,2).forEach( product => {
+
+  const div = document.createElement('div');
+  const div2 = document.createElement('div');
+  const div3 = document.createElement('div');
+  
+  div2.innerHTML = `<a href=""><img src="${product.image}" alt="${product.title}" class="asideimg" width="50vw"></a>`;
+  aside.appendChild(div);
+  div.appendChild(div2);
+  div.appendChild(div3);
+  div3.innerHTML = `<a href=""><h4> ${product.title}</h4>
+                  <p>$${product.price}</p></a>
+`
+  div.classList = ('divcontenido')
+  div2.classList = ('imgaside')
+  div3.classList = ('textaside')
+});
+})
+            .catch(error => {
+
+              console.log('A ocurrido un error al consumir la API:',error);
+              
+            });
+

@@ -2,19 +2,26 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 
+}
+body{
+    background: var(--color-fondo);
 }
 :root{
 --color-nav:#082032;
 --color-font:#B3B3B3;
 --color-general:#204D6D;
+--color-aside:#214D6D;
+--color-fondo:#03243C;
+
 }
 
 nav {
     display: flex;
     align-items: center;
-    border: 1px solid black;
-    width: 100vw;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+    width: 99.24vw;
     height: 9vh;
     background-color: var(--color-nav);
 }
@@ -129,4 +136,67 @@ nav {
 
 #dropdown-menu.show {
   display: block;
+}
+
+aside{
+    width: 20vw;
+    height: 60vh;
+    background: var(--color-aside);
+    margin: 1.5vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+aside .divcontenido{
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    border: 1px solid #E0E0E0;
+    justify-content: center;
+    align-items: center;
+    height: 47%;
+   
+    background: #03243C;
+    width: 95%;
+    
+}
+
+.imgaside{
+   
+    height: 65%;
+    width: 90%;
+    
+}
+.imgaside a{
+    height: 50%;
+    
+}
+.imgaside a img{
+    width: 100%;
+    height: 100%;
+}
+.textaside{
+    width: 90%;
+}
+.textaside a{
+    text-decoration: none;
+    font-size: 1.4vh;
+    color: white;
+    text-align: justify;
+    padding-left: 1vh;
+    height: 30%;
+    width: 80%;
+}
+.main{
+    
+    display: flex;
+}
+main{
+    margin: 1.5vh;
+    border: 1px solid wheat;
+    height: 100%;
+    width: 40vw;
 }
