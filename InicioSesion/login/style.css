@@ -47,7 +47,7 @@ nav {
 #loginheader {
     display: flex;
     width: 500px;
-    height: 50px;
+    height: auto;
     justify-self: center;
     flex-direction: column;
     text-align: center;
@@ -56,13 +56,14 @@ nav {
 
 #logindiv {
     display: flex;
-    width: 500px;
+    width: 400px;
     height: 250px;
     justify-self: center;
     flex-direction: column;
     text-align: center;
     align-items: center;
     background-color: #204D6D;
+    border-radius: 15px;
     margin-top: 50px;
 }
 
