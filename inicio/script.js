@@ -76,19 +76,20 @@ Promise.all([
       const post = document.createElement('div');
       post.classList.add('usercontentPosted');
       post.innerHTML = `
+        
         <div class="user">
+        <img src="${usr.picture.medium}" alt="Foto de ${usr.name.first}">
           <p><strong>${usr.name.first} ${usr.name.last}</strong> (${usr.gender})</p>
+        </div>
+          <div class="imagecontent">
           <p>${commentuser.body}</p>
-          <img src="${usr.picture.medium}" alt="Foto de ${usr.name.first}">
+          <img src="${imgPost.download_url}" alt="Imagen aleatoria">
         </div>
-        <div class="imagecontent">
-          <img src="${imgPost.download_url}" alt="Imagen aleatoria" width="80%">
-        </div>
-        <div class="imagecontent">
-          <img src="assets/like.svg" alt="Imagen aleatoria" width="80">
-          <img src="assets/comentar.svg" alt="Imagen aleatoria" width="300">
-          <img src="assets/compartir.svg" alt="Imagen aleatoria" width="300">
-          <img src="assets/compartir1.svg" alt="Imagen aleatoria" width="300">
+        <div class="reactions">
+          <img src="assets/like.svg" alt="Imagen aleatoria">
+          <img src="assets/comentar.svg" alt="Imagen aleatoria">
+          <img src="assets/compartir.svg" alt="Imagen aleatoria">
+          <img src="assets/compartir1.svg" alt="Imagen aleatoria">
         </div>
         
       `;
@@ -99,3 +100,34 @@ Promise.all([
   .catch(err => {
     console.error('Error al generar publicaciones:', err);
   });
+
+  // contactos sugeridos 
+
+  const contacts =  document.querySelector('.contacts');
+  fetch('https://randomuser.me/api/?results=4')
+    .then(res => res.json())
+    .then(data => {
+      const contactsSugeridos = data.results;
+
+      contactsSugeridos.forEach(contact => {
+        const contacto = document.createElement('div');
+        contacto.classList.add('contacto');
+        contacto.innerHTML = `
+        
+          <div class="contacto-add">
+            <a href="#"><img src="assets/vector.svg" alt=""></a>
+          </div>
+          <div class="contacto-img">
+            <img src="${contact.picture.medium}" alt="">
+          </div>
+          <div class="contacto-info">
+            <p>${contact.name.first} ${contact.name.last}</p>
+          </div>
+       
+        `;
+        contacts.appendChild(contacto);
+      });
+    })
+    .catch(error => {
+      console.error('Error al cargar contactos:', error);
+    }); 

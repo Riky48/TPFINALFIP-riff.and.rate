@@ -1,12 +1,13 @@
-* {
+*{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+    font-size: 20px;
 
 }
 body{
     background: var(--color-fondo);
+    overflow-x: hidden;
 }
 :root{
 --color-nav:#082032;
@@ -115,7 +116,7 @@ nav {
 
 #dropdown-menu {
   position: absolute;
-  top: 9vh; /* ajustá según tu diseño */
+  top: 9vh; 
   left: 7vw;
   background-color: white;
   border: 1px solid #ccc;
@@ -198,72 +199,180 @@ main{
     margin: 1.5vh;
     
     height: 100%;
-    width: 50vw;
+    width: 45vw;
 }
 
-.publish{
-    background: var(--color-general);
-   
-    width: 100%;
-    border-radius: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    height: 15vh;
+.publish {
+  background: var(--color-general);
+  width: 95%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1vh;
+  gap: 1vh;
 }
-#publishusr{
-    width: 20%;
-    height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.publish-top {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+#publishusr {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#publishusr img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.inputPost {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.inputPost textarea {
+  width: 100%;
+  border-radius: 30px;
+  border: none;
+  height: 100%;
+  padding: 1.2vh;
+  max-width: 100%;
+  resize: none;
+  font-size: 0.7em;
+}
+.iconPost {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
 
+
+.iconPost a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  width: 15%;
+  height: auto;
 }
-#publishusr img{
-    border-radius: 50%;
-    margin: 0.3vh;
-    width: auto;
-    height: auto;
-    max-width: 60%
+.iconPost a img {
+  width: 30%;
+  height: auto;
 }
-.inputPost{
-    width: 75%;
-    align-items: center;
-    display: flex;
-    height: 50%;
+.iconPost p {
+  color: whitesmoke;
+  font-size: 1.7vh;
+  text-align: center;
 }
-.inputPost input{
+
+.usercontentPosted{
+    margin-top: 1vh;
     width: 95%;
-    border-radius: 30px;
-    margin-left:-1.5vw;
-    border: none;
-    height: 60%;
+    background: var(--color-general);
+    border-radius: 10px;
+    padding: 1vh;
+    gap: 1vh;
 }
-.iconPost{
-    width: 100%;
-    height: 50%;
-    justify-content: space-evenly;
+
+.usercontentPosted{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.user{
+    width: 90%;
+    display: flex;
+    height: 5vh;
+}
+.user img{
+    border-radius: 50%;
+
+    width : auto;
+    height : auto;
+}
+.user p {
+    width: 70%;
+    padding-left: 0.5vw;
+    height: 60%;
     display: flex;
     align-items: center;
 }
 
-
-.iconPost a{
-    width: 20%;
-    justify-content: space-around;
-    text-decoration: none;
+.imagecontent{
     display: flex;
-    height: 50%;
+    flex-direction: column;
+    align-items: center;
+} 
+.imagecontent p{
+    width: 90%;
+}
+
+.imagecontent img{
+    height: 80%;
+    width:90%;
+    border-radius: 10px;
     
 }
-.iconPost a img{
-    width: 23%;
+.reactions{
+    width: 90%;
+    display: flex;
+    border-top: 1px solid rgba(163, 163, 163, 0.616);
+    padding : 0.3vw;
+    justify-content: space-between;
 }
-.iconPost p{
-    width: 70%;
-    text-align: center;
+
+
+.contacts{
+    background: var(--color-general);
+    border-radius: 10px;
+    margin-top: 1.7vh;
+    width: 30%;
+    height: 30vh;
+}
+.contacts .contacto{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 25%;
+    
+}
+
+.contacto {
+      
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+}
+.contacto-add{
+    width: 10%;
     height: 100%;
     align-items: center;
     display: flex;
-    color: whitesmoke;
-    font-size: 1.9vh;
+    justify-content: center;
+}
+.contacto-img{
+    width: 20%;
+    height: 100%; 
+    align-items: center;
+    display: flex;
+    justify-content: left;
+}
+.contacto-img img{
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+   
+}
+.contacto-info{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: right;
 }
