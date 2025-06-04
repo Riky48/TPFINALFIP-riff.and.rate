@@ -22,12 +22,12 @@ body {
 }
 
 .icon {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
 }
 
 .hero h1 {
-  font-size: 3rem;
+  font-size: 150px;
   margin: 0;
   color: #1d6ca1;
 }
