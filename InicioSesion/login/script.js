@@ -11,6 +11,7 @@ loginButton.addEventListener('click', (e) => {
     if (email != emailEj || password != passEj) {
         alert("Uno de los campos es incorrecto.");
     } else {
-        alert("Inicio de sesión exitoso!")
+        alert("Inicio de sesión exitoso!");
+        window.location.replace('http://localhost:5500/inicio/inicio.html') // redirección a la página principal con Live Server (puerto 5500)
     }
 })
