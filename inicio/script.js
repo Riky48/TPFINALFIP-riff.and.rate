@@ -1,5 +1,6 @@
 'use strict';
 
+
 // 1. Menú desplegable
 const btninav = document.getElementById('btninav');
 const dropdown = document.getElementById('dropdown-menu');
@@ -15,7 +16,10 @@ document.addEventListener('click', (e) => {
   }
 });
 
+
 // 2. API productos (ASIDE)
+async function productos(){
+  try{
 fetch('https://fakestoreapi.com/products')
   .then(res => res.json())
   .then(data => {
@@ -40,38 +44,53 @@ fetch('https://fakestoreapi.com/products')
       div.append(div2, div3);
       aside.appendChild(div);
     });
-  })
-  .catch(error => {
+  })}
+  catch(error) {
     console.error('Error al cargar productos:', error);
-  });
+  }};
+  productos();
 
 // 3. Usuario actual (imagen en dos lugares)
-const usuariosApi = 'https://randomuser.me/api/?results=10';
 
-fetch(usuariosApi)
-  .then(res => res.json())
-  .then(data => {
-    const usuarioUnico = data.results[0];
+async function usuarioActual(){
+  try{
+    const usuariosApi = 'https://randomuser.me/api/?results=10';
+    fetch(usuariosApi)
+      .then(res => res.json())
+      .then(data => {
+        const usuarioUnico = data.results[0];
+        
+        const imgHtml = `<a href="#"><img src="${usuarioUnico.picture.medium}" alt=""></a>`;
+        document.getElementById('userImg').innerHTML = imgHtml;
+        document.getElementById('publishusr').innerHTML = imgHtml;
+      });
+  }
+  catch(error){
+    console.error('Error al cargar usuario:', error);
+  }
+}
+usuarioActual();
 
-    const imgHtml = `<a href="#"><img src="${usuarioUnico.picture.medium}" alt=""></a>`;
-    document.getElementById('userImg').innerHTML = imgHtml;
-    document.getElementById('publishusr').innerHTML = imgHtml;
-  });
+  // 4. Publicaciones combinando usuarios + imágenes
 
-// 4. Publicaciones combinando usuarios + imágenes
-const apiImg = 'https://picsum.photos/v2/list?page=2&limit=10';
-const comments = 'https://jsonplaceholder.typicode.com/comments';
-Promise.all([
-  fetch(usuariosApi).then(res => res.json()),
-  fetch(apiImg).then(res => res.json()),
-  fetch(comments).then(res => res.json())
-])
-  .then(([userData, imgData,comments]) => {
+async function publicaciones(){
+  try{
+    const apiImg = 'https://picsum.photos/v2/list?page=2&limit=10';
+    const comments = 'https://jsonplaceholder.typicode.com/comments';
+    const usuariosApi = 'https://randomuser.me/api/?results=10';
+    
+    const [userData, imgData,commentData] = await Promise.all([
+      fetch(usuariosApi).then(res => res.json()),
+      fetch(apiImg).then(res => res.json()),
+      fetch(comments).then(res => res.json())
+    ]);
+
     const users = userData.results;
     const contenedor = document.getElementById('contentPosted');
+
     users.forEach((usr, i) => {
       const imgPost = imgData[i];
-      const commentuser = comments[i];
+      const commentuser = commentData[i];
       
       const post = document.createElement('div');
       post.classList.add('usercontentPosted');
@@ -86,48 +105,57 @@ Promise.all([
           <img src="${imgPost.download_url}" alt="Imagen aleatoria">
         </div>
         <div class="reactions">
-          <img src="assets/like.svg" alt="Imagen aleatoria">
-          <img src="assets/comentar.svg" alt="Imagen aleatoria">
-          <img src="assets/compartir.svg" alt="Imagen aleatoria">
-          <img src="assets/compartir1.svg" alt="Imagen aleatoria">
+          <a href="#"><img src="assets/like.svg" alt="Imagen aleatoria"></a>
+          <a href="#"><img src="assets/comentar.svg" alt="Imagen aleatoria"></a>
+          <a href="#"><img src="assets/compartir.svg" alt="Imagen aleatoria"></a>
+          <a href="#"><img src="assets/compartir1.svg" alt="Imagen aleatoria"></a>
         </div>
         
       `;
 
       contenedor.appendChild(post);
-    });
-  })
-  .catch(err => {
+    })
+  }
+  catch(err) {
     console.error('Error al generar publicaciones:', err);
-  });
+  }
+};
+
+publicaciones();
+
 
   // contactos sugeridos 
 
-  const contacts =  document.querySelector('.contacts');
-  fetch('https://randomuser.me/api/?results=4')
-    .then(res => res.json())
-    .then(data => {
-      const contactsSugeridos = data.results;
-
-      contactsSugeridos.forEach(contact => {
-        const contacto = document.createElement('div');
-        contacto.classList.add('contacto');
-        contacto.innerHTML = `
+async function contactosSugeridos(){
+  try{
+    const contacts =  document.querySelector('.contacts');
+    fetch('https://randomuser.me/api/?results=4')
+      .then(res => res.json())
+      .then(data => {
+        const contactsSugeridos = data.results;
         
-          <div class="contacto-add">
-            <a href="#"><img src="assets/vector.svg" alt=""></a>
-          </div>
-          <div class="contacto-img">
-            <img src="${contact.picture.medium}" alt="">
-          </div>
-          <div class="contacto-info">
-            <p>${contact.name.first} ${contact.name.last}</p>
-          </div>
-       
-        `;
-        contacts.appendChild(contacto);
-      });
-    })
-    .catch(error => {
-      console.error('Error al cargar contactos:', error);
-    }); 
+        contactsSugeridos.forEach(contact => {
+          const contacto = document.createElement('div');
+          contacto.classList.add('contacto');
+          contacto.innerHTML = `
+          
+            <div class="contacto-add">
+              <a href="#"><img src="assets/vector.svg" alt=""></a>
+            </div>
+            <div class="contacto-img">
+              <img src="${contact.picture.medium}" alt="">
+            </div>
+            <div class="contacto-info">
+              <p>${contact.name.first} ${contact.name.last}</p>
+            </div>
+        
+          `;
+          contacts.appendChild(contacto);
+        });
+      })}
+      catch(error){
+        console.error('Error al cargar contactos:', error);
+      }; 
+    }
+contactosSugeridos();
+ 

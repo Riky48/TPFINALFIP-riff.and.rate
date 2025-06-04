@@ -199,12 +199,12 @@ main{
     margin: 1.5vh;
     
     height: 100%;
-    width: 45vw;
+    width: 50vw;
 }
 
 .publish {
   background: var(--color-general);
-  width: 95%;
+  width: 97%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -271,7 +271,7 @@ main{
 
 .usercontentPosted{
     margin-top: 1vh;
-    width: 95%;
+    width: 97%;
     background: var(--color-general);
     border-radius: 10px;
     padding: 1vh;
@@ -330,7 +330,7 @@ main{
     background: var(--color-general);
     border-radius: 10px;
     margin-top: 1.7vh;
-    width: 30%;
+    width: 25%;
     height: 30vh;
 }
 .contacts .contacto{
