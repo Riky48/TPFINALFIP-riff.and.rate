@@ -1,9 +1,5 @@
 let buttonSignup = document.querySelector("#signupButton");
 
-let usernames = []
-let emails = []
-let passwords = []
-
 buttonSignup.addEventListener('click', (e) => {
     e.preventDefault();
     let user = document.querySelector("#user");
@@ -13,13 +9,8 @@ buttonSignup.addEventListener('click', (e) => {
     if (password.value != passwordCheck.value) {
         alert("Las contraseñas no coinciden.")
     } else {
-        usernames.push(user.value);
-        emails.push(email.value);
-        passwords.push(password.value);
-        
-        alert("Gracias por registrarse!")
+        alert("Gracias por registrarse!");
+
+        window.location.replace("../login/index.html")
     }
-    console.log(usernames);
-    console.log(emails);
-    console.log(passwords);
 })
