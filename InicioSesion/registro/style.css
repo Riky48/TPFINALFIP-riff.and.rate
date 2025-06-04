@@ -1,0 +1,91 @@
+#container {
+    background-color: #03243C;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+:root {
+    --color-nav:#082032;
+    --color-font:#B3B3B3;
+    --color-search:
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    width: 100vw;
+    height: 10vh;
+    background-color: var(--color-nav);
+}
+#imgnav{
+    margin: 0;
+    width: 6%;
+    height: 100%;
+}
+#imgnav img{
+    width: 100%;
+    height: 100%;
+}
+
+#optionsnav {
+    display: flex;
+    width: 40%;
+    justify-content: space-around;
+    margin-left: 60vw;
+}
+
+#optionsnav > a {
+    color: var(--color-font)
+}
+
+#signupheader {
+    display: flex;
+    width: 500px;
+    height: auto;
+    justify-self: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: #204D6D;
+}
+
+#signupdiv {
+    display: flex;
+    width: 400px;
+    height: 400px;
+    justify-self: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    background-color: #204D6D;
+    border-radius: 15px;
+    margin-top: 50px;
+}
+
+form > div {
+    display: flex;
+    width: auto;
+    height: 100%;
+    flex-direction: column;
+}
+
+form > div > label {
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-top: 35px;
+}
+
+form > div > input {
+    width: 250px;
+}
+
+form > div > button {
+    align-self: center;
+    margin-top: 20px;
+    width: 150px;
+}
