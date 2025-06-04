@@ -1,0 +1,378 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 20px;
+
+}
+body{
+    background: var(--color-fondo);
+    overflow-x: hidden;
+}
+:root{
+--color-nav:#082032;
+--color-font:#B3B3B3;
+--color-general:#204D6D;
+--color-aside:#214D6D;
+--color-fondo:#03243C;
+
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    height: 9vh;
+    background-color: var(--color-nav);
+}
+.imgnav{
+    margin: 0;
+    width: 7%;
+    height: 100%;
+}
+    .imgnav img{
+    width: 100%;
+    height: 100%;
+}
+.searchnav{
+    height: 100%;
+    width: 40%;
+}
+    .searchnav form{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100% fit-content;
+        height: 100%;
+    }
+    .searchnav form button{
+        border: 0;
+        width: 10%;
+        height: 80%;
+    }
+    .searchnav form button img{
+        width: 30%;
+       
+    }
+    .searchnav form #btninav{
+        border-top-left-radius: 50%;
+        border-bottom-left-radius: 50%;
+       
+    }
+    .searchnav form #btninav:hover{
+        cursor: pointer;
+    }
+    .searchnav form #btndnav{
+        border-top-right-radius: 50%;
+        border-bottom-right-radius: 50%;
+       
+    }
+    .searchnav form #btndnav:hover{
+       cursor: pointer;
+    }
+    
+    #buscadornav{
+        width: 80%;
+        height: 80%;
+        border: 0;
+        padding-left: 0.5vw;
+        font-size: 2.4vh;
+    }
+
+
+.usuario{
+    width: 5%;
+    height: 100%;
+}
+    .usuario img{
+   border-radius: 50%;
+    height: 80%;
+    width: 80%;
+}
+
+.optionsnav{
+    width: 45%;
+    font-size: 2.4vh;
+    height: 7vh;
+    display: flex;
+    justify-content: space-around;
+}
+    .optionsnav a{
+        height: 100%;
+        text-decoration: none;
+        color: white;
+        align-content: center;
+    }
+
+.usuario{
+    align-items: center;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+#dropdown-menu {
+  position: absolute;
+  top: 9vh; 
+  left: 7vw;
+  background-color: white;
+  border: 1px solid #ccc;
+  list-style: none;
+  padding: 0.5rem;
+  display: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+  z-index: 100;
+}
+
+#dropdown-menu li {
+  padding: 0.25rem 0.5rem;
+}
+
+#dropdown-menu li:hover {
+  background-color: #f0f0f0;
+}
+
+#dropdown-menu.show {
+  display: block;
+}
+
+aside{
+    width: 20vw;
+    height: 60vh;
+    background: var(--color-aside);
+    margin: 1.5vh;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+aside .divcontenido{
+    display: flex;
+    flex-direction: column;
+    border-radius: 7px;
+    border: 1px solid #E0E0E0;
+    justify-content: center;
+    align-items: center;
+    height: 47%;
+   
+    background: #03243C;
+    width: 95%;
+    
+}
+
+.imgaside{
+   
+    height: 65%;
+    width: 90%;
+    
+}
+.imgaside a{
+    height: 50%;
+    
+}
+.imgaside a img{
+    width: 100%;
+    height: 100%;
+}
+.textaside{
+    width: 90%;
+}
+.textaside a{
+    text-decoration: none;
+    font-size: 1.4vh;
+    color: white;
+    text-align: justify;
+    padding-left: 1vh;
+    height: 30%;
+    width: 80%;
+}
+.main{
+    
+    display: flex;
+}
+main{
+    margin: 1.5vh;
+    
+    height: 100%;
+    width: 45vw;
+}
+
+.publish {
+  background: var(--color-general);
+  width: 95%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 1vh;
+  gap: 1vh;
+}
+.publish-top {
+  display: flex;
+  align-items: center;
+  gap: 1vw;
+}
+#publishusr {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#publishusr img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.inputPost {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+}
+.inputPost textarea {
+  width: 100%;
+  border-radius: 30px;
+  border: none;
+  height: 100%;
+  padding: 1.2vh;
+  max-width: 100%;
+  resize: none;
+  font-size: 0.7em;
+}
+.iconPost {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+
+.iconPost a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  width: 15%;
+  height: auto;
+}
+.iconPost a img {
+  width: 30%;
+  height: auto;
+}
+.iconPost p {
+  color: whitesmoke;
+  font-size: 1.7vh;
+  text-align: center;
+}
+
+.usercontentPosted{
+    margin-top: 1vh;
+    width: 95%;
+    background: var(--color-general);
+    border-radius: 10px;
+    padding: 1vh;
+    gap: 1vh;
+}
+
+.usercontentPosted{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.user{
+    width: 90%;
+    display: flex;
+    height: 5vh;
+}
+.user img{
+    border-radius: 50%;
+
+    width : auto;
+    height : auto;
+}
+.user p {
+    width: 70%;
+    padding-left: 0.5vw;
+    height: 60%;
+    display: flex;
+    align-items: center;
+}
+
+.imagecontent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+.imagecontent p{
+    width: 90%;
+}
+
+.imagecontent img{
+    height: 80%;
+    width:90%;
+    border-radius: 10px;
+    
+}
+.reactions{
+    width: 90%;
+    display: flex;
+    border-top: 1px solid rgba(163, 163, 163, 0.616);
+    padding : 0.3vw;
+    justify-content: space-between;
+}
+
+
+.contacts{
+    background: var(--color-general);
+    border-radius: 10px;
+    margin-top: 1.7vh;
+    width: 30%;
+    height: 30vh;
+}
+.contacts .contacto{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 25%;
+    
+}
+
+.contacto {
+      
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+}
+.contacto-add{
+    width: 10%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.contacto-img{
+    width: 20%;
+    height: 100%; 
+    align-items: center;
+    display: flex;
+    justify-content: left;
+}
+.contacto-img img{
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+   
+}
+.contacto-info{
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: right;
+}
