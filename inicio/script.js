@@ -25,14 +25,14 @@ fetch('https://fakestoreapi.com/products')
   .then(data => {
     const aside = document.querySelector('aside');
 
-    data.slice(0, 2).forEach(product => {
+    data.slice(5, 7).forEach(product => {
       const div = document.createElement('div');
       div.classList.add('divcontenido');
 
       const div2 = document.createElement('div');
       div2.classList.add('imgaside');
       div2.innerHTML = `
-        <a href="#"><img src="${product.image}" alt="${product.title}" class="asideimg" width="50vw"></a>
+        <a href="#"><img src="${product.image}" alt="${product.title}" class="asideimg" ></a>
       `;
 
       const div3 = document.createElement('div');
@@ -159,3 +159,40 @@ async function contactosSugeridos(){
     }
 contactosSugeridos();
  
+
+async function reels() {
+  try {
+    const API_KEY = '6bazFI50wrY3krzR0JjGa16r5yNvnkU2wzgaiHOIeoULaBPoCIrof2YF';
+    const response = await fetch('https://api.pexels.com/videos/popular?per_page=10', {
+      headers: {
+        Authorization: API_KEY
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    const reelsContainer = document.getElementById('reels');
+
+    data.videos.slice(0,3).forEach(video => {
+      const videoFile = video.video_files.find(v => v.quality === "sd" || v.quality === "hd");
+      if (videoFile) {
+        const short = document.createElement('video');
+        short.src = videoFile.link;
+        short.controls = true;
+        short.autoplay = false;
+        short.muted = true;
+        short.loop = true;
+        reelsContainer.appendChild(short);
+      }
+    });
+    
+  } catch (error) {
+    console.error('Error al cargar reels:', error);
+  }
+};
+
+reels();

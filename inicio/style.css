@@ -192,12 +192,11 @@ aside .divcontenido{
     width: 80%;
 }
 .main{
-    
+    flex-wrap: wrap;
     display: flex;
 }
 main{
     margin: 1.5vh;
-    
     height: 100%;
     width: 50vw;
 }
@@ -325,12 +324,15 @@ main{
     justify-content: space-between;
 }
 
+.contacts-reels{
+   width: 25vw;
+}
 
 .contacts{
     background: var(--color-general);
     border-radius: 10px;
     margin-top: 1.7vh;
-    width: 25%;
+    width: 100%;
     height: 30vh;
 }
 .contacts .contacto{
@@ -376,3 +378,18 @@ main{
     justify-content: center;
     align-items: right;
 }
+
+#reels{
+    width: 100%;
+    display: flex;
+    margin-top: 1.5vh;
+    height: 35vh;
+    align-items: center;
+    border-radius: 10px;
+    justify-content: space-around;
+    background: var(--color-general);
+}
+#reels video{
+    width: 30%;
+}
+
