@@ -1,29 +1,62 @@
+
+@font-face {
+    font-family: 'Solway';
+    src: url('./assets/font/Solway-Regular.ttf');
+}
+
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-size: 20px;
-
+    color: var(--color-font);
+    font-family: 'Solway', Arial;
 }
+
+
+.color1 {color: #1b1606;}
+.color2 {color: #363815;}
+.color3 {color: #5a7dd1;}
+.color4 {color: #e3d2ea;}
+.color5 {color: #f3f3f3;}
+
+
+.color1 {color: #cfd9ea;}
+.color2 {color: #f3f3f3;}
+.color3 {color: #1e202f;}
+.color4 {color: #79787e;}
+.color5 {color: #e5e5e5;}
+
+
 body{
     background: var(--color-fondo);
     overflow-x: hidden;
 }
-:root{
+
+/* 
 --color-nav:#082032;
 --color-font:#B3B3B3;
 --color-general:#204D6D;
 --color-aside:#214D6D;
---color-fondo:#03243C;
+--color-fondo:#03243C; */
+:root{
+--color-nav:#1e202f;
+--color-font:#f3f3f3;
+--color-general:#1e202f;
+--color-aside:#1e202f;
+--color-fondo:#060606;
 
 }
 
 nav {
+    z-index: 1;
     display: flex;
+    position: fixed;
     align-items: center;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
     width: 100vw;
-    height: 9vh;
+    height: 7.5vh;
     background-color: var(--color-nav);
 }
 .imgnav{
@@ -118,7 +151,7 @@ nav {
   position: absolute;
   top: 9vh; 
   left: 7vw;
-  background-color: white;
+  background-color: var(--color-aside);
   border: 1px solid #ccc;
   list-style: none;
   padding: 0.5rem;
@@ -192,6 +225,7 @@ aside .divcontenido{
     width: 80%;
 }
 .main{
+    padding-top: 8vh;
     flex-wrap: wrap;
     display: flex;
 }
@@ -392,4 +426,3 @@ main{
 #reels video{
     width: 30%;
 }
-
