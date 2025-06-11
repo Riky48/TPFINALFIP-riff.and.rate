@@ -1,0 +1,82 @@
+/* Teléfonos pequeños /
+@media (max-width: 480px) { ... }
+
+
+
+/ Teléfonos grandes y tablets pequeñas /
+@media (min-width: 481px) and (max-width: 768px) { ... }
+
+
+
+/ Tablets grandes y pantallas medianas /
+@media (min-width: 769px) and (max-width: 1024px) { ... }
+
+
+
+/ Pantallas grandes de escritorio */
+@media (max-width: 1565px) {
+    .imgaside{
+        height: 55%;
+    }
+ }
+
+ @media (max-width: 1281px) {
+     body{
+        width: 100vw;
+    }
+    .searchnav{
+        width: 36%;
+    }
+    .optionsnav{
+        width: 51%;
+    }
+     .optionsnav a{
+        font-size: 1.9vh;
+    }
+    .contacto{
+        justify-content: space-evenly;
+    }
+    .contacto-add{
+        margin-left: 1vw;
+    }
+    .contacto-info{
+        width: 60%;
+    }
+    .contacto-info p{
+        font-size: 2vh;
+    }
+    
+    .imagecontent p{
+        font-size: 2.2vh;
+        padding-bottom: 1vh;
+    }
+ }
+
+ @media (max-width: 1006px){
+    .contacts-reels{
+        width: 24%;
+    }
+    #reels{
+     flex-direction: column;
+     height: auto;
+     width: 100%;
+     margin-top: 1.5vh;
+     
+     }
+     #reels video{
+         width: 70%;
+         height: auto;
+         margin-top: 1vh;
+         margin-bottom: 1vh;
+     }
+    .reactions a img{
+        width: 75%;
+    }
+    .user p{
+        font-size: 2vh;
+    }
+    .imagecontent p{
+        font-size: 1.7vh;
+        padding-bottom: 1vh;
+    }
+} 

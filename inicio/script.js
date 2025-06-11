@@ -98,7 +98,7 @@ async function publicaciones(){
         
         <div class="user">
         <img src="${usr.picture.medium}" alt="Foto de ${usr.name.first}">
-          <p><strong>${usr.name.first} ${usr.name.last}</strong> (${usr.gender})</p>
+          <p>${usr.name.first} ${usr.name.last}</p>
         </div>
           <div class="imagecontent">
           <p>${commentuser.body}</p>
