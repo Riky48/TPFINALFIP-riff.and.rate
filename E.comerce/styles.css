@@ -1,0 +1,90 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #e0f0ff;
+  color: #333;
+}
+
+header {
+  background-color: #002244;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  color: #fff;
+  margin: 0 16px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.container {
+  padding: 32px;
+}
+
+.product-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+  max-width: 1200px; /* opcional: limite ancho contenedor */
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  flex: 1 1 300px; /* mínimo 300px, puede crecer y encoger */
+  max-width: 400px; /* limita el máximo ancho */
+  height: auto; /* para que la altura se ajuste según contenido */
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  box-sizing: border-box; /* para que padding no aumente ancho */
+}
+
+.product-card img {
+  width: 200px; /* para que no sea más alta que la caja */
+  max-width: 300px; /* para que no sea más ancha que la caja */
+  height: 200px;
+  border-radius: 5px;
+  object-fit: cover; /* para que la imagen se adapte a la caja */
+  margin-bottom: 0.5rem;
+}
+
+
+.price {
+  font-weight: bold;
+  color: #0077cc;
+  margin: 0.5rem 0;
+}
+
+button {
+  background-color: #0077cc;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005fa3;
+}
+
+.cart-section {
+  margin-top: 3rem;
+  background-color: #f0f8ff;
+  padding: 1rem;
+  border-radius: 8px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+input.producto-cantidad {
+  width: 60px;
+  margin-bottom: 0.5rem;
+}
