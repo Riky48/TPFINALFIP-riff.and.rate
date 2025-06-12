@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RIFF AND RATE E-COMMERCE</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>RIFF AND RATE E-COMMERCE</h1>
+    <nav>
+      <a href="http://127.0.0.1:5500/TPFINALFIP-riff.and.rate/E.comerce/index.html">Inicio</a>
+      <a href="#">Instrumentos</a>
+      <a href="#">Vender</a>
+      <a href="#">Carrito (<span id="cart-count">0</span>)</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h2>Instrumentos en Venta</h2>
+    <div id="contenedor-productos" class="product-grid"></div>
+
+    <section class="cart-section">
+      <h3>Carrito</h3>
+      <ul id="lista-carrito"></ul>
+      <p>Total: $<span id="total-carrito">0</span></p>
+      <button id="btn-checkout">Comprar ahora</button>
+    </section>
+  </main>
+  <section class="add-product">
+  <h2>Agregar Nuevo Producto</h2>
+  <form id="product-form">
+    <input type="text" id="name" placeholder="Nombre" required />
+    <input type="text" id="description" placeholder="Descripción" required />
+    <input type="number" id="price" placeholder="Precio" required />
+    <input type="file" id="image" accept="image/*" required />
+    <button type="submit">Agregar</button>
+  </form>
+</section>
+
+  <footer>
+    <p>© 2025 Marketplace Músicos - Todos los derechos reservados</p>
+  </footer>
+
+  
+  <script src="formulario.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

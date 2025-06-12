@@ -57,7 +57,7 @@ nav {
 #logindiv {
     display: flex;
     width: 400px;
-    height: 250px;
+    height: 300px;
     justify-self: center;
     flex-direction: column;
     text-align: center;
@@ -65,6 +65,14 @@ nav {
     background-color: #204D6D;
     border-radius: 15px;
     margin-top: 50px;
+}
+
+#logindata {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    align-items: center;
 }
 
 form > div {
@@ -86,6 +94,7 @@ form > div > input {
 
 form > div > button {
     align-self: center;
-    margin-top: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
     width: 150px;
 }
