@@ -82,23 +82,23 @@ nav {
     .searchnav form button{
         border: 0;
         width: 10%;
-        height: 80%;
+        height: 70%;
     }
     .searchnav form button img{
         width: 30%;
        
     }
     .searchnav form #btninav{
-        border-top-left-radius: 50%;
-        border-bottom-left-radius: 50%;
+        border-top-left-radius: 20%;
+        border-bottom-left-radius: 20%;
        
     }
     .searchnav form #btninav:hover{
         cursor: pointer;
     }
     .searchnav form #btndnav{
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
+        border-top-right-radius: 20%;
+        border-bottom-right-radius: 20%;
        
     }
     .searchnav form #btndnav:hover{
@@ -106,13 +106,18 @@ nav {
     }
     
     #buscadornav{
-        width: 80%;
-        height: 80%;
+        width: 70%;
+        height: 70%;
         border: 0;
         padding-left: 0.5vw;
         font-size: 2.4vh;
+        color: var(--color-fondo);
     }
-
+    #postinput{
+        color: var(--color-fondo);
+        min-height: 7vh;
+        max-height: 12vh;
+    }
 
 .usuario{
     width: 5%;
@@ -127,15 +132,22 @@ nav {
 .optionsnav{
     width: 45%;
     font-size: 2.4vh;
-    height: 7vh;
+    height: 2.5vh;
     display: flex;
     justify-content: space-around;
+    align-content: center;
 }
     .optionsnav a{
+    
         height: 100%;
         text-decoration: none;
         color: white;
         align-content: center;
+    }
+
+    .optionsnav a:hover{
+        border-bottom: 1px solid white;
+        color:#979dcc ;
     }
 
 .usuario{
@@ -144,8 +156,6 @@ nav {
     display: flex;
     justify-content: center;
 }
-
-
 
 #dropdown-menu {
   position: absolute;
@@ -342,6 +352,7 @@ main{
 } 
 .imagecontent p{
     width: 90%;
+    padding-bottom: 1vh;
 }
 
 .imagecontent img{
