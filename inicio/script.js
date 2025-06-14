@@ -25,7 +25,7 @@ fetch('https://fakestoreapi.com/products')
   .then(data => {
     const aside = document.querySelector('aside');
 
-    data.slice(5, 7).forEach(product => {
+    data.slice(8, 12).forEach(product => {
       const div = document.createElement('div');
       div.classList.add('divcontenido');
 

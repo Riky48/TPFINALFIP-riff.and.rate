@@ -1,8 +1,6 @@
-/* Teléfonos pequeños /
-@media (max-width: 480px) { ... }
 
 
-
+/*
 / Teléfonos grandes y tablets pequeñas /
 @media (min-width: 481px) and (max-width: 768px) { ... }
 
@@ -106,3 +104,57 @@
         width: 65%;
     }
 }
+
+ /* Teléfonos pequeños */
+@media (max-width: 480px){
+    aside{
+        visibility: hidden;
+        display: none;
+    }
+    main{
+        width: 100vw;
+    }
+    .searchnav{
+        width: 30%;
+    }
+    #btninav{
+        width: 6vw;
+    }
+    #btninav img{
+        width: 60%;
+    }
+    #btndnav{
+        display: none;
+        visibility: hidden;
+    }
+    #buscadornav{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .imgnav{
+        width: 15%;
+    }
+    .optionsnav{
+        width: 45%;
+        flex-wrap: wrap;
+    }
+    .optionsnav a{
+        font-size: 1.3vh;
+    }
+    .usuario{
+        margin: 0;
+
+        width: 14vw;
+    }
+    .usuario a{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .contacts-reels{
+        display: none;
+    }
+    }
+    
+
