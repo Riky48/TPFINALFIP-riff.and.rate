@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-color:#FAFAFA;
+  background-color:#0a0b10;
   margin: 0;
   padding: 0;
 }
@@ -39,7 +39,7 @@ body {
 .carta {
   width: 300px;
   padding: 20px;
-  background: #fff;
+  background: #1e202f;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.1);
   text-align: center;
@@ -58,10 +58,11 @@ body {
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
+  color: #fff;
 }
 
 .instrumento {
-  color: #777;
+  color: #e9dddd;
   margin: 5px 0 20px 0;
   font-style: italic;
 }
@@ -146,6 +147,7 @@ body {
   background-color: #fff;
   max-width: 1000px;
   margin: 0 auto;
+  
 }
 
 .publicaciones h2 {
