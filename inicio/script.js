@@ -60,7 +60,7 @@ async function usuarioActual(){
       .then(data => {
         const usuarioUnico = data.results[0];
         
-        const imgHtml = `<a href="#"><img src="${usuarioUnico.picture.medium}" alt=""></a>`;
+        const imgHtml = `<a href="https://www.google.com/"><img src="${usuarioUnico.picture.medium}" alt=""></a>`;
         document.getElementById('userImg').innerHTML = imgHtml;
         document.getElementById('publishusr').innerHTML = imgHtml;
       });
@@ -105,10 +105,18 @@ async function publicaciones(){
           <img src="${imgPost.download_url}" alt="Imagen aleatoria">
         </div>
         <div class="reactions">
-          <a href="#"><img src="assets/like.svg" alt="Imagen aleatoria"></a>
-          <a href="#"><img src="assets/comentar.svg" alt="Imagen aleatoria"></a>
-          <a href="#"><img src="assets/compartir.svg" alt="Imagen aleatoria"></a>
-          <a href="#"><img src="assets/compartir1.svg" alt="Imagen aleatoria"></a>
+          <a href="#"><img src="assets/like.svg" alt="Imagen aleatoria">
+            <p>Reaccionar</p>
+          </a>
+          <a href="#"><img src="assets/comentar.svg" alt="Imagen aleatoria">
+          <p>Comentar</p>
+          </a>
+          <a href="#"><img src="assets/compartir.svg" alt="Imagen aleatoria">
+          <p>Compartir</p>
+          </a>
+          <a href="#"><img src="assets/compartir1.svg" alt="Imagen aleatoria">
+          <p>Enviar</p>
+          </a>
         </div>
         
       `;
@@ -175,10 +183,14 @@ async function reels() {
 
     const data = await response.json();
 
+   
     const reelsContainer = document.getElementById('reels');
 
+    const divR = document.createElement('div');
+    divR.classList.add('reel');
+
     data.videos.slice(0,3).forEach(video => {
-      const videoFile = video.video_files.find(v => v.quality === "sd" || v.quality === "hd");
+      const videoFile = video.video_files.find(v => v.quality === 'hd');
       if (videoFile) {
         const short = document.createElement('video');
         short.src = videoFile.link;
@@ -186,7 +198,10 @@ async function reels() {
         short.autoplay = false;
         short.muted = true;
         short.loop = true;
-        reelsContainer.appendChild(short);
+        reelsContainer.appendChild(divR);
+        divR.appendChild(short);
+        
+
       }
     });
     

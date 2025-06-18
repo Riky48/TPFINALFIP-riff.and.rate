@@ -85,6 +85,9 @@
 } 
 
 @media (max-width: 1024px) and (max-height: 600px){
+    body{
+        overflow-x: hidden;
+    }
     nav{
         width: 1024px;
     }
@@ -116,6 +119,12 @@
     }
     .searchnav{
         width: 30%;
+    }
+    .iconPost a {
+        width: 20%;
+    }
+    .iconPost a p{
+        font-size: 1.4vh;
     }
     #btninav{
         width: 6vw;
@@ -154,6 +163,12 @@
     }
     .contacts-reels{
         display: none;
+    }
+    .reactions a img{
+        width: 38%;
+    }
+    .reactions a p{
+        font-size: 1.5vh;
     }
     }
     
