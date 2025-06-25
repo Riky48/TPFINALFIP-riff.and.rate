@@ -52,13 +52,14 @@ fetch('https://fakestoreapi.com/products')
 
 // 3. Usuario actual (imagen en dos lugares)
 
+let usuarioUnico = null;
 async function usuarioActual(){
   try{
     const usuariosApi = 'https://randomuser.me/api/?results=10';
     fetch(usuariosApi)
       .then(res => res.json())
       .then(data => {
-        const usuarioUnico = data.results[0];
+        usuarioUnico = data.results[1];
         
         const imgHtml = `<a href="https://www.google.com/"><img src="${usuarioUnico.picture.medium}" alt=""></a>`;
         document.getElementById('userImg').innerHTML = imgHtml;
@@ -105,8 +106,8 @@ async function publicaciones(){
           <img src="${imgPost.download_url}" alt="Imagen aleatoria">
         </div>
         <div class="reactions">
-          <a href="#"><img src="assets/like.svg" alt="Imagen aleatoria">
-            <p>Reaccionar</p>
+          <a href="#" class="like-btn"><img src="assets/like.svg" alt="Imagen aleatoria">
+            <p>Reaccionar <span class="like-count">0</span></p>
           </a>
           <a href="#"><img src="assets/comentar.svg" alt="Imagen aleatoria">
           <p>Comentar</p>
@@ -122,6 +123,27 @@ async function publicaciones(){
       `;
 
       contenedor.appendChild(post);
+      
+      
+        const likeBtn = document.querySelector('.like-btn');
+        const likeCount = likeBtn.querySelector('.like-count');
+        let liked = false;
+  
+        likeBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          liked = !liked;
+  
+          if (liked) {
+            likeCount.textContent = parseInt(likeCount.textContent) + 1;
+            likeBtn.classList.add('liked');
+            console.log("Ta like");
+            
+          } else {
+            likeCount.textContent = parseInt(likeCount.textContent) - 1;
+            likeBtn.classList.remove('liked');
+            console.log("Ta dislike");
+          }
+        });
     })
   }
   catch(err) {
@@ -211,3 +233,18 @@ async function reels() {
 };
 
 reels();
+
+
+
+// 
+// AÑADIR: INTERACION EN LOS BOTONES DE COMPARTIR, ENVIAR, COMENTAR Y LIKE
+// AÑADIR: FUNCIONAMIENTO EN EL MOMENTO DE CREAR UNA PUBLICACION(AÑADIR IMAGEN, CREAR EVENTO O ARTICULO)(TAMBIEN QUE SE PUEDA CREAR LA PUBLICACION (CRUD))
+// 
+//  
+// 
+// 
+// 
+// 
+
+
+//Crear una publicacion
