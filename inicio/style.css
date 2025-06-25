@@ -131,14 +131,13 @@ nav {
 
 .optionsnav{
     width: 45%;
-    font-size: 2.4vh;
     height: 2.5vh;
     display: flex;
     justify-content: space-around;
     align-content: center;
 }
     .optionsnav a{
-    
+        font-size: 2vh;
         height: 100%;
         text-decoration: none;
         color: white;
@@ -150,6 +149,7 @@ nav {
         color:#979dcc ;
     }
 
+    
 .usuario{
     align-items: center;
     margin: auto;
@@ -255,6 +255,13 @@ main{
     flex-direction: column;
     align-items: center;
 }
+#publishBtn{
+    background: var(--color-general);
+    width: 20%;
+    font-size: 2vh;
+    border-radius: 10px;
+    margin: auto;
+}
 #contentPosted{
     display: flex;
     flex-direction: column;
@@ -307,9 +314,12 @@ main{
   align-items: center;
   width: 100%;
 }
+#fileInput{
+    display: none;
+    visibility: hidden;
+}
 
-
-.iconPost a {
+.iconPost a, .iconPost label{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -317,11 +327,11 @@ main{
   width: 15%;
   height: auto;
 }
-.iconPost a img {
+.iconPost a img, .iconPost label img {
   width: 30%;
   height: auto;
 }
-.iconPost p {
+.iconPost p , .iconPost label p {
   color: whitesmoke;
   font-size: 1.7vh;
   text-align: center;
@@ -376,6 +386,7 @@ main{
 .imagecontent img{
     height: 80%;
     width:90%;
+    min-width: 90%;
     border-radius: 10px;
     
 }
@@ -425,14 +436,13 @@ main{
 }
 
 .contacto {
-      
     display: flex;
     width: 100%;
     height: 100%;
     flex-wrap: wrap;
 }
 .contacto-add{
-    width: 10%;
+    width: 20%;
     height: 100%;
     align-items: center;
     display: flex;
@@ -442,17 +452,16 @@ main{
     width: 20%;
     height: 100%; 
     align-items: center;
+    justify-content: center;
     display: flex;
-    justify-content: left;
 }
 .contacto-img img{
     width: 60%;
-    height: 60%;
     border-radius: 50%;
    
 }
 .contacto-info{
-    width: 80%;
+    width: 70%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -460,7 +469,7 @@ main{
     align-items: right;
 }
 .contacto-info p{
-    font-size: 1.9vh;
+    font-size: 1.8vh;
 }
 #reels{
     background: var(--color-general);
@@ -476,14 +485,23 @@ main{
 .reel{
     width: 100%;
     display: flex;
-    height: 75%;
+    height: 70%;
     align-items: center;
     border-radius: 10px;
     justify-content: space-around;
 }
 .reel video{
-    width: 25%;
+    width: 30%;
     height: 100%;
     border: 1px solid white;
     border-radius: 16px;
 }
+
+.like-btn,.liked{
+    filter: hue-rotate(200deg);
+}
+.like-btn,.liked p{
+    color:#cfd9ea;
+    font-weight: bold;
+}
+
