@@ -1,5 +1,7 @@
 "use strict";
 
+"use strict";
+
 // Productos precargados
 let productos = [
   { id: "1", nombre: "Bajo Eléctrico Fender", precio: 25000, imagen: "IMG/BAJO.jpeg", stock: 10 },
@@ -18,6 +20,17 @@ const totalCarritoElemento = document.getElementById("total-carrito");
 const btnCheckout = document.getElementById("btn-checkout");
 const cartCount = document.getElementById("cart-count");
 
+// --- NUEVOS ELEMENTOS PARA EDITAR ---
+const editSection = document.getElementById("edit-product-section");
+const editForm = document.getElementById("edit-product-form");
+const editName = document.getElementById("edit-name");
+const editDescription = document.getElementById("edit-description");
+const editPrice = document.getElementById("edit-price");
+const editStock = document.getElementById("edit-stock");
+const cancelEdit = document.getElementById("cancel-edit");
+
+let productoActualIndex = null; // Para saber qué producto estamos editando
+
 // Mostrar productos
 function cargarProductos() {
   contenedor.innerHTML = "";
@@ -32,6 +45,8 @@ function cargarProductos() {
       <p class="price">$${producto.precio}</p>
       <input type="number" min="1" max="${producto.stock}" value="1" class="producto-cantidad">
       <button class="producto-agregar" data-id="${index}">Agregar al carrito</button>
+      <button class="producto-editar" data-id="${index}">Editar</button>
+      <button class="producto-eliminar" data-id="${index}">Eliminar</button>
     `;
 
     const btnAgregar = div.querySelector(".producto-agregar");
@@ -43,6 +58,21 @@ function cargarProductos() {
         agregarAlCarrito(producto, cantidad);
       } else {
         alert("Sin Stock.");
+      }
+    });
+
+    // Botón editar
+    const btnEditar = div.querySelector(".producto-editar");
+    btnEditar.addEventListener("click", () => {
+      mostrarFormularioEdicion(index);
+    });
+
+    // Botón eliminar
+    const btnEliminar = div.querySelector(".producto-eliminar");
+    btnEliminar.addEventListener("click", () => {
+      if (confirm(`¿Querés eliminar el producto "${producto.nombre}"?`)) {
+        productos.splice(index, 1);
+        cargarProductos();
       }
     });
 
@@ -73,6 +103,41 @@ function actualizarCarrito() {
   cartCount.textContent = carrito.reduce((acc, prod) => acc + prod.cantidad, 0);
 }
 
+// Mostrar formulario de edición con datos actuales
+function mostrarFormularioEdicion(index) {
+  productoActualIndex = index;
+  const producto = productos[index];
+  editName.value = producto.nombre;
+  editDescription.value = producto.descripcion || "";
+  editPrice.value = producto.precio;
+  editStock.value = producto.stock;
+  editSection.style.display = "block";  // Mostrar el formulario
+  window.scrollTo(0, document.body.scrollHeight); // Scroll para que se vea
+}
+
+// Manejar envío del formulario de edición
+editForm.addEventListener("submit", e => {
+  e.preventDefault();
+  if (productoActualIndex === null) return;
+
+  // Actualizar producto
+  productos[productoActualIndex].nombre = editName.value;
+  productos[productoActualIndex].descripcion = editDescription.value;
+  productos[productoActualIndex].precio = parseFloat(editPrice.value);
+  productos[productoActualIndex].stock = parseInt(editStock.value);
+
+  // Ocultar formulario y refrescar lista
+  editSection.style.display = "none";
+  productoActualIndex = null;
+  cargarProductos();
+});
+
+// Cancelar edición
+cancelEdit.addEventListener("click", () => {
+  editSection.style.display = "none";
+  productoActualIndex = null;
+});
+
 // Manejar formulario nuevo producto
 form.addEventListener("submit", e => {
   e.preventDefault();
@@ -98,7 +163,7 @@ form.addEventListener("submit", e => {
     cargarProductos();
     form.reset();
   };
-  reader.readAsDataURL(file); // <- Esto permite mostrar imagen cargada localmente
+  reader.readAsDataURL(file); // Mostrar imagen local
 });
 
 // Finalizar compra
