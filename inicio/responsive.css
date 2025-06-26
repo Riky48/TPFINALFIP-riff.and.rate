@@ -65,7 +65,7 @@
     .textaside{
         height: 40%;
     }
-    .textaside h4,p{
+    .textaside h4{
         font-size: 2vh;
     }
     #reels{
@@ -109,7 +109,7 @@
     .textaside{
         height: 40%;
     }
-    .textaside h4,p{
+    .textaside h4{
         font-size: 2.2vh;
     }
     .reactions a img{
@@ -121,6 +121,18 @@
 }
 
  /* Teléfonos pequeños */
+@media (max-width: 375px) {
+   .reactions a img{
+        width: 30%;
+    }
+    .usercontentPosted .reactions a p{
+        font-size: 1.7vh;
+    }
+
+}
+
+   
+
 @media (max-width: 480px){
     aside{
         visibility: hidden;
@@ -177,10 +189,10 @@
         display: none;
     }
     .reactions a img{
-        width: 38%;
+        width: 35%;
     }
-    .reactions a p{
-        font-size: 1.5vh;
+    .usercontentPosted .reactions a p{
+        font-size: 1.1vh;
     }
     }
     
@@ -226,7 +238,7 @@
     .textaside{
         height: auto;
     }
-    .textaside a h4,p{
+    .textaside a h4{
       font-size: 1.1vh;
     }
     .iconPost{

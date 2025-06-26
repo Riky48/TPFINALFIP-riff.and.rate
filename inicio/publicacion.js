@@ -7,6 +7,10 @@
   const publishBtn = document.getElementById('publishBtn');
   const postInput = document.getElementById('postinput');
 
+
+ 
+
+
   fileInput.addEventListener('change', () => {
     const file = fileInput.files[0];
     if (file) {
@@ -18,7 +22,6 @@
       reader.readAsDataURL(file);
     }
   });
-
 
 
 const contenedor = document.getElementById('contentPosted');
@@ -39,6 +42,7 @@ publishBtn.addEventListener('click', () => {
  
   
 // Contenido textual del post
+
 
   const user = usuarioUnico;
   const userHtml = `
@@ -66,7 +70,7 @@ publishBtn.addEventListener('click', () => {
       divPost.innerHTML += `
       <div class="reactions">
       
-       <a href="#" class="like-btn"><img src="assets/like.svg" alt="Imagen aleatoria">
+       <a href="#" class="like-btn" ><img src="assets/like.svg" alt="Imagen aleatoria">
          <p>Reaccionar <span class="like-count">0</span></p>
         </a>
         <a href="#"><img src="assets/comentar.svg" alt="Imagen aleatoria">
@@ -92,6 +96,7 @@ publishBtn.addEventListener('click', () => {
             if (liked) {
               likeCount.textContent = parseInt(likeCount.textContent) + 1;
               likeBtn.classList.add('liked');
+
             } else {
               likeCount.textContent = parseInt(likeCount.textContent) - 1;
               likeBtn.classList.remove('liked');
@@ -132,6 +137,7 @@ publishBtn.addEventListener('click', () => {
         if (liked) {
           likeCount.textContent = parseInt(likeCount.textContent) + 1;
           likeBtn.classList.add('liked');
+
         } else {
           likeCount.textContent = parseInt(likeCount.textContent) - 1;
           likeBtn.classList.remove('liked');
