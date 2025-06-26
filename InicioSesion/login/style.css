@@ -134,3 +134,15 @@ form > div > input {
 #loginbtn > p > a {
     color: #7883d8;
 }
+
+footer {
+    display: flex;
+    background-color: var(--color-nav);
+    margin-top: 60px;
+    width: 100%;
+    height: 50px;
+    color: var(--color-font);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
