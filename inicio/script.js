@@ -60,8 +60,8 @@ async function usuarioActual(){
       .then(res => res.json())
       .then(data => {
         usuarioUnico = data.results[1];
-        
-        const imgHtml = `<a href="https://www.google.com/"><img src="${usuarioUnico.picture.medium}" alt=""></a>`;
+
+        const imgHtml = `<a href="../perfil/perfil.html"><img src="${usuarioUnico.picture.medium}" alt=""></a>`;
         document.getElementById('userImg').innerHTML = imgHtml;
         document.getElementById('publishusr').innerHTML = imgHtml;
       });
