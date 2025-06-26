@@ -1,31 +1,39 @@
+@font-face {
+    font-family: 'Solway';
+    src: url('../assets/font/Solway-Regular.ttf');
+}
+
+
 #container {
-    background-color: #03243C;
+    background-color: var(--color-fondo);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Solway', Arial;
 
 }
-:root {
-    --color-nav:#082032;
-    --color-font:#B3B3B3;
-    --color-search:
+:root{
+    --color-nav:#1e202f;
+    --color-font:#f3f3f3;
+    --color-general:#1e202f;
+    --color-aside:#1e202f;
+    --color-fondo:#060606;
 }
 
 nav {
+    z-index: 0;
     display: flex;
     align-items: center;
-    border: 1px solid black;
     width: 100vw;
-    height: 10vh;
+    height: 7.5vh;
     background-color: var(--color-nav);
 }
 #imgnav{
     margin: 0;
-    width: 6%;
+    width: 7%;
     height: 100%;
 }
 #imgnav img{
@@ -34,24 +42,44 @@ nav {
 }
 
 #optionsnav {
+    width: 100%;
+    font-size: 2.4vh;
+    height: 2.5vh;
     display: flex;
-    width: 40%;
-    justify-content: space-around;
-    margin-left: 60vw;
+    justify-content: space-evenly;
+    align-content: center;
 }
 
 #optionsnav > a {
-    color: var(--color-font)
+    color: var(--color-font);
+    height: 100%;
+    text-decoration: none;
+    align-content: center;
+}
+
+#optionsnav > a:hover {
+    border-bottom: 1px solid white;
+    color:#979dcc ;
 }
 
 #loginheader {
     display: flex;
     width: 500px;
     height: auto;
+    color: var(--color-font);
     justify-self: center;
     flex-direction: column;
     text-align: center;
-    background-color: #204D6D;
+    background-color: var(--color-aside);
+    margin-top: 5px;
+}
+
+#loginheader > h1 {
+    font-size: 40px;
+}
+#loginheader > p {
+    margin-top: 25px;
+    margin-bottom: 5px;
 }
 
 #logindiv {
@@ -62,9 +90,9 @@ nav {
     flex-direction: column;
     text-align: center;
     align-items: center;
-    background-color: #204D6D;
+    background-color: var(--color-aside);
     border-radius: 15px;
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 #logindata {
@@ -83,18 +111,38 @@ form > div {
 }
 
 form > div > label {
-    font-family:Arial, Helvetica, sans-serif;
+    color: var(--color-font);
     font-weight: bold;
-    padding-top: 35px;
+    padding-top: 20px;
 }
 
 form > div > input {
     width: 250px;
 }
 
-form > div > button {
+#loginbtn > button {
     align-self: center;
-    border-radius: 5px;
+    margin-top: 10px;
     margin-bottom: 20px;
     width: 150px;
+}
+
+#loginbtn > p {
+    color: var(--color-font);
+}
+
+#loginbtn > p > a {
+    color: #7883d8;
+}
+
+footer {
+    display: flex;
+    background-color: var(--color-nav);
+    margin-top: 60px;
+    width: 100%;
+    height: 50px;
+    color: var(--color-font);
+    text-align: center;
+    justify-content: center;
+    align-items: center;
 }

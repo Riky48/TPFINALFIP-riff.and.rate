@@ -1,0 +1,135 @@
+/* Pantallas grandes de escritorio */
+@media (max-width: 1565px) {
+    #imgnav{
+        height: 125%;
+    }
+
+    #loginheader {
+        width: 500px;
+    }
+    #optionsnav{
+        width: 97%;
+    }
+    #optionsnav a{
+        font-size: 2.6vh;
+    }
+
+    footer {
+        margin-top: 180px;
+    }
+ }
+
+ @media (max-width: 1281px){
+    #container{
+        width: 100vw;
+    }
+ }
+
+ @media (max-width: 1006px){
+    #container{
+        width: 100vw;
+    }
+    #optionsnav{
+        width: 97%;
+    }
+    #optionsnav a{
+        font-size: 2.4vh;
+    }
+ }
+
+
+/* Tablets grandes y pantallas medianas */
+@media (min-width: 769px) and (max-width: 1024px) {
+    #container {
+        width: 100%;
+    }
+
+    nav {
+        width: auto;
+    }
+
+    #optionsnav a {
+        font-size: 2.5vh;
+    }
+
+    #imgnav {
+        width: 50px;
+    }
+
+    #loginheader {
+        width: 70%;
+        max-width: 500px;
+    }
+
+    #logindiv {
+        width: 50%;
+        max-width: 400px;
+    }
+
+}
+
+/* Teléfonos grandes y tablets pequeñas */
+@media (min-width: 481px) and (max-width: 768px) {
+    #container {
+        width: 102%;
+        overflow-x: hidden;
+    }
+
+    nav {
+        width: auto;
+    }
+
+    #optionsnav a{
+        font-size: 2.3vh;
+    }
+
+    #imgnav {
+        width: 50px;
+    }
+
+    #loginheader {
+        width: 70%;
+        min-width: 400px;
+        max-width: 500px;
+    }
+
+    #logindiv {
+        width: 50%;
+        min-width: 300px;
+        max-width: 400px;
+    }
+}
+
+
+ /* Teléfonos pequeños */
+@media (max-width: 480px){
+    #container{
+        width: 100vw;
+        overflow-x: hidden;
+    }
+
+    nav {
+        width: 100%;
+    }
+    
+    #imgnav {
+        width: 50px;
+    }
+    #optionsnav a{
+        font-size: 1.9vh;
+    }
+
+    #loginheader {
+        width: 350px;
+    }
+
+    #logindiv {
+        width: 300px;
+    }
+
+    footer{
+        font-size: 2.7vh;
+    }
+}
+    
+
