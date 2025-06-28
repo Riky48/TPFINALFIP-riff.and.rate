@@ -3,7 +3,7 @@ Desarrollo de la pagina web Riff &amp; Rate, que tenemos que crear para el traba
 
 Link a la carpeta con la documentación: https://drive.google.com/drive/folders/1HjXgWRJA8LCvgq7NS_2OKsXx3G88wKQ0
 
-🎸 Riff & Rate
+🎸 Riff & Rate &amp;
 Riff & Rate es una red social pensada exclusivamente para músicos. La plataforma permite a los usuarios compartir contenido musical (como publicaciones, imágenes y reels), descubrir otros artistas, y conectar con la comunidad mediante reacciones y comentarios.
 
 Además, ofrece un espacio para comprar y vender instrumentos o equipos musicales, así como también publicitarse como músico profesional o amateur en busca de oportunidades laborales o colaboraciones.
