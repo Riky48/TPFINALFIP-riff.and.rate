@@ -26,7 +26,7 @@ Fetch API – Para consumir datos externos como usuarios aleatorios.
 FileReader API – Para previsualización de imágenes al momento de postear.
 
 DOM Manipulation – Creación dinámica de publicaciones y eventos interactivos.
-
+<br> <br>
 Próximamente (Backend)
 El proyecto será conectado a un backend con tecnologías como:
 
