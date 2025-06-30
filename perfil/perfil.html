@@ -8,41 +8,48 @@
 </head>
 <body>
 
-    <nav class="navegador">
-        <a href="#">
-            <img src="imagenes/logo.png" alt="Logo" />
-        </a>
+   <nav class="navegador">
+  <a href="#">
+    <img src="imagenes/logo.png" alt="Logo" />
+  </a>
 
-        <ul class="nav-links">
-            <li><a href="../inicio/inicio.html">Inicio</a></li>
-            <li><a href="../E.comerce/index.html">Productos</a></li>
-            <li><a href="#">Acerca de</a></li>
-            <li><a href="#">Contacto</a></li>
-        </ul>
-    </nav>
+  <form class="buscador" action="#" method="get">
+    <input type="text" placeholder="Buscar..." name="q" />
+    <button type="submit" aria-label="Buscar"></button>
+  </form>
+
+  <ul class="nav-links">
+    <li><a href="../inicio/inicio.html">Inicio</a></li>
+    <li><a href="../E.comerce/index.html">Productos</a></li>
+    <li><a href="#">Acerca de</a></li>
+    <li><a href="#">Contacto</a></li>
+  </ul>
+</nav>
 
     <div class="perfil">
-        <div class="carta">
-            <img src="imagenes/perfil.png" alt="perfil" />
-            <p class="nombre">santutu</p>
-            <p class="instrumento">baterista</p>
+  <div class="carta">
+    <img src="imagenes/perfil.png" alt="perfil" />
+    <p class="nombre">santutu</p>
+    <p class="instrumento">baterista</p>
 
-            <div class="estadisticas">
-                <div>
-                    <strong>Seguidores</strong>
-                    <p id="followers">126</p>
-                </div>
-                <div>
-                    <strong>Seguidos</strong>
-                    <p id="follows">184</p>
-                </div>
-                <div>
-                    <strong>Publicaciones</strong>
-                    <p id="posts">3</p>
-                </div>
-            </div>
-        </div>
+    <div class="estadisticas">
+      <div>
+        <strong>Seguidores</strong>
+        <p id="followers">126</p>
+      </div>
+      <div>
+        <strong>Seguidos</strong>
+        <p id="follows">184</p>
+      </div>
+      <div>
+        <strong>Publicaciones</strong>
+        <p id="posts">3</p>
+      </div>
     </div>
+
+    <button id="follow-btn">Seguir</button>
+  </div>
+</div>
 <section class="sobre-mi" id="sobre-mi">
   <div class="contenido">
     <div class="texto">
@@ -62,18 +69,58 @@
     <section class="publicaciones" id="publicaciones">
   <h2>Publicaciones</h2>
   <div class="galeria">
+
+    <!-- Publicación 1 -->
     <div class="publicacion">
       <img src="imagenes/cover1.jpg" alt="Publicación 1" />
       <p>Improvisación en vivo - 2024</p>
+
+      <button class="like-btn">❤️ 0</button>
+
+      <div class="comentarios">
+        <p><strong>fan_musica:</strong> ¡Tremenda energía!</p>
+      </div>
+
+      <div class="nuevo-comentario">
+        <input type="text" placeholder="Agregar un comentario..." class="input-comentario" />
+        <button class="btn-comentar">Publicar</button>
+      </div>
     </div>
+
+    <!-- Publicación 2 -->
     <div class="publicacion">
       <img src="imagenes/cover2.jpg" alt="Publicación 2" />
       <p>Sesión en estudio</p>
+
+      <button class="like-btn">❤️ 0</button>
+
+      <div class="comentarios">
+        <p><strong>beatlover:</strong> ¡Suena increíble!</p>
+      </div>
+
+      <div class="nuevo-comentario">
+        <input type="text" placeholder="Agregar un comentario..." class="input-comentario" />
+        <button class="btn-comentar">Publicar</button>
+      </div>
     </div>
+
+    <!-- Publicación 3 -->
     <div class="publicacion">
       <img src="imagenes/cover3.jpg" alt="Publicación 3" />
       <p>Clínica de batería</p>
+
+      <button class="like-btn">❤️ 0</button>
+
+      <div class="comentarios">
+        <p><strong>drumfan:</strong> ¡Gracias por compartir!</p>
+      </div>
+
+      <div class="nuevo-comentario">
+        <input type="text" placeholder="Agregar un comentario..." class="input-comentario" />
+        <button class="btn-comentar">Publicar</button>
+      </div>
     </div>
+
   </div>
 </section>
 
@@ -95,9 +142,6 @@
     </li>
   </ul>
 </section>
-
-
-
 
 
 
@@ -136,7 +180,6 @@
     </a>
   </div>
 </section>
-
 
 
     <script src="script.js"></script>
