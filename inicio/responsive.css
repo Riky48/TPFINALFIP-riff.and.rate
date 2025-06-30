@@ -150,12 +150,6 @@
     .iconPost a p, .iconPost label p{
         font-size: 1.4vh;
     }
-    #btninav{
-        width: 6vw;
-    }
-    #btninav img{
-        width: 60%;
-    }
     #btndnav{
         display: none;
         visibility: hidden;
@@ -216,12 +210,7 @@
         border-top-right-radius: 10px;
         border-bottom-right-radius: 10px;
     }
-    #btninav{
-        width: 3.5vw;
-    }
-    #btninav img{
-        width: 80%;
-    }
+   
     .usuario{
         width: 8vw;
     }
@@ -256,8 +245,6 @@
     #publishBtn{
         width: 32%;
     }
-    
-
     .usercontentPosted{
         width: 97%;
     }
