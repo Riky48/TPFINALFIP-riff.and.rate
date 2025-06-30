@@ -1,22 +1,5 @@
 'use strict';
 
-
-// 1. Menú desplegable
-const btninav = document.getElementById('btninav');
-const dropdown = document.getElementById('dropdown-menu');
-
-btninav.addEventListener('click', (e) => {
-  e.preventDefault();
-  dropdown.classList.toggle('show');
-});
-
-document.addEventListener('click', (e) => {
-  if (!btninav.contains(e.target) && !dropdown.contains(e.target)) {
-    dropdown.classList.remove('show');
-  }
-});
-
-
 // 2. API productos (ASIDE)
 async function productos(){
   try{
