@@ -88,3 +88,66 @@ input.producto-cantidad {
   width: 60px;
   margin-bottom: 0.5rem;
 }
+
+.add-product {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Ocupa toda la pantalla */
+  background-color: #f4f4f9;
+  padding: 20px;
+}
+
+/* Título */
+.add-product h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Formulario */
+#product-form {
+  background-color: #ffffff;
+  padding: 30px 25px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Inputs */
+#product-form input[type="text"],
+#product-form input[type="number"],
+#product-form input[type="file"] {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+#product-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Botón */
+#product-form button {
+  padding: 12px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#product-form button:hover {
+  background-color: #0056b3;
+}
+
