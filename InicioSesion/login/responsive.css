@@ -19,6 +19,10 @@
     #container{
         width: 100vw;
     }
+
+    #imgnav {
+        width: 75px;
+    }
  }
 
  @media (max-width: 1006px){
@@ -28,6 +32,7 @@
     #optionsnav{
         width: 97%;
     }
+
     #optionsnav a{
         font-size: 2.4vh;
     }
@@ -49,7 +54,7 @@
     }
 
     #imgnav {
-        width: 50px;
+        width: 75px;
     }
 
     #loginheader {
@@ -76,11 +81,11 @@
     }
 
     #optionsnav a{
-        font-size: 2.3vh;
+        font-size: 2vh;
     }
 
     #imgnav {
-        width: 50px;
+        width: 75px;
     }
 
     #loginheader {
@@ -109,10 +114,10 @@
     }
     
     #imgnav {
-        width: 50px;
+        width: 75px;
     }
     #optionsnav a{
-        font-size: 1.9vh;
+        font-size: 1.7vh;
     }
 
     #loginheader {
@@ -124,7 +129,7 @@
     }
 
     footer{
-        font-size: 2.7vh;
+        font-size: 1rem;
     }
 }
     
