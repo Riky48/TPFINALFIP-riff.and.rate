@@ -13,11 +13,7 @@
     #optionsnav a{
         font-size: 2.6vh;
     }
-
-    footer {
-        margin-top: 180px;
-    }
- }
+}
 
  @media (max-width: 1281px){
     #container{

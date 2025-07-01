@@ -13,10 +13,6 @@
     #optionsnav a{
         font-size: 2.6vh;
     }
-
-    footer {
-        margin-top: 180px;
-    }
  }
 
  @media (max-width: 1281px){
@@ -53,7 +49,7 @@
     }
 
     #imgnav {
-        width: 50px;
+        width: 75px;
     }
 
     #signupheader {
@@ -80,11 +76,11 @@
     }
 
     #optionsnav a{
-        font-size: 2.3vh;
+        font-size: 2vh;
     }
 
     #imgnav {
-        width: 50px;
+        width: 75px;
     }
 
     #signupheader {
@@ -113,10 +109,10 @@
     }
     
     #imgnav {
-        width: 50px;
+        width: 75px;
     }
     #optionsnav a{
-        font-size: 1.9vh;
+        font-size: 1.7vh;
     }
 
     #signupheader {
@@ -126,8 +122,9 @@
     #signupdiv {
         width: 350px;
     }
-    footer{
-        font-size: 2.7vh;
+
+    footer {
+        font-size: 1rem;
     }
 }
     

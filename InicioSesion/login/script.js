@@ -1,6 +1,6 @@
 let loginButton = document.querySelector("#login");
 
-let emailEj = "tomas.propato@outlook.com";
+let emailEj = "test@mail.com";
 let passEj = "123123123";
 
 loginButton.addEventListener('click', (e) => {
