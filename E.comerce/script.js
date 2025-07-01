@@ -1,7 +1,5 @@
 "use strict";
 
-"use strict";
-
 // Productos precargados
 let productos = [
   { id: "1", nombre: "Bajo Eléctrico Fender", precio: 25000, imagen: "IMG/BAJO.jpeg", stock: 10 },
@@ -39,22 +37,25 @@ function cargarProductos() {
     const div = document.createElement("div");
     div.classList.add("product-card");
     div.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}" />
-      <h3>${producto.nombre}</h3>
-      <p>Stock: ${producto.stock}</p>
-      <p class="price">$${producto.precio}</p>
-      <input type="number" min="1" max="${producto.stock}" value="1" class="producto-cantidad">
-      <button class="producto-agregar" data-id="${index}">Agregar al carrito</button>
-      <button class="producto-editar" data-id="${index}">Editar</button>
-      <button class="producto-eliminar" data-id="${index}">Eliminar</button>
-    `;
+  <img src="${producto.imagen}" alt="${producto.nombre}" />
+  <h3>${producto.nombre}</h3>
+  <p class="stock-text">Stock: ${producto.stock}</p>
+  <p class="price">$${producto.precio}</p>
+  <input type="number" min="1" max="${producto.stock}" value="1" class="producto-cantidad">
+  <button class="producto-agregar" data-id="${index}">Agregar al carrito</button>
+  <button class="producto-editar">Editar</button>
+  <button class="producto-eliminar">Eliminar</button>
+`;
+
+
 
     const btnAgregar = div.querySelector(".producto-agregar");
     btnAgregar.addEventListener("click", () => {
       const cantidad = parseInt(div.querySelector(".producto-cantidad").value);
       if (cantidad > 0 && cantidad <= producto.stock) {
         producto.stock -= cantidad;
-        div.querySelector("p:nth-child(3)").textContent = `Stock: ${producto.stock}`;
+        div.querySelector(".stock-text").textContent = `Stock: ${producto.stock}`;
+
         agregarAlCarrito(producto, cantidad);
       } else {
         alert("Sin Stock.");
