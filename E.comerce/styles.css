@@ -1,7 +1,7 @@
 body {
   font-family: Arial, sans-serif;
   margin: 0;
-  background-color: #e0f0ff;
+  background-color: #0a0b10;
   color: #333;
 }
 
@@ -62,7 +62,7 @@ nav a {
 }
 
 button {
-  background-color: #0077cc;
+  background-color: #1e202f;
   color: white;
   padding: 0.5rem 1rem;
   border: none;
@@ -95,7 +95,7 @@ input.producto-cantidad {
   justify-content: center;
   align-items: center;
   height: 100vh; /* Ocupa toda la pantalla */
-  background-color: #f4f4f9;
+  background-color: #0a0b10;
   padding: 20px;
 }
 
@@ -103,7 +103,7 @@ input.producto-cantidad {
 .add-product h2 {
   margin-bottom: 20px;
   font-size: 24px;
-  color: #333;
+  color: #ffffff;
 }
 
 /* Formulario */
