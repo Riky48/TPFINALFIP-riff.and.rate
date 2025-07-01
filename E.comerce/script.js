@@ -2,9 +2,9 @@
 
 // Productos precargados
 let productos = [
-  { id: "1", nombre: "Bajo Eléctrico Fender",descripcion: "ta weno", precio: 25000, imagen: "IMG/BAJO.jpeg", stock: 10 },
-  { id: "2", nombre: "Guitarra Acústica Yamaha",descripcion: "ta weno", precio: 32000, imagen: "IMG/GUITARRA.jpeg", stock: 8 },
-  { id: "3", nombre: "Batería Electrónica Roland",descripcion: "ta weno", precio: 60000, imagen: "IMG/BATAELEC.jpeg", stock: 5 }
+  { id: "1", nombre: "Bajo Eléctrico Fender",descripcion: "le falta 2 cuerdas", precio: 25000, imagen: "IMG/BAJO.jpeg", stock: 10 },
+  { id: "2", nombre: "Guitarra Acústica Yamaha",descripcion: "usada desde 1940", precio: 32000, imagen: "IMG/GUITARRA.jpeg", stock: 8 },
+  { id: "3", nombre: "Batería Electrónica Roland",descripcion: "viene sin vaquetas", precio: 60000, imagen: "IMG/BATAELEC.jpeg", stock: 5 }
 ];
 
 let carrito = [];
