@@ -6,7 +6,7 @@ body {
 }
 
 header {
-  background-color: #002244;
+  background-color: #1e202f;
   color: #fff;
   padding: 1rem;
   text-align: center;
@@ -87,6 +87,7 @@ input.producto-cantidad {
   width: 60px;
   margin-bottom: 0.5rem;
 }
+
 
 /* FORMULARIO */
 .add-product {
@@ -176,3 +177,4 @@ input.producto-cantidad {
     padding: 1rem;
   }
 }
+

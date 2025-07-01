@@ -1,29 +1,62 @@
+
+@font-face {
+    font-family: 'Solway';
+    src: url('./assets/font/Solway-Regular.ttf');
+}
+
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-size: 20px;
-
+    color: var(--color-font);
+    font-family: 'Solway', Arial;
 }
+
+
+.color1 {color: #1b1606;}
+.color2 {color: #363815;}
+.color3 {color: #5a7dd1;}
+.color4 {color: #e3d2ea;}
+.color5 {color: #f3f3f3;}
+
+
+.color1 {color: #cfd9ea;}
+.color2 {color: #f3f3f3;}
+.color3 {color: #1e202f;}
+.color4 {color: #79787e;}
+.color5 {color: #e5e5e5;}
+
+
 body{
     background: var(--color-fondo);
     overflow-x: hidden;
 }
-:root{
+
+/* 
 --color-nav:#082032;
 --color-font:#B3B3B3;
 --color-general:#204D6D;
 --color-aside:#214D6D;
---color-fondo:#03243C;
+--color-fondo:#03243C; */
+:root{
+--color-nav:#1e202f;
+--color-font:#f3f3f3;
+--color-general:#1e202f;
+--color-aside:#1e202f;
+--color-fondo:#060606;
 
 }
 
 nav {
+    z-index: 1;
     display: flex;
+    position: fixed;
     align-items: center;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.2);
     width: 100vw;
-    height: 9vh;
+    height: 7.5vh;
     background-color: var(--color-nav);
 }
 .imgnav{
@@ -49,23 +82,17 @@ nav {
     .searchnav form button{
         border: 0;
         width: 10%;
-        height: 80%;
+        height: 70%;
     }
     .searchnav form button img{
         width: 30%;
        
     }
-    .searchnav form #btninav{
-        border-top-left-radius: 50%;
-        border-bottom-left-radius: 50%;
-       
-    }
-    .searchnav form #btninav:hover{
-        cursor: pointer;
-    }
+
     .searchnav form #btndnav{
-        border-top-right-radius: 50%;
-        border-bottom-right-radius: 50%;
+        height: 65%;
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
        
     }
     .searchnav form #btndnav:hover{
@@ -74,12 +101,19 @@ nav {
     
     #buscadornav{
         width: 80%;
-        height: 80%;
+        height: 65%;
         border: 0;
         padding-left: 0.5vw;
         font-size: 2.4vh;
+        border-bottom-left-radius: 10px;
+        border-top-left-radius: 10px;
+        color: var(--color-fondo);
     }
-
+    #postinput{
+        color: var(--color-fondo);
+        min-height: 7vh;
+        max-height: 12vh;
+    }
 
 .usuario{
     width: 5%;
@@ -93,18 +127,25 @@ nav {
 
 .optionsnav{
     width: 45%;
-    font-size: 2.4vh;
-    height: 7vh;
+    height: 2.5vh;
     display: flex;
     justify-content: space-around;
+    align-content: center;
 }
     .optionsnav a{
+        font-size: 2vh;
         height: 100%;
         text-decoration: none;
         color: white;
         align-content: center;
     }
 
+    .optionsnav a:hover{
+        border-bottom: 1px solid white;
+        color:#979dcc ;
+    }
+
+    
 .usuario{
     align-items: center;
     margin: auto;
@@ -112,13 +153,11 @@ nav {
     justify-content: center;
 }
 
-
-
 #dropdown-menu {
   position: absolute;
   top: 9vh; 
   left: 7vw;
-  background-color: white;
+  background-color: var(--color-aside);
   border: 1px solid #ccc;
   list-style: none;
   padding: 0.5rem;
@@ -140,13 +179,14 @@ nav {
 }
 
 aside{
-    width: 20vw;
+    width: 20%;
     height: 60vh;
     background: var(--color-aside);
     margin: 1.5vh;
     border-radius: 10px;
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
     
@@ -158,21 +198,20 @@ aside .divcontenido{
     border: 1px solid #E0E0E0;
     justify-content: center;
     align-items: center;
-    height: 47%;
-   
-    background: #03243C;
-    width: 95%;
+    height: 45%;
+    background:var(--color-aside) ;
+    width: 45%;
     
 }
 
 .imgaside{
    
-    height: 65%;
+    height: 50%;
     width: 90%;
     
 }
 .imgaside a{
-    height: 50%;
+    height: 45%;
     
 }
 .imgaside a img{
@@ -184,27 +223,49 @@ aside .divcontenido{
 }
 .textaside a{
     text-decoration: none;
-    font-size: 1.4vh;
     color: white;
     text-align: justify;
-    padding-left: 1vh;
-    height: 30%;
+   margin-top: 1vh;
+    height: 100%;
     width: 80%;
 }
+.textaside a h4{
+    height: 90%;
+}
+
+.textaside a h4,p{
+    font-size: 1.3vh;
+}
 .main{
-    
+    padding-top: 8vh;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
     display: flex;
 }
 main{
     margin: 1.5vh;
-    
     height: 100%;
-    width: 45vw;
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-
+#publishBtn{
+    background: var(--color-general);
+    width: 20%;
+    font-size: 2vh;
+    border-radius: 10px;
+    margin: auto;
+}
+#contentPosted{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .publish {
   background: var(--color-general);
-  width: 95%;
+  width: 97%;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -235,7 +296,7 @@ main{
 }
 .inputPost textarea {
   width: 100%;
-  border-radius: 30px;
+  border-radius: 10px;
   border: none;
   height: 100%;
   padding: 1.2vh;
@@ -249,9 +310,12 @@ main{
   align-items: center;
   width: 100%;
 }
+#fileInput{
+    display: none;
+    visibility: hidden;
+}
 
-
-.iconPost a {
+.iconPost a, .iconPost label{
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -259,22 +323,23 @@ main{
   width: 15%;
   height: auto;
 }
-.iconPost a img {
+.iconPost a img, .iconPost label img {
   width: 30%;
   height: auto;
 }
-.iconPost p {
+.iconPost p , .iconPost label p {
   color: whitesmoke;
   font-size: 1.7vh;
   text-align: center;
 }
 
 .usercontentPosted{
-    margin-top: 1vh;
-    width: 95%;
+    margin-top: 1.5vh;
+    margin-bottom: 2vh;
+    width: 97%;
     background: var(--color-general);
     border-radius: 10px;
-    padding: 1vh;
+    padding: 1.5vh;
     gap: 1vh;
 }
 
@@ -300,6 +365,7 @@ main{
     height: 60%;
     display: flex;
     align-items: center;
+    font-size: 2vh;
 }
 
 .imagecontent{
@@ -309,11 +375,14 @@ main{
 } 
 .imagecontent p{
     width: 90%;
+    padding-bottom: 1vh;
+    font-size: 1.8vh;
 }
 
 .imagecontent img{
     height: 80%;
     width:90%;
+    min-width: 90%;
     border-radius: 10px;
     
 }
@@ -321,16 +390,37 @@ main{
     width: 90%;
     display: flex;
     border-top: 1px solid rgba(163, 163, 163, 0.616);
-    padding : 0.3vw;
+    padding-top: 0.8vw;
     justify-content: space-between;
 }
+.reactions a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+.reactions img{
+    width: 60%;
+    height: 60%;
+}
+.reactions p{
+    height:30%;
+    font-size: 1.7vh;
+    color: white;
+}
+.reactions
 
+.contacts-reels{
+   width: 19%;
+
+}
 
 .contacts{
     background: var(--color-general);
     border-radius: 10px;
     margin-top: 1.7vh;
-    width: 30%;
+    width: 100%;
     height: 30vh;
 }
 .contacts .contacto{
@@ -342,14 +432,13 @@ main{
 }
 
 .contacto {
-      
     display: flex;
     width: 100%;
     height: 100%;
     flex-wrap: wrap;
 }
 .contacto-add{
-    width: 10%;
+    width: 20%;
     height: 100%;
     align-items: center;
     display: flex;
@@ -359,20 +448,54 @@ main{
     width: 20%;
     height: 100%; 
     align-items: center;
+    justify-content: center;
     display: flex;
-    justify-content: left;
 }
 .contacto-img img{
     width: 60%;
-    height: 60%;
     border-radius: 50%;
    
 }
 .contacto-info{
-    width: 80%;
+    width: 70%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: right;
+}
+.contacto-info p{
+    font-size: 1.8vh;
+}
+#reels{
+    background: var(--color-general);
+    margin-top: 1.5vh;
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 23vh;
+    border-radius: 10px ;
+
+}
+.reel{
+    width: 100%;
+    display: flex;
+    height: 70%;
+    align-items: center;
+    border-radius: 10px;
+    justify-content: space-around;
+}
+.reel video{
+    width: 30%;
+    height: 100%;
+    border: 1px solid white;
+    border-radius: 16px;
+}
+
+.like-btn,.liked{
+    filter: hue-rotate(200deg);
+}
+.like-btn,.liked p{
+    color:#cfd9ea;
 }

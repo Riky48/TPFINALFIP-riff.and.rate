@@ -1,0 +1,271 @@
+
+
+/*
+/ Teléfonos grandes y tablets pequeñas /
+@media (min-width: 481px) and (max-width: 768px) { ... }
+
+
+
+/ Tablets grandes y pantallas medianas /
+@media (min-width: 769px) and (max-width: 1024px) { ... }
+
+
+
+/ Pantallas grandes de escritorio */
+@media (min-width: 1566px) {
+    .imgaside{
+        height: 55%;
+    }
+ }
+
+@media (max-width: 1565px) {
+    .imgaside{
+        height: 55%;
+    }
+ }
+ @media (max-width: 1281px){
+     body{
+        width: 100vw;
+    }
+    .searchnav{
+        width: 36%;
+    }
+    .optionsnav{
+        width: 51%;
+    }
+     .optionsnav a{
+        font-size: 1.9vh;
+    }
+    .contacts-reels{
+        width: 24%;
+    }
+    .contacto{
+        justify-content: space-evenly;
+    }
+    .contacto-info{
+        width: 60%;
+    }
+    .contacto-info p{
+        font-size: 2vh;
+    }
+    
+    .imagecontent p{
+        font-size: 2.2vh;
+        padding-bottom: 1vh;
+    }
+    .reactions a img{
+        width: 40%;
+    }
+ }
+
+ @media (max-width: 1006px){
+    .contacts-reels{
+        width: 24%;
+    }
+    .textaside{
+        height: 40%;
+    }
+    .textaside h4{
+        font-size: 2vh;
+    }
+    #reels{
+     flex-direction: column;
+     height: auto;
+     width: 100%;
+     margin-top: 1.5vh;
+     
+     }
+     #reels video{
+         width: 70%;
+         height: auto;
+         margin-top: 1vh;
+         margin-bottom: 1vh;
+     }
+    .reactions a img{
+        width: 75%;
+    }
+    .user p{
+        font-size: 2vh;
+    }
+    .imagecontent p{
+        font-size: 1.7vh;
+        padding-bottom: 1vh;
+    }
+} 
+
+@media (max-width: 1025px) and (max-height: 601px){
+    body{
+        overflow-x: hidden;
+    }
+    nav{
+        width: 1024px;
+    }
+    .main{
+        width: 100vw;
+    }
+    .imgaside{
+        height: 50%;
+    }
+    .textaside{
+        height: 40%;
+    }
+    .textaside h4{
+        font-size: 2.2vh;
+    }
+    .reactions a img{
+        width: 40%;
+    }
+    .like-count{
+        font-size: 1.6vh;
+    }
+}
+
+ /* Teléfonos pequeños */
+@media (max-width: 375px) {
+   .reactions a img{
+        width: 30%;
+    }
+    .usercontentPosted .reactions a p{
+        font-size: 1.7vh;
+    }
+
+}
+
+   
+
+@media (max-width: 480px){
+    aside{
+        visibility: hidden;
+        display: none;
+    }
+    main{
+        width: 100vw;
+    }
+    .searchnav{
+        width: 30%;
+    }
+    .iconPost a, .iconPost label{
+        width: 20%;
+    }
+    .iconPost a p, .iconPost label p{
+        font-size: 1.4vh;
+    }
+    #btndnav{
+        display: none;
+        visibility: hidden;
+    }
+    #buscadornav{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    .imgnav{
+        width: 15%;
+    }
+    .optionsnav{
+        width: 45%;
+        flex-wrap: wrap;
+    }
+    .optionsnav a{
+        font-size: 1.3vh;
+    }
+    .usuario{
+        margin: 0;
+
+        width: 14vw;
+    }
+    .usuario a{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .contacts-reels{
+        display: none;
+    }
+    .reactions a img{
+        width: 35%;
+    }
+    .usercontentPosted .reactions a p{
+        font-size: 1.1vh;
+    }
+    }
+    
+
+@media (max-width: 853px) and (max-height: 1280px){
+    .optionsnav{
+        width: 60%;
+    }
+    .optionsnav a{
+        font-size: 1.3vh;
+    }
+    .searchnav{
+        width: 25%;
+        height: 90%;
+    }
+    #btndnav{
+        visibility: hidden;
+        display: none;
+    }
+    #buscadornav{
+        border-top-right-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+   
+    .usuario{
+        width: 8vw;
+    }
+    #aside{
+        height: 95vh;
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+    #aside .divcontenido{
+        width: 90%;
+        height: 24%;
+        margin-top: 1vh;
+    }
+    .textaside{
+        height: auto;
+    }
+    .textaside a h4{
+      font-size: 1.1vh;
+    }
+    .iconPost{
+        justify-content: space-around;
+    }
+    .iconPost a img, .iconPost label img{
+        width: 40%;
+    }
+    .iconPost  a p, .iconPost label p{
+        font-size: 1.3vh;
+    }
+    .imgpubli{
+       width: 30%;
+    }
+    #publishBtn{
+        width: 32%;
+    }
+    .usercontentPosted{
+        width: 97%;
+    }
+    .reactions a{
+        width: 24%;
+    }
+    .reactions a p{
+        font-size: 0.9vh;
+    }
+    .reactions a img{
+        width: 40%;
+    }
+    #reels{
+        height: auto;
+        width: 100%;
+        margin-top: 1.5vh;
+    }
+    .reel{
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}

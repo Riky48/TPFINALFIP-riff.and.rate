@@ -2,9 +2,9 @@
 
 // Productos precargados
 let productos = [
-  { id: "1", nombre: "Bajo Eléctrico Fender", precio: 25000, imagen: "IMG/BAJO.jpeg", stock: 10 },
-  { id: "2", nombre: "Guitarra Acústica Yamaha", precio: 32000, imagen: "IMG/GUITARRA.jpeg", stock: 8 },
-  { id: "3", nombre: "Batería Electrónica Roland", precio: 60000, imagen: "IMG/BATAELEC.jpeg", stock: 5 }
+  { id: "1", nombre: "Bajo Eléctrico Fender",descripcion: "ta weno", precio: 25000, imagen: "IMG/BAJO.jpeg", stock: 10 },
+  { id: "2", nombre: "Guitarra Acústica Yamaha",descripcion: "ta weno", precio: 32000, imagen: "IMG/GUITARRA.jpeg", stock: 8 },
+  { id: "3", nombre: "Batería Electrónica Roland",descripcion: "ta weno", precio: 60000, imagen: "IMG/BATAELEC.jpeg", stock: 5 }
 ];
 
 let carrito = [];
@@ -37,6 +37,7 @@ function cargarProductos() {
     const div = document.createElement("div");
     div.classList.add("product-card");
     div.innerHTML = `
+
   <img src="${producto.imagen}" alt="${producto.nombre}" />
   <h3>${producto.nombre}</h3>
   <p class="stock-text">Stock: ${producto.stock}</p>
@@ -48,17 +49,16 @@ function cargarProductos() {
 `;
 
 
-
     const btnAgregar = div.querySelector(".producto-agregar");
     btnAgregar.addEventListener("click", () => {
       const cantidad = parseInt(div.querySelector(".producto-cantidad").value);
-      if (cantidad > 0 && cantidad <= producto.stock) {
+      if (cantidad > 0 && cantidad <= producto.stock) { 
         producto.stock -= cantidad;
         div.querySelector(".stock-text").textContent = `Stock: ${producto.stock}`;
 
         agregarAlCarrito(producto, cantidad);
-      } else {
-        alert("Sin Stock.");
+      }else{
+        alert("No hay stock del producto");
       }
     });
 
@@ -145,6 +145,7 @@ form.addEventListener("submit", e => {
   const name = document.getElementById("name").value;
   const description = document.getElementById("description").value;
   const price = parseFloat(document.getElementById("price").value);
+  const cantidadStock = parseInt(document.getElementById("cantidadStock").value);
   const imageInput = document.getElementById("image");
   const file = imageInput.files[0];
 
@@ -158,7 +159,7 @@ form.addEventListener("submit", e => {
       descripcion: description,
       precio: price,
       imagen: event.target.result,
-      stock: 10
+      stock: cantidadStock
     };
     productos.push(product);
     cargarProductos();

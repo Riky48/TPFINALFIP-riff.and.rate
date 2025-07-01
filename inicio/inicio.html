@@ -1,73 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="assets/DALL_E-2025-04-25-16.46-removebg-preview.png" type="img/png">
-    <title>Riff & Rate</title>
-</head>
-<body>
-    
-    <nav>
-        <div class="imgnav">
-            <img src="assets/DALL_E-2025-04-25-16.46-removebg-preview.png" alt="">
-        </div>
-        <div class="searchnav">
-            <form action="">
-                
-                <button id="btninav"><img src="assets/icon.svg" alt=""></button>
-                
-                <input type="search" name="buscador" id="buscadornav" placeholder="Buscar">
-                <button id="btndnav"><img src="assets/icon2.svg" alt=""></button>
-            </form>
-            <ul id="dropdown-menu" class="hidden">
-                <li><a href="#">Opción 1</a></li>
-                <li><a href="#">Opción 2</a></li>
-                <li><a href="#">Opción 3</a></li>
-            </ul>
-        </div>
-        <div class="optionsnav">
-            <a href="#">Productos</a>
-            <a href="#">Inicio</a>
-            <a href="#">Mensajes</a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="responsive.css">
+        <link rel="icon" href="assets/DALL_E-2025-04-25-16.46-removebg-preview.png" type="img/png">
+        
+        <title>Riff & Rate</title>
+    </head>
+    <body>
+        
+        <nav>
+            <div class="imgnav">
+                <img src="assets/DALL_E-2025-04-25-16.46-removebg-preview.png" alt="">
+            </div>
+            <div class="searchnav">
+                <form action="">
+
+                    
+                    <input type="search" name="buscador" id="buscadornav" placeholder="Buscar">
+                    <button id="btndnav"><img src="assets/icon2.svg" alt=""></button>
+                </form>
+                <ul id="dropdown-menu" class="hidden">
+                    <li><a href="#">Opción 1</a></li>
+                    <li><a href="#">Opción 2</a></li>
+                    <li><a href="#">Opción 3</a></li>
+                </ul>
+            </div>
+            <div class="optionsnav">
+                <a href="/E.comerce/index.html">Productos</a>
+                <a href="../inicio/inicio.html">Inicio</a>
+                <a href="#">Mensajes</a>
             <a href="#">Mis Contactos</a>
             <a href="#">Notificaciones</a>
         </div>
-        <div class="usuario" id="userImg">
+        <div class="usuario" id="userImg" >
             
         </div>
     </nav>
-<div class="main">
-    <aside id="aside">
-
-    </aside>
-
-    <main>
-    <div class="publish">
-        <div class="publish-top">
-        <div id="publishusr">
-            <img src="ruta/imagen.jpg" alt="Usuario">
-        </div>
-        <div class="inputPost">
-            <textarea name="" id="" placeholder="Crear Publicacion"></textarea>
-        </div>
-        </div>
-
-        <div class="iconPost">
-         <a href=""><img src="assets/Icon3.svg" alt=""><p>Contenido Multimedia</p></a>
-         <a href=""><img src="assets/Icon4.svg" alt=""><p>Evento</p></a>
-         <a href=""><img src="assets/icon5.svg" alt=""><p>Artículo</p></a>
-        </div>
-    </div>
-
-    <div id="contentPosted"></div>
-    </main>
-    <div class="contacts">
+    <div class="main">
+        <aside id="aside">
+            
+        </aside>
         
+        <main>
+            <div class="publish">
+                <div class="publish-top">
+                    <div id="publishusr">
+                        <img src="" alt="Usuario">
+                    </div>
+                    <div class="inputPost">
+                        <textarea name="" id="postinput" placeholder="Crear Publicacion"></textarea>
+                    </div>
+                </div>
+                
+                <div class="iconPost">
+                    <label for="fileInput" class="upload-btn imgpubli" >
+                        <img src="assets/Icon3.svg" alt="">
+                        <p>Contenido Multimedia</p>
+                    </label>
+                    <input type="file" id="fileInput" accept="image/*,video/*,.pdf,image/gif" class="file-input" multiple>
+                    <a href="" class="imgpubli"><img src="assets/Icon4.svg" alt=""><p>Evento</p></a>
+                    <a href="" class="imgpubli"><img src="assets/icon5.svg" alt=""><p>Artículo</p></a>
+                </div>
+                
+                
+                <div id="imagePreviewContainer" style="margin-top: 10px; display: none;">
+                    <img id="imagePreview" style="max-width: 100%; border-radius: 10px;" />
+                </div>
+                
+                <button id="publishBtn">Publicar</button>
+            </div>
+            
+            <div id="contentPosted"></div>
+        </main>
+        <div class="contacts-reels">
+            <div class="contacts">
+                
+            </div>
+            <div id="reels">
+                
+            </div>
+        </div>
     </div>
-    </div>
-
     <script src="script.js"></script>
+    <script src="publicacion.js"></script>
 </body>
 </html>
