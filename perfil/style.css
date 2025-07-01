@@ -16,6 +16,7 @@ body {
   z-index: 1000;
   gap: 20px;
    transition: top 0.3s ease; 
+   
 }
 
 .navegador.oculto {
@@ -37,8 +38,8 @@ body {
   background-color: white;
   border-radius: 999px;
   overflow: hidden;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  width: 300px; /* Ajustá según tu diseño */
+  box-shadow: 0 0 5px rgba(112, 102, 102, 0.2);
+  width: 400px; /* Ajustá según tu diseño */
   height: 40px;
 }
 
@@ -479,7 +480,7 @@ body {
 #follow-btn {
   margin-top: 15px;
   padding: 10px 20px;
-  background-color: #1e90ff;
+  background-color: #1e202f;
   color: white;
   border: none;
   border-radius: 8px;
