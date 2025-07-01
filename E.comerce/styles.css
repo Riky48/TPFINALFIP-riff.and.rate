@@ -180,3 +180,66 @@ input.producto-cantidad {
   }
 }
 
+.edit-product {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 500px;
+  margin: 40px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.edit-product h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+#edit-product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#edit-product-form input {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+#edit-product-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+#edit-product-form button {
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#edit-product-form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+}
+
+#edit-product-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+#cancel-edit {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+#cancel-edit:hover {
+  background-color: #c6c6c6;
+}
+
