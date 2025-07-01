@@ -57,3 +57,19 @@ window.addEventListener('scroll', () => {
 
   lastScroll = currentScroll;
 });
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const cerrarSesionLink = document.getElementById("cerrar-sesion");
+
+  cerrarSesionLink.addEventListener("click", function (e) {
+    e.preventDefault(); // Evita que se redirija inmediatamente
+
+    const confirmar = confirm("¿Estás seguro de que querés cerrar sesión?");
+    
+    if (confirmar) {
+      // Redirigir al login (o a donde tengas tu cierre de sesión)
+      window.location.href = "../InicioSesion/login/index.html";
+    }
+  });
+});
