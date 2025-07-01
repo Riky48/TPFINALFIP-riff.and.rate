@@ -5,7 +5,9 @@
 
 
 #container {
+    position: relative;
     background-color: var(--color-fondo);
+    min-height: 100vh;
 }
 
 * {
@@ -135,14 +137,17 @@ form > div > input {
     color: #7883d8;
 }
 
+
 footer {
     display: flex;
-    background-color: var(--color-nav);
-    margin-top: 60px;
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 10%;
+    background-color: var(--color-nav);
     color: var(--color-font);
+    justify-self: center;
     text-align: center;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
 }
