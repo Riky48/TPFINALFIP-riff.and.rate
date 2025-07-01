@@ -15,10 +15,15 @@ body {
   top: 0;
   z-index: 1000;
   gap: 20px;
+   transition: top 0.3s ease; 
+}
+
+.navegador.oculto {
+  top: -100px; /* NAV OCULTO cuando se hace scroll hacia abajo */
 }
 
 .navegador a img {
-  width: 40px;
+  width: 65px;
   transition: transform 0.3s ease;
 }
 
@@ -86,38 +91,53 @@ body {
 }
 
 .perfil {
-  display: flex;
+   display: flex;
   justify-content: center;
-  margin: 50px 0;
+  align-items: center;
+  min-height: 100vh;
+  
 }
 
 .carta {
+  
   width: 300px;
   padding: 20px;
-  background:#ffffff;
+  background: #ffffff;
   border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  box-shadow: var(--sombra-suave);
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.carta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
 }
 
 .carta img {
   width: 120px;
-  border-radius: 50%;
   height: 120px;
   object-fit: cover;
+  border-radius: 50%;
   margin-bottom: 15px;
- border: 4px solid #1e202f;
+  border: 4px solid var(--color-principal);
+  transition: transform 0.3s ease;
+}
+
+.carta img:hover {
+  transform: scale(1.05);
 }
 
 .nombre {
   font-size: 1.5rem;
   font-weight: bold;
   margin: 0;
-  color:  #1e202f;
+  color: var(--color-principal);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .instrumento {
-  color:  #1e202f;
+  color: var(--color-principal);
   margin: 5px 0 20px 0;
   font-style: italic;
 }
@@ -127,13 +147,13 @@ body {
   justify-content: space-between;
   gap: 10px;
   text-align: center;
-  
 }
 
 .estadisticas div {
-   
+  background: #f7f7f7;
   padding: 10px;
   border-radius: 12px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -142,8 +162,7 @@ body {
 }
 
 .estadisticas strong {
-  display: block;
-  color:  #1e202f;
+  color: var(--color-principal);
   font-size: 0.9rem;
 }
 
@@ -151,8 +170,9 @@ body {
   margin: 5px 0 0 0;
   font-size: 1.2rem;
   font-weight: 600;
-  color:  #1e202f;
+  color: var(--color-principal);
 }
+
 .servicios {
   padding: 60px 20px;
   background-color: #f0f0f0;
@@ -381,58 +401,79 @@ body {
   cursor: pointer;
 }
 .agenda {
-  background: #f0f2f5;
-  padding: 50px 20px;
+  padding: 60px 20px;
+  background: linear-gradient(to right, #1e202f, #2c2e3e);
+  color: #fff;
   text-align: center;
-  border-radius: 12px;
-  margin: 40px 0;
+  border-radius: 20px;
+  margin: 60px auto;
+  max-width: 800px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .agenda h2 {
-  font-size: 2.2rem;
-  margin-bottom: 30px;
-  color: #1a1a1a;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #ffcc00;
 }
 
 .lista-shows {
   list-style: none;
   padding: 0;
-  margin: 0 auto;
-  max-width: 600px;
-  display: flex;
-  flex-direction: column;
+  margin: 0;
+  display: grid;
   gap: 20px;
 }
 
 .lista-shows li {
-  background: #1e202f;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  color: #1e202f;
+  padding: 20px 25px;
+  border-radius: 15px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .lista-shows li:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.fecha::before {
+  content: "📅 ";
+  font-size: 1.2rem;
+}
+
+.evento::before {
+  content: "📍 ";
+  font-size: 1.2rem;
 }
 
 .fecha {
-  font-weight: 600;
-  color: #ff5e57;
-  font-size: 1rem;
-  width: 130px;
-  text-align: left;
+  font-weight: bold;
+  font-size: 1.1rem;
+  flex: 1;
 }
 
 .evento {
   font-size: 1rem;
-  color: #ffffff;
-  text-align: right;
-  flex: 1;
+  flex: 2;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .lista-shows li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fecha, .evento {
+    width: 100%;
+    text-align: left;
+  }
 }
 
 #follow-btn {
@@ -449,4 +490,37 @@ body {
 
 #follow-btn:hover {
   background-color: #0c70d4;
+}
+
+.footer {
+  background-color: #1e202f;
+  color: #f0f0f0;
+  padding: 30px 20px;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.footer-contenido {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
 }

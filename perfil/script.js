@@ -41,3 +41,19 @@ document.querySelectorAll(".btn-comentar").forEach((btn, index) => {
     }
   });
 });
+
+let lastScroll = 0;
+const nav = document.querySelector('.navegador');
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+
+  if (currentScroll > lastScroll && currentScroll > 80) {
+    // Ocultar solo si se baja más de 80px
+    nav.classList.add('oculto');
+  } else {
+    nav.classList.remove('oculto');
+  }
+
+  lastScroll = currentScroll;
+});
