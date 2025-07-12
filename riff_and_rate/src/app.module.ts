@@ -1,21 +1,28 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { InicioModule } from './inicio/inicio.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 
 @Module({
-  imports: [
+  imports: 
+  [
     TypeOrmModule.forRoot({
-      type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'root',
-      database: 'testingDB',
-      entities: [],
-      synchronize: true,
+      "type": 'mysql',
+      "host": 'localhost',
+      "port": 3306,
+      "username": 'root', // Usar el usuario de tu base de datos.
+      "password": '', // Usar la contraseña de tu base de datos.
+      "database": 'riff_and_rate', // Nombre de la base de datos.
+      "entities": [
+              "dist/**/**.entity{.ts,.js}",
+      ],
+      "synchronize": false,
     }),
+    InicioModule,
   ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
