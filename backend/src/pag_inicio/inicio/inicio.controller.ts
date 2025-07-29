@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { InicioService } from './inicio.service';
 import { CreateInicioDto } from './dto/create-inicio.dto';
 import { UpdateInicioDto } from './dto/update-inicio.dto';
@@ -18,17 +18,17 @@ export class InicioController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id', ParseIntPipe) id: number) {
     return this.inicioService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateInicioDto: UpdateInicioDto) {
+  update(@Param('id',ParseIntPipe) id: number, @Body() updateInicioDto: UpdateInicioDto) {
     return this.inicioService.update(+id, updateInicioDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id',ParseIntPipe) id: number) {
     return this.inicioService.remove(+id);
   }
 }
