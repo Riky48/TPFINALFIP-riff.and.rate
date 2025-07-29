@@ -219,6 +219,14 @@ reels();
 
 
 
+fetch('http://localhost:3000/inicio')// Conectamos al backend
+ .then(res => res.json()) // Obtenemos el json
+  .then(data => {// Si todo va bien
+    console.log('Datos desde el backend:', data);// Mostramos los datos
+  })
+  .catch(error => console.error('Error al traer datos:', error)); // Si hay un error
+
+
 // 
 // AÑADIR: INTERACION EN LOS BOTONES DE COMPARTIR, ENVIAR, COMENTAR Y LIKE
 // AÑADIR: FUNCIONAMIENTO EN EL MOMENTO DE CREAR UNA PUBLICACION(AÑADIR IMAGEN, CREAR EVENTO O ARTICULO)(TAMBIEN QUE SE PUEDA CREAR LA PUBLICACION (CRUD))
