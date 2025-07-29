@@ -36,7 +36,7 @@ Node.js + Express
 
 NestJS (estructura modular y escalable)
 
-MongoDB / MySQL (según el módulo del proyecto)
+MySQL 
 
 JWT para autenticación y Multer para carga de archivos
 
