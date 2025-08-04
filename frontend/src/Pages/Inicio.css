@@ -1,0 +1,302 @@
+:root {
+    /* Paleta base */
+    --color-bg: #121212;
+    /* Fondo general oscuro */
+    --color-surface: #1e1e2f;
+    /* Fondos de secciones, aside, tarjetas */
+    --color-primary: #7c3aed;
+    /* Acento violeta (botones, enlaces) */
+    --color-secondary: #f59e0b;
+    /* Acento naranja suave */
+    --color-border: #2c2c3a;
+    /* Bordes sutiles */
+    --color-text: #e4e4e7;
+    /* Texto principal */
+    --color-muted: #a1a1aa;
+    /* Texto secundario */
+    --color-hover: #9333ea;
+    /* Hover violeta más fuerte */
+    --color-alert: #ef4444;
+    /* Para errores o alertas */
+
+    /* Nav específico */
+    --color-nav: #18181b;
+}
+
+.main {
+    grid-area: main;
+    width: 100%;
+}
+
+main {
+    margin: 0.5rem 2.5rem 0rem 2.5rem;
+    height: 100%;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#publishBtn {
+    background: var(--color-general);
+    width: 20%;
+    font-size: 2vh;
+    border-radius: 10px;
+    margin: auto;
+}
+
+#contentPosted {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#contentPosted div {
+    background: var(--color-nav);
+    width: 100%;
+    border-radius: 10px;
+
+    margin-top: 1rem;
+
+}
+
+.publish {
+    background: var(--color-nav);
+    width: 97%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 1vh;
+    gap: 1vh;
+}
+
+.publish-top {
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+}
+
+#publishusr {
+    width: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#publishusr img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.inputPost {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
+
+.inputPost textarea {
+    width: 100%;
+    border-radius: 10px;
+    border: none;
+    height: 100%;
+    padding: 1.2vh;
+    max-width: 100%;
+    resize: none;
+    font-size: 0.7em;
+}
+
+.iconPost {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}
+
+#fileInput {
+    display: none;
+    visibility: hidden;
+}
+
+.iconPost a,
+.iconPost label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+    width: 15%;
+    height: auto;
+}
+
+.iconPost a img,
+.iconPost label img {
+    width: 30%;
+    height: auto;
+}
+
+.iconPost p,
+.iconPost label p {
+    color: whitesmoke;
+    font-size: 1.7vh;
+    text-align: center;
+}
+
+.usercontentPosted {
+    margin-top: 1.5vh;
+    margin-bottom: 2vh;
+    width: 97%;
+    background: var(--color-general);
+    border-radius: 10px;
+    padding: 1.5vh;
+    gap: 1vh;
+}
+
+.usercontentPosted {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user {
+    width: 90%;
+    display: flex;
+    height: 5vh;
+}
+
+.user img {
+    border-radius: 50%;
+
+    width: auto;
+    height: auto;
+}
+
+.user p {
+    width: 70%;
+    padding-left: 0.5vw;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    font-size: 2vh;
+}
+
+.imagecontent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imagecontent p {
+    width: 90%;
+    padding-bottom: 1vh;
+    font-size: 1.8vh;
+}
+
+.imagecontent img {
+    height: 80%;
+    width: 90%;
+    min-width: 90%;
+    border-radius: 10px;
+
+}
+
+.reactions {
+    width: 90%;
+    display: flex;
+    border-top: 1px solid rgba(163, 163, 163, 0.616);
+    padding-top: 0.8vw;
+    justify-content: space-between;
+}
+
+.reactions a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.reactions img {
+    width: 60%;
+    height: 60%;
+}
+
+.reactions p {
+    height: 30%;
+    font-size: 1.7vh;
+    color: white;
+}
+
+.reactions .contacts-reels {
+    width: 20%;
+
+}
+
+.contacts {
+    background: var(--color-general);
+    border-radius: 10px;
+    margin-top: 1.7vh;
+    width: 100%;
+    height: 30vh;
+}
+
+.contacts .contacto {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 25%;
+
+}
+
+.contacto {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+.contacto-add {
+    width: 20%;
+    height: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.contacto-img {
+    width: 20%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.contacto-img img {
+    width: 60%;
+    border-radius: 50%;
+
+}
+
+.contacto-info {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: right;
+}
+
+.contacto-info p {
+    font-size: 1.8vh;
+}
+
+
+.like-btn,
+.liked {
+    filter: hue-rotate(200deg);
+}
+
+.like-btn,
+.liked p {
+    color: #cfd9ea;
+}
