@@ -11,12 +11,6 @@ export class InicioService {
     @InjectRepository(users)
     private readonly inicioRepository: Repository<users>,
   ){}
-
-
-    // public async getAll(): Promise<users[]> {
-    //     let users: users[] = await this.inicioRepository.find();
-    //     return users;
-    // }
     public async findOne(id: number): Promise<users> {
         let criterio : FindOneOptions<users>= {where:{id: id}}
         let users = await this.inicioRepository.findOne(criterio);
