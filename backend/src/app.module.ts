@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { InicioModule } from './pag_inicio/inicio/inicio.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { PostsModule } from './pag_inicio/posts/posts.module';
 
 
 @Module({
@@ -21,6 +22,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       "synchronize": false,
     }),
     InicioModule,
+    PostsModule
   ],
   controllers: [AppController],
   providers: [AppService],
