@@ -21,10 +21,12 @@ export function Nav() {
   const navRef = useRef<HTMLElement | null>(null);
   let startX = 0;
   let endX = 0;
-
+  
   useEffect(() => {
     const nav = navRef.current;
     if (!nav) return;
+
+    if (window.innerWidth > 768) return;
 
     const handleTouchStart = (e: TouchEvent) => {
       startX = e.touches[0].clientX;
