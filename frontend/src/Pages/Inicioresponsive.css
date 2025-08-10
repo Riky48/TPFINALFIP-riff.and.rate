@@ -1,0 +1,45 @@
+@media (max-width: 768px) {
+
+  .main {
+    width: 90%;
+    height: 100%;
+    margin: auto;
+
+  }
+
+  main {
+    width: 100%;
+    margin: 0;
+  }
+
+  .publish {
+    width: 100%;
+    margin-top: 0.5rem;
+    height: 20vw;
+    padding: 0;
+  }
+
+  .publish-top {
+    width: 100%;
+    height: 40%;
+  }
+
+  .inputPost {
+    width: 60%;
+    height: 50%;
+  }
+
+  #postinput {
+    width: 90%;
+    height: auto;
+    padding: 0.2rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Estilos para tabletas */
+}
+
+@media (min-width: 1025px) {
+  /* Estilos para escritorios */
+}

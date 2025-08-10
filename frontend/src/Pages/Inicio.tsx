@@ -1,4 +1,5 @@
 import './Inicio.css'
+import './Inicioresponsive.css'
 import Axios from '../api/Axios'
 import { PublicacionInicio } from '../components/PublicacionInicio/PublicacionInicio'
 

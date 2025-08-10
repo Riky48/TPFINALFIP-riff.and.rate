@@ -30,11 +30,11 @@
     
     display: grid;
     grid-template-areas:
-      "nav main contacts"
-      "nav main anuncios"
-      "nav main anuncios"
+      "nav main main contacts"
+      "nav main main anuncios"
+      "nav main main anuncios"
       ;
-      grid-template-columns:20% 60% 20%;
+      grid-template-columns:20% 50%  20%;
       grid-template-rows: 100vh;
     ;
 }
@@ -45,3 +45,17 @@ body {
   padding: 0;
 }
 
+
+@media (max-width: 767px) {
+  /* Estilos para smartphones */
+  #root{
+    grid-template-areas:
+      "nav main"
+      "nav main"
+      "nav main"
+      ;
+      grid-template-columns:5% 95%;
+      grid-template-rows: 100vh;
+  }
+   
+}
