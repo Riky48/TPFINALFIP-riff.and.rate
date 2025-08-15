@@ -1,0 +1,36 @@
+@media (max-width: 768px) {
+.componente-extra {
+    z-index: 10;
+    position: fixed;
+    margin-left: 5%;
+    top: 0;
+    left: 0;
+    width: 95vw;
+    height: 100vh;
+}
+.close-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    
+}
+#post{
+    width: 99%;
+    height: 40%;
+    border: none;
+    max-height: 40%;
+}
+.opciones{
+    display: flex;
+    width: 99%;
+    height: 48%;
+    flex-direction: column;
+}
+.opcion{
+    border: 1px solid red;
+    width: 100%;
+    height: 25%;
+}
+}

@@ -8,12 +8,18 @@ import { useState } from 'react'
 import { ContenedorNuevaPublicacion } from './ContenedorNuevaPublicacion/ContenedorNuevaPublicacion'
 
 export const PublicacionInicio: React.FC = () => {
-    
+
     const [mostrarComponente, setMostrarComponente] = useState(false);
 
     const handleClick = () => {
-        setMostrarComponente(true);
+        if (!mostrarComponente) {
+            setMostrarComponente(true);
+        }
     }
+    const handleClose = () => {
+        setMostrarComponente(false);
+    };
+
     return (
         <div className="publish">
             <div className="publish-top">
@@ -21,8 +27,9 @@ export const PublicacionInicio: React.FC = () => {
                     <img src={imagen} alt="Usuario" />
                 </div>
                 <div className="inputPost">
-                    <textarea name="" id="postinput" placeholder="Crear Publicacion" 
-                    onClick={handleClick}></textarea>
+                    <textarea name="" id="postinput" placeholder="Di tu opinion sobre 💬... "
+                        onClick={handleClick} onFocus={handleClick}
+                    ></textarea>
                 </div>
             </div>
 
@@ -39,9 +46,9 @@ export const PublicacionInicio: React.FC = () => {
             <div id="imagePreviewContainer" >
                 <img id="imagePreview" />
             </div>
-           {mostrarComponente && <ContenedorNuevaPublicacion />}
+            {mostrarComponente && <ContenedorNuevaPublicacion onClose={handleClose} />}
         </div>
     )
 };
-    
+
 export default PublicacionInicio;

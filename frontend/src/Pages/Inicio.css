@@ -300,3 +300,7 @@ main {
 .liked p {
     color: #cfd9ea;
 }
+
+ .componente-extra{
+    background-color: var(--color-nav);
+  }
