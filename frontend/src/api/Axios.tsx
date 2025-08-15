@@ -7,8 +7,9 @@ export const Axios = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3000/inicio");
+      const response = await fetch("http://localhost:3000/posts/all");
       const json = await response.json();
+      console.log(json);
       setData(json);
     };
     fetchData();
@@ -19,12 +20,13 @@ export const Axios = () => {
       {data.map((usr, i) => (
         <div key={i}>
           <div className="user">
-            <img src={imagenGod} alt={`Foto de ${usr.nombre ?? "Usuario"}`} />
-            <p>{usr.username}</p>
+            <img src={imagenGod} alt={`Foto de ${usr.user.nombre ?? "Usuario"}`} />
+            <h3>{usr.user.nombre}</h3>
+            <p>{usr.user.username}</p>
           </div>
           <div className="imagecontent">
-            <p>{usr.email}</p>
-            <img src={imagenGod} alt="Imagen aleatoria" />
+            <p>{usr.descripcion}</p>
+            <img src={`http://localhost:3000${usr.multimedia_url}`} alt="Imagen aleatoria" />
           </div>
         </div>
       ))}

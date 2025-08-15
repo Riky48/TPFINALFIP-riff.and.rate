@@ -1,7 +1,16 @@
-export class CreatePostDto {
+import { Type } from "class-transformer";
+import { IsInt, IsNotEmpty, IsString, IsUrl } from "class-validator";
 
+export class CreatePostDto {
+    @Type(() => Number)
+    @IsInt()
+    userId: number;
+
+    @IsString()
+    @IsNotEmpty()
     descripcion: string;
 
-    multimedia_url: string;
+    // @IsUrl()
+    // multimedia_url: string;
 
 }
