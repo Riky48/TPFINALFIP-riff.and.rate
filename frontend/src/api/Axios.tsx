@@ -26,7 +26,8 @@ export const Axios = () => {
           </div>
           <div className="imagecontent">
             <p>{usr.descripcion}</p>
-            <img src={`http://localhost:3000${usr.multimedia_url}`} alt="Imagen aleatoria" />
+            <img src={`http://localhost:3000${usr.multimedia_url}`} alt={`Publicacion de ${usr.user.nombre}`} />
+            <p>{usr.fecha_creacion}</p>
           </div>
         </div>
       ))}

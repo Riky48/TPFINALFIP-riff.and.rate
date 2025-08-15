@@ -8,7 +8,7 @@ type Props = {
 export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
   const [file, setFile] = useState<File | null>(null);
   const [descripcion, setDescripcion] = useState('');
-  const userId = 2; //Es de ejemplo, se puede cambiar por el usuario logueado
+  const userId = 1; //Es de ejemplo, se puede cambiar por el usuario logueado
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
