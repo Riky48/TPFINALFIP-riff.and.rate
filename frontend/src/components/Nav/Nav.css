@@ -27,6 +27,9 @@ nav {
     height: 100vh;
     font-family: 'Solway',Arial;
 }
+.open{
+    left: 0;
+}
 .imgnav{
     display: flex;
     justify-content: center;
