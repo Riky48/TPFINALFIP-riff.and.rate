@@ -1,6 +1,6 @@
 import './Inicio.css'
 import './Inicioresponsive.css'
-import Axios from '../api/Axios'
+import Axios from '../api/Usuario'
 import { PublicacionInicio } from '../components/PublicacionInicio/PublicacionInicio'
 
 
