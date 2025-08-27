@@ -158,28 +158,6 @@ main {
     align-items: center;
 }
 
-.user {
-    width: 90%;
-    display: flex;
-    height: 5vh;
-}
-
-.user img {
-    border-radius: 50%;
-
-    width: auto;
-    height: auto;
-}
-
-.user p {
-    width: 70%;
-    padding-left: 0.5vw;
-    height: 60%;
-    display: flex;
-    align-items: center;
-    font-size: 2vh;
-}
-
 .imagecontent {
     display: flex;
     flex-direction: column;
