@@ -1,8 +1,17 @@
-/* Contenedor principal */
+/* Contenedor principal del Marketplace */
 .marketplace-container {
   padding: 2rem;
-  background-color: var(--color-surface);
+  background-color: var(--color-surface); /* conserva tu color de fondo original */
   flex: 1;
+  box-sizing: border-box;
+}
+
+/* Mantener reglas de main-content si existían */
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  overflow-y: auto;
+  background-color: var(--color-surface);
   box-sizing: border-box;
 }
 
@@ -31,8 +40,17 @@
   display: flex;
   gap: 0.5rem;
   overflow-x: auto;
-  margin-bottom: 2rem;
   padding-bottom: 0.5rem;
+  scroll-behavior: smooth;
+}
+
+.categories-bar::-webkit-scrollbar {
+  height: 6px;
+}
+
+.categories-bar::-webkit-scrollbar-thumb {
+  background-color: var(--color-border);
+  border-radius: 3px;
 }
 
 .category-chip {
@@ -52,6 +70,11 @@
   border-color: var(--color-primary);
 }
 
+.category-chip:hover {
+  background-color: var(--color-hover);
+  color: #fff;
+}
+
 /* Grid de productos */
 .productos-grid {
   display: grid;
@@ -67,16 +90,21 @@
   text-align: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* fuerza altura uniforme */
 }
 
 .producto-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.4);
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45);
 }
 
 .producto-card img {
   width: 100%;
-  height: auto;
+  height: 150px; /* altura uniforme */
+  object-fit: contain; /* mantiene proporción */
   border-radius: 8px;
   margin-bottom: 0.5rem;
 }
@@ -84,6 +112,7 @@
 .producto-card h3 {
   font-size: 1.1rem;
   margin: 0.5rem 0;
+  font-weight: 600;
   color: var(--color-text);
 }
 
@@ -100,11 +129,28 @@
   background-color: var(--color-primary);
   color: #fff;
   cursor: pointer;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .producto-card button:hover {
   background-color: var(--color-hover);
+  transform: scale(1.05);
+}
+
+.producto-card button:active {
+  transform: scale(0.95);
+}
+
+/* Tipografía y espaciado */
+.marketplace-container h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.marketplace-container p {
+  color: var(--color-muted);
+  margin-bottom: 1rem;
 }
 
 /* Responsive */
