@@ -1,79 +1,51 @@
-import './Nav.css'
-import './Navresponsive.css'
-import imagenNav from '../../assets/DALL_E-2025-04-25-16.46-removebg-preview.png'
+import './Nav.css';
 import { Link } from 'react-router-dom';
-import { IconHover } from '../IconHover/IconHover';
-import house1 from '../../assets/house-regular.svg'
-import house2 from '../../assets/house_hover.svg'
-import userIcon1 from '../../assets/circle-user-regular.svg'
-import userIcon2 from '../../assets/circle-user-solid.svg'
-import mercado from '../../assets/shop-solid-full.svg'
-import mercado1 from '../../assets/shop-solid-full (1).svg'
-import bell1 from '../../assets/bell-solid-full.svg'
-import bell2 from '../../assets/bell-solid-full1.svg'
-import msg1 from '../../assets/envelope-regular-full.svg'
-import msg2 from '../../assets/envelope-solid-full.svg'
-import contact1 from '../../assets/user-group-solid-full.svg'
-import contact2 from '../../assets/user-group-solid-full (1).svg'
-import { useEffect, useRef } from 'react';
+import imagenNav from '../../assets/DALL_E-2025-04-25-16.46-removebg-preview.png';
+import house from '../../assets/house-regular.svg';
+import mercado from '../../assets/shop-solid-full.svg';
+import bell from '../../assets/bell-solid-full.svg';
+import msg from '../../assets/envelope-regular-full.svg';
+import contact from '../../assets/user-group-solid-full.svg';
+import userIcon from '../../assets/circle-user-regular.svg';
 
-export function Nav() {
-  const navRef = useRef<HTMLElement | null>(null);
-  let startX = 0;
-  let endX = 0;
-  
-  useEffect(() => {
-    const nav = navRef.current;
-    if (!nav) return;
+type NavProps = {
+  navOpen: boolean;
+  setNavOpen: (open: boolean) => void;
+};
 
-    if (window.innerWidth > 768) return;
-
-    const handleTouchStart = (e: TouchEvent) => {
-      startX = e.touches[0].clientX;
-    };
-
-    const handleTouchEnd = (e: TouchEvent) => {
-      endX = e.changedTouches[0].clientX;
-      const distance = endX - startX;
-
-      if (Math.abs(distance) > 50) {
-        if (distance > 0) {
-          // Swipe derecha → abrir nav
-          nav.style.left = '0';
-        } else {
-          // Swipe izquierda → cerrar nav
-          nav.style.left = '-95vw';
-        }
-      }
-    };
-
-    nav.addEventListener('touchstart', handleTouchStart);
-    nav.addEventListener('touchend', handleTouchEnd);
-
-    return () => {
-      nav.removeEventListener('touchstart', handleTouchStart);
-      nav.removeEventListener('touchend', handleTouchEnd);
-    };
-  }, []);
+export function Nav({ navOpen, setNavOpen }: NavProps) {
+  const options = [
+    { icon: house, label: 'Inicio', link: '/' },
+    { icon: mercado, label: 'Mercado', link: '/marketplace' },
+    { icon: bell, label: 'Notificaciones', link: '#' },
+    { icon: msg, label: 'Mensajes', link: '#' },
+    { icon: contact, label: 'Contactos', link: '#' },
+    { icon: userIcon, label: 'Usuario', link: '#' },
+  ];
 
   return (
-    <nav ref={navRef}>
-      <div className="imgnav">
-        <img src={imagenNav} alt="" />
-      </div>
-      <div className="searchnav">
-        <form action="">
-          <input type="search" name="buscador" id="buscadornav" placeholder="Buscar" />
-        </form>
-      </div>
-      <div className="optionsnav">
-        <Link to="/"><IconHover icon1={house1} icon2={house2} alt="inicio" enlace='Inicio' /></Link>
-        <Link to=""><IconHover icon1={mercado} icon2={mercado1} alt='mercado' enlace='Mercado' /></Link>
-        <Link to=""><IconHover icon1={bell1} icon2={bell2} alt='notificaciones' enlace='Notificaciones' /></Link>
-        <Link to=""><IconHover icon1={msg1} icon2={msg2} alt='mensajes' enlace='Mensajes' /></Link>
-        <Link to=""><IconHover icon1={contact1} icon2={contact2} alt='contactos' enlace='Contactos' /></Link>
-        <Link to=""><IconHover icon1={userIcon1} icon2={userIcon2} alt='usuario' enlace='Usuario' /></Link>
-      </div>
-    </nav>
+    <>
+      <button className="hamburger" onClick={() => setNavOpen(!navOpen)}>☰</button>
+      <nav className={navOpen ? 'open' : ''}>
+        <div className="imgnav">
+          <img src={imagenNav} alt="Logo" />
+        </div>
+        <div className="searchnav">
+          <form>
+            <input type="search" placeholder="Buscar" />
+          </form>
+        </div>
+        <div className="optionsnav">
+          {options.map(opt => (
+            <Link key={opt.label} to={opt.link}>
+              <div className="iconhover">
+                <img src={opt.icon} alt={opt.label} />
+                <p>{opt.label}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </nav>
+    </>
   );
 }
