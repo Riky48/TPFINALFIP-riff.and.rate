@@ -34,7 +34,7 @@
       "nav main main anuncios"
       "nav main main anuncios"
       ;
-      grid-template-columns:20% 50%  20%;
+      grid-template-columns: 20% 50%  20%;
       grid-template-rows: 100vh;
     ;
 }

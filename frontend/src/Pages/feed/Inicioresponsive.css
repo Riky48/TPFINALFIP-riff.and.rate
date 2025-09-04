@@ -1,16 +1,19 @@
 @media (max-width: 768px) {
-
-  .main {
-    width: 90%;
+  /* Estilos para smartphones */
+  .main-content .main {
+    width: 100%;
     height: 100%;
-    margin: auto;
-
   }
 
   main {
     width: 100%;
-    margin: 0;
+    margin: auto;
   }
+.main-content .main .contacts{
+  
+  visibility: hidden;
+  display: none;
+ }
 
   .publish {
     width: 100%;
