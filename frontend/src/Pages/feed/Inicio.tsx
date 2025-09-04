@@ -5,8 +5,6 @@ import { PublicacionInicio } from '../../components/PublicacionInicio/Publicacio
 
 
 export function Inicio() {
-
-
     return (
         <>
             <div className="main">
@@ -17,7 +15,7 @@ export function Inicio() {
                     </div>
                 </main>
                 <div className="contacts">
-                    <div className="contacts">
+                    <div className="suggContact">
 
                     </div>
                 </div>

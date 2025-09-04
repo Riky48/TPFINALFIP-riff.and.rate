@@ -52,7 +52,7 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
   return (
     <div className="componente-extra">
       <div className="close-btn" onClick={onClose}>
-        <p onClick={onClose}>-</p>
+        <p></p>
         <h3>Escribe tu publicación</h3>
         <button onClick={handlePublicar}>Publicar</button>
       </div>
