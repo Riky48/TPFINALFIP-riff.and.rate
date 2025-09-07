@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './RegisterForm.css';
 
-export function RegisterForm() {
+function RegisterForm() {
     const [user, setUser] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -38,10 +38,11 @@ export function RegisterForm() {
                     </div>
                         <div className="signupbtn">
                             <button type="submit" className="signupButton">Registrarse</button>
-                            <p>¿Ya tiene una cuenta? <a href="../login/index.html">Inicie sesión aquí.</a></p>
                     </div>
                 </form>
             </div>
         </>
     )
 }
+
+export default RegisterForm;

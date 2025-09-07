@@ -39,7 +39,7 @@
 
 .signupdiv {
     display: flex;
-    width: 35%;
+    width: 400px;
     height: 400px;
     justify-self: center;
     flex-direction: column;
@@ -74,29 +74,16 @@ form > div > label {
 }
 
 form > div > input {
-    width: 100%;
+    width: 250px;
     text-align: center;
 }
 
-.signupbtn > p {
-    color: var(--color-text);
-}
-
-.signupbtn > p > a {
-    color: var(--color-muted);
-}
-
-.signupbtn > p > a:hover {
-    color:var(--color-hover)
-}
-
 .signupbtn > button {
-    align-self: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
     background-color: var(--color-primary);
-    font-size: larger;
-    border-radius: 1rem;
     color: var(--color-text);
-    width: 150px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 } 

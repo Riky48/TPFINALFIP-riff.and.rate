@@ -39,7 +39,7 @@
 
 .logindiv {
     display: flex;
-    width: 35%;
+    width: 300px;
     height: 300px;
     justify-self: center;
     flex-direction: column;
@@ -52,7 +52,7 @@
 
 .login {
     display: flex;
-    width: 100%;
+    width: auto;
     height: 100%;
     justify-items: center;
     align-items: center;
@@ -61,7 +61,7 @@
 
 form > div {
     display: flex;
-    width: auto;
+    width: 200px;
     height: 100%;
     flex-direction: column;
 }
@@ -74,20 +74,8 @@ form > div > label {
 }
 
 form > div > input {
-    width: 100%;
+    width: 200px;
     text-align: center;
-}
-
-.loginbtn > p {
-    color: var(--color-text);
-}
-
-.loginbtn > p > a {
-    color: var(--color-muted);
-}
-
-.loginbtn > p > a:hover {
-    color:var(--color-hover)
 }
 
 .loginbtn > button {
