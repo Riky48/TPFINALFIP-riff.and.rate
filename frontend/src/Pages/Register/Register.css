@@ -23,55 +23,50 @@
     --color-nav: #18181b;
 }
 
-@media (max-width: 768px) {
-.componente-extra {
-    z-index: 10;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+.main {
+    grid-area: main;
+    background-color: var(--color-bg);
+    width: 100%;
+    height: 100%;
 }
-.close-btn{
+
+main {
+    height: 100%;
+    width: 70%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
+}
+
+.signupheader {
+    display: flex;
+    width: 500px;
+    height: auto;
+    color: var(--color-text);
+    justify-self: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: var(--color-surface);
+    margin-top: 5px;
+}
+.signupheader > h1 {
+    font-size: 40px;
+}
+.signupheader > p {
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 10%;
-}
-.close-btn button{
-    padding: 0.6rem;
-    margin-right: 1rem;
-    background-color: var(--color-hover);
-    border-radius: 25px;
-    border: none;
-}
-.close-btn button:hover{
-    background-color: var(--color-text);
-    color: var(--color-hover);
-}
-
-
-#post{
-    width: 99%;
-    height: 40%;
-    border: none;
-    max-height: 40%;
-    min-height: 40%;
-    color: #ffffff;
-    background-color: var(--color-nav);
-    max-width: 99vw;
-    min-width: 99vw;
-}
-
-.opciones{
-    display: flex;
-    width: 99%;
-    height: 48%;
-    flex-direction: column;
-}
-.opcion{
-    width: 100%;
-    height: 25%;
-}
+    margin-top: 14.2rem;
+    background-color: var(--color-surface);
+    color: var(--color-muted);
+    justify-self: center;
+    text-align: center;
+    justify-content: center;
+    align-items: center; 
 }

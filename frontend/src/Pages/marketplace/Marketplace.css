@@ -1,5 +1,6 @@
 /* Contenedor principal del Marketplace */
 .marketplace-container {
+  margin-top: 2rem;
   padding: 2rem;
   background-color: var(--color-surface); /* conserva tu color de fondo original */
   flex: 1;
@@ -9,9 +10,7 @@
 /* Mantener reglas de main-content si existían */
 .main-content {
   flex: 1;
-  padding: 2rem;
   overflow-y: auto;
-  background-color: var(--color-surface);
   box-sizing: border-box;
 }
 

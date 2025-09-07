@@ -106,8 +106,7 @@ nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 70vw;
-    max-width: 300px;
+    width: 100vw;
     height: 100vh;
     background-color: var(--color-nav);
     transform: translateX(-100%);
@@ -130,7 +129,7 @@ nav {
   .main-content {
     /* NO agregues margin-left ni nada */
     width: 100%;
-    padding: 1.5rem;
+   
   }
 
   /* Overlay opcional */

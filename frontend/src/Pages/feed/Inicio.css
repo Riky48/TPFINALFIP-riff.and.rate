@@ -23,13 +23,13 @@
     --color-nav: #18181b;
 }
 
+
 .main {
     grid-area: main;
-    width: 100%;
+
 }
 
 main {
-    margin: 0.5rem 2.5rem 0rem 2.5rem;
     height: 100%;
     width: 70%;
     display: flex;
@@ -279,6 +279,6 @@ main {
     color: #cfd9ea;
 }
 
- .componente-extra{
+.componente-extra {
     background-color: var(--color-nav);
-  }
+}
