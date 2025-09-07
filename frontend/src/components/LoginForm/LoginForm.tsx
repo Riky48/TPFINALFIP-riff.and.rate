@@ -38,13 +38,12 @@ function LoginForm() {
             <form onSubmit={handleSubmit}>
                 <div className="logindata">
                     <label htmlFor="email">E-mail</label>
-                    <input type="text" id="email" placeholder="Ej: tomas.propato@outlook.com" value={email} onChange={handleChange}/>
+                    <input type="text" id="email" placeholder="correoejemplo@outlook.com" value={email} onChange={handleChange}/>
                     <label htmlFor="password">Contraseña</label>
                     <input type="password" id="password" placeholder="123123123" value={password} onChange={handleChange}/>
                 </div>
                 <div className="loginbtn">
                     <button id="login" type="submit">Iniciar sesión</button>
-                    <p>¿No tiene una cuenta?{' '}<a href="../registro/index.html">Puede crear una aquí.</a></p>
                 </div>
             </form>
         </div>
