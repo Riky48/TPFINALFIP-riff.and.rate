@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { InicioModule } from './pag_inicio/inicio/inicio.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostsModule } from './pag_inicio/posts/posts.module';
+import { FeedModule } from './feed/feed.module';
 
 
 @Module({
@@ -14,7 +15,7 @@ import { PostsModule } from './pag_inicio/posts/posts.module';
       "host": 'localhost',
       "port": 3306,
       "username": 'root', // Usar el usuario de tu base de datos.
-      "password": 'Sallago2002', // Usar la contraseña de tu base de datos.
+      "password": 'contraseña', // Usar la contraseña de tu base de datos.
       "database": 'riff_and_rate', // Nombre de la base de datos.
       "entities": [
               "dist/**/**.entity{.ts,.js}",
@@ -22,7 +23,8 @@ import { PostsModule } from './pag_inicio/posts/posts.module';
       "synchronize": false,
     }),
     InicioModule,
-    PostsModule
+    PostsModule,
+    FeedModule
   ],
   controllers: [AppController],
   providers: [AppService],
