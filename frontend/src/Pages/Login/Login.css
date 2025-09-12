@@ -26,9 +26,12 @@
 .body {
     display : flex;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 92.5vh;
     margin: 0;
+    width: 100%;
+    position: relative;
     background-color: var(--color-bg);
+    overflow-y: hidden;
 }
 .main {
     flex : 1 0 auto;
@@ -41,7 +44,7 @@
 
 .header {
     display: flex;
-    width: 500px;
+    width: 100%;
     height: 100px;
     color: var(--color-text);
     justify-self: center;
@@ -58,8 +61,7 @@
     background-color: var(--color-surface);
     color: var(--color-muted);
     text-align: center;
-    padding: 10px 0;
-    margin-top: auto;
+    height: 5vh;
 }
 
 .buttons {

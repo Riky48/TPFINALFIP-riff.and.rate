@@ -1,16 +1,33 @@
-import { Entity } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn, CreateDateColumn } from "typeorm";
+import { _multimedia } from "./_multimedia.entity";
+import { _comment } from "./_comment.entity";
+import { _like } from "./_like.entity";
+import { _profile } from "./_profile.entity";
 
 @Entity('_post')
 export class _post {
-   id_post: number;
+  @PrimaryGeneratedColumn()
+  id_post: number;
 
-   id_user: number;
+  @Column({ length: 300 })
+  title: string;
 
-   title: string;
+  @Column({ length: 1000, nullable: true })
+  content: string;
 
-   content: string;
-   
-   created_at: Date;
+  @CreateDateColumn({ type: 'timestamp' })
+  created_at: Date;
 
-   id_multimedia: number;
+  @ManyToOne(() => _profile, (profile) => profile.posts, { eager: true })
+  @JoinColumn({ name: 'id_profile' })
+  profile: _profile;
+
+  @OneToMany(() => _like, (like) => like.post)
+  likes: _like[];
+
+  @OneToMany(() => _comment, (comment) => comment.post)
+  comments: _comment[];
+
+  @OneToMany(() => _multimedia, (multimedia) => multimedia.post)
+  multimedias: _multimedia[];
 }
