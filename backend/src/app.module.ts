@@ -5,22 +5,34 @@ import { InicioModule } from './pag_inicio/inicio/inicio.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostsModule } from './pag_inicio/posts/posts.module';
 import { FeedModule } from './feed/feed.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 
 @Module({
   imports: 
-  [
-    TypeOrmModule.forRoot({
+  [ ConfigModule.forRoot({
+      isGlobal: true,
+  }),
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
       "type": 'mysql',
-      "host": 'localhost',
-      "port": 3306,
-      "username": 'root', // Usar el usuario de tu base de datos.
-      "password": 'contraseña', // Usar la contraseña de tu base de datos.
-      "database": 'riff_and_rate', // Nombre de la base de datos.
+      "host": config.get<string>('DB_HOST'),
+      "port": config.get<number>('DB_PORT'),
+      "username": config.get<string>('DB_USER'),
+      "password": config.get<string>('DB_PASSWORD'),
+      "database": config.get<string>('DB_NAME'),
       "entities": [
               "dist/**/**.entity{.ts,.js}",
       ],
-      "synchronize": false,
+      "synchronize": true,
+      extra:{
+        connectionLimit: 10,
+        connectTimeout: 5000,
+      },
+      retryAttempts: 6,
+      retryDelay: 3000,
+    }),
     }),
     InicioModule,
     PostsModule,

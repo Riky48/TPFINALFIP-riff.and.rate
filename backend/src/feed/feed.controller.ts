@@ -1,20 +1,27 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
 import { FeedService } from './feed.service';
 import { CreateFeedDto } from './dto/create-feed.dto';
 import { UpdateFeedDto } from './dto/update-feed.dto';
+import { FeedDto } from './dto/feed.dto';
 
 @Controller('feed')
 export class FeedController {
-  constructor(private readonly feedService: FeedService) {}
+  constructor(private readonly feedService: FeedService) { }
 
   @Post()
-  create(@Body() createFeedDto: CreateFeedDto) {
-    return this.feedService.create(createFeedDto);
+  async createPost(@Body() createFeedDto: CreateFeedDto):Promise<FeedDto[]> {
+    await this.feedService.createPost(createFeedDto);
+    return this.feedService.joinFeed(createFeedDto.profile_id);
   }
 
-  @Get()
-  findAll() {
-    return this.feedService.findAll();
+  @Get('users/:id')
+  async getUseFeed(@Param('id', ParseIntPipe) id: number): Promise<FeedDto[]> {
+    return this.feedService.joinFeed(id);
+  }
+
+  @Get('users')
+  async getAllFeed(): Promise<FeedDto[]> {
+    return this.feedService.joinFeed();
   }
 
   @Get(':id')
