@@ -1,11 +1,10 @@
 import './Marketplace.css';
-
-
 import { useState } from 'react';
+import { useCart, Producto } from '../components/Context/CartContext';
 
 const categories = ['Todos', 'Baterías', 'Guitarras', 'Teclados', 'Micrófonos', 'Accesorios'];
 
-const productos = [
+const productos: Producto[] = [
   { id: 1, nombre: 'Batería electrónica Roland', categoria: 'Baterías', precio: '$120.000', img: '/bateria.jpg' },
   { id: 2, nombre: 'Guitarra Fender Stratocaster', categoria: 'Guitarras', precio: '$80.000', img: '/guitarra.jpg' },
   { id: 3, nombre: 'Teclado Yamaha PSR', categoria: 'Teclados', precio: '$50.000', img: '/teclado.jpg' },
@@ -17,6 +16,7 @@ const productos = [
 export default function Marketplace() {
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [searchTerm, setSearchTerm] = useState('');
+  const { addToCart } = useCart(); // 👈 usamos el hook
 
   const filteredProducts = productos.filter(p => 
     (activeCategory === 'Todos' || p.categoria === activeCategory) &&
@@ -58,7 +58,7 @@ export default function Marketplace() {
             <img src={producto.img} alt={producto.nombre} />
             <h3>{producto.nombre}</h3>
             <p className="precio">{producto.precio}</p>
-            <button>Comprar</button>
+            <button onClick={() => addToCart(producto)}>Agregar al carrito</button>
           </div>
         ))}
       </div>

@@ -1,44 +1,37 @@
 import { useCart } from "./CartContext";
-import "../../styles/Cart.css";
 
-export function CartPanel() {
-  const { cart, removeFromCart } = useCart();
+type CartPanelProps = {
+  onClose: () => void;
+};
 
-  const handleCheckout = () => {
-    alert("Gracias por tu compra 🥁🎸 (todavía no está conectado a un backend)");
-  };
+export default function CartPanel({ onClose }: CartPanelProps) {
+  const { cart, removeFromCart, clearCart } = useCart();
 
   return (
     <div className="cart-panel">
-      <h3>Tu Carrito</h3>
+      <h2>Tu carrito</h2>
+
       {cart.length === 0 ? (
-        <p>No hay productos</p>
+        <p>No hay productos en el carrito.</p>
       ) : (
-        <>
-          <ul>
-            {cart.map((item, index) => (
-              <li key={index} className="cart-item">
-                <img src={item.img} alt={item.nombre} />
-                <div>
-                  <p>{item.nombre}</p>
-                  <p>${item.precio}</p>
-                </div>
-                <button onClick={() => removeFromCart(item.id)}>❌</button>
-              </li>
-            ))}
-          </ul>
-          <hr />
-          <div className="cart-footer">
-            <p>
-              <strong>Total:</strong> $
-              {cart.reduce((total, item) => total + item.precio, 0)}
-            </p>
-            <button className="checkout-btn" onClick={handleCheckout}>
-              Finalizar compra
-            </button>
-          </div>
-        </>
+        <ul>
+          {cart.map(item => (
+            <li key={item.id}>
+              <img src={item.img} alt={item.nombre} width={50} />
+              <span>{item.nombre}</span>
+              <span>Cant: {item.cantidad}</span>
+              <span>{item.precio}</span>
+              <button onClick={() => removeFromCart(item.id)}>➖</button>
+            </li>
+          ))}
+        </ul>
       )}
+
+      {cart.length > 0 && (
+        <button onClick={clearCart}>Vaciar carrito</button>
+      )}
+
+      <button onClick={onClose}>Cerrar carrito</button>
     </div>
   );
 }

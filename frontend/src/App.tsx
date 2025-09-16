@@ -5,15 +5,22 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Marketplace from './Pages/Marketplace';
 import { useState } from 'react';
 import { CartProvider } from './components/Context/CartContext';
+import CartPanel from './components/Context/CartPanel';
+
+
+
 
 function App() {
+  
+  const [cartOpen, setCartOpen] = useState(false)
   const [navOpen, setNavOpen] = useState(false);
+  
 
   return (
     <BrowserRouter>
       <CartProvider>
       <div className="app-container">
-        <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
+        <Nav navOpen={navOpen} setNavOpen={setNavOpen} setCartOpen={setCartOpen} />
         <div className={`overlay ${navOpen ? 'show' : ''}`} onClick={() => setNavOpen(false)}></div>
         <div className="main-content">
           <Routes>
@@ -21,6 +28,7 @@ function App() {
             <Route path="/marketplace" element={<Marketplace />} />
           </Routes>
         </div>
+        {cartOpen && <CartPanel onClose={() => setCartOpen(false)} />}
       </div>
     </CartProvider>
     
