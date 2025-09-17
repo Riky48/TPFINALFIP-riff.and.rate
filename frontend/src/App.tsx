@@ -28,7 +28,9 @@ function App() {
             <Route path="/marketplace" element={<Marketplace />} />
           </Routes>
         </div>
-        {cartOpen && <CartPanel onClose={() => setCartOpen(false)} />}
+        <CartPanel open={cartOpen} onClose={() => setCartOpen(false)} />
+
+
       </div>
     </CartProvider>
     
