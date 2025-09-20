@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="app-container">
-        <Nav navOpen={navOpen} setNavOpen={setNavOpen} />
+        <Nav navOpen={navOpen} setNavOpen={setNavOpen}/>
         <div className={`overlay ${navOpen ? 'show' : ''}`} onClick={() => setNavOpen(false)}></div>
         <div className="main-content">
           <Routes>
