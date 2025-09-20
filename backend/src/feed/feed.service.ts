@@ -1,4 +1,4 @@
-import { Body, Injectable, NotFoundException } from '@nestjs/common';
+import { Body, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateFeedDto } from './dto/create-feed.dto';
 import { UpdateFeedDto } from './dto/update-feed.dto';
 import { FeedDto } from './dto/feed.dto';
@@ -7,7 +7,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { _post } from './entities/_post.entity';
 import { Repository } from 'typeorm';
 import { _multimedia } from './entities/_multimedia.entity';
-import { profile } from 'console';
 
 @Injectable()
 export class FeedService {
@@ -77,22 +76,24 @@ export class FeedService {
   );
 
   // Agrupo los posts por usuario
-  const grouped = mappedPosts.reduce((acc, feed) => {
-    const userId = feed.user.id;
+  // const grouped = mappedPosts.reduce((acc, feed) => {
+  //   const userId = feed.user.id;
 
-    if (!acc[userId]) {
-      acc[userId] = {
-        user: feed.user,
-        profile: feed.user.profile,
-        posts: [],
-      };
-    }
+  //   if (!acc[userId]) {
+  //     acc[userId] = {
+  //       user: feed.user,
+  //       profile: feed.user.profile,
+  //       posts: [],
+  //     };
+  //   }
 
-    acc[userId].posts.push(feed.posts);
-    return acc;
-  }, {});
+  //   acc[userId].posts.push(...feed.posts);
+  //   return acc;
+  // }, {});
 
-  return Object.values(grouped);
+  // return Object.values(grouped);
+
+  return mappedPosts;
 }
 
 
@@ -108,7 +109,23 @@ export class FeedService {
     return `This action updates a #${id} feed`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} feed`;
+  async removePost(postId: number, userId: number): Promise<{message: string}> {
+    const post = await this.postRepository.findOne({
+      where: { id_post: postId },
+      relations: ['profile', 'profile.user']
+    });
+
+    if(!post){
+      throw new NotFoundException('No se encontró el post');
+    }
+
+    if(post.profile.user.id_user !== userId){
+      throw new ForbiddenException('No tienes permisos para borrar este post');
+    }
+    await this.postRepository.remove(post);
+    return {message: 'Post eliminado correctamente'};
   }
+
+
+
 }

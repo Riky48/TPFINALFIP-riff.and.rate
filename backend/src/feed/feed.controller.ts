@@ -9,7 +9,7 @@ export class FeedController {
   constructor(private readonly feedService: FeedService) { }
 
   @Post()
-  async createPost(@Body() createFeedDto: CreateFeedDto):Promise<FeedDto[]> {
+  async createPost(@Body() createFeedDto: CreateFeedDto): Promise<FeedDto[]> {
     await this.feedService.createPost(createFeedDto);
     return this.feedService.joinFeed(createFeedDto.profile_id);
   }
@@ -34,8 +34,10 @@ export class FeedController {
     return this.feedService.update(+id, updateFeedDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.feedService.remove(+id);
+  @Delete('posts/:postId')
+  async remove(
+    @Param('postId', ParseIntPipe) postId: number,
+    @Body('userId') userId: number) {
+    return this.feedService.removePost(postId, userId);
   }
 }

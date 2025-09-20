@@ -18,10 +18,7 @@ export class _multimedia {
     @Column()
     id_user: number;
 
-    @ManyToOne(() => _post, (post) => post.multimedias)
+    @ManyToOne(() => _post, post => post.multimedias)
     @JoinColumn({ name: 'id_post' })
     post: _post;
-
-    @Column({ nullable: true })
-    id_post: number;
 }
