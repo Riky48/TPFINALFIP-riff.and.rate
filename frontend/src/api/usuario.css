@@ -34,3 +34,34 @@
     height: 49%;
     width: 50%;
 }
+.multimedia{
+    width: auto;
+    max-width: 97%;
+
+}
+
+.multimedia img{
+    width: 100%;
+}
+
+.likes{
+    margin-top: 1px solid var();
+    display: flex;
+}
+.likes p{
+    font-size: 1.5vh;
+    width: 30%;
+    margin-left: 1rem;
+}
+.user .textdatauser {
+    width: 40%;
+}
+
+
+.ellipsis{
+    width: 9%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: 1rem;
+    cursor: pointer;
+}

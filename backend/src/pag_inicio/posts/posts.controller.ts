@@ -1,7 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, ValidationPipe, UseInterceptors, UploadedFile, NotFoundException } from '@nestjs/common';
+import { Controller, Post, Body, Param, Delete, ParseIntPipe, UseInterceptors, UploadedFile, NotFoundException } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { extname } from 'path';
 import { diskStorage } from 'multer';
@@ -22,7 +21,7 @@ export class PostsController {
     })
   }))
    create(
-    @UploadedFile() file: UploadedFile,
+    @UploadedFile() file: Express.Multer.File,
     @Body() createPostDto: CreatePostDto,
   ) {
     if (!file) {
@@ -31,20 +30,22 @@ export class PostsController {
     return this.postsService.createPostWithFile(createPostDto, file);
   }
 
-  @Get('all')
-  findAll() {
-    return this.postsService.findAll();
-  }
 
-  @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.postsService.findOne(+id);
-  }
 
-  @Patch(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body(new ValidationPipe({ transform: true })) updatePostDto: UpdatePostDto) {
-    return this.postsService.update(+id, updatePostDto);
-  }
+  // @Get('all')
+  // findAll() {
+  //   return this.postsService.findAll();
+  // }
+
+  // @Get(':id')
+  // findOne(@Param('id', ParseIntPipe) id: number) {
+  //   return this.postsService.findOne(+id);
+  // }
+
+  // @Patch(':id')
+  // update(@Param('id', ParseIntPipe) id: number, @Body(new ValidationPipe({ transform: true })) updatePostDto: UpdatePostDto) {
+  //   return this.postsService.update(+id, updatePostDto);
+  // }
 
   @Delete(':id')
   remove(@Param('id', ParseIntPipe) id: number) {

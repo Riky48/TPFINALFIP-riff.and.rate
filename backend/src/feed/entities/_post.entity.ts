@@ -9,7 +9,7 @@ export class _post {
   @PrimaryGeneratedColumn()
   id_post: number;
 
-  @Column({ length: 300 })
+  @Column({ length: 300,default:'Sin título' })
   title: string;
 
   @Column({ length: 1000, nullable: true })
@@ -28,6 +28,6 @@ export class _post {
   @OneToMany(() => _comment, (comment) => comment.post)
   comments: _comment[];
 
-  @OneToMany(() => _multimedia, (multimedia) => multimedia.post)
+  @OneToMany(() => _multimedia, (multimedia) => multimedia.post,{cascade:['insert']})
   multimedias: _multimedia[];
 }
