@@ -51,12 +51,12 @@ main {
     align-items: center;
 }
 
-#contentPosted div {
+
+#contentPosted .usersDiv {
     background: var(--color-nav);
     width: 100%;
     border-radius: 10px;
-
-    margin-top: 1rem;
+    margin: 1rem;
 
 }
 
@@ -142,7 +142,7 @@ main {
     text-align: center;
 }
 
-.usercontentPosted {
+/* .usercontentPosted {
     margin-top: 1.5vh;
     margin-bottom: 2vh;
     width: 97%;
@@ -150,13 +150,14 @@ main {
     border-radius: 10px;
     padding: 1.5vh;
     gap: 1vh;
-}
+    border: 1px solid salmon;
+} */
 
-.usercontentPosted {
+/* .usercontentPosted {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
+} */
 
 .imagecontent {
     display: flex;
@@ -281,4 +282,17 @@ main {
 
 .componente-extra {
     background-color: var(--color-nav);
+}
+
+/*  Menu desplegable de las publicaciones        */
+.menuOptions{
+    background: var(--color-border);
+    border: 1px solid var(--color-border);
+}
+.menuOptions li{
+    cursor: pointer;
+}
+.menuOptions li:hover{
+    background: var(--color-hover);
+
 }
