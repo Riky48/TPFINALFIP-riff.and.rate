@@ -16,7 +16,7 @@ const productos: Producto[] = [
 export default function Marketplace() {
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [searchTerm, setSearchTerm] = useState('');
-  const { addToCart } = useCart(); // 👈 usamos el hook
+  const { addToCart } = useCart(); // usamos el hook
 
   const filteredProducts = productos.filter(p => 
     (activeCategory === 'Todos' || p.categoria === activeCategory) &&

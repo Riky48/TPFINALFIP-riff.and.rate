@@ -14,7 +14,7 @@ import cartIcon from "../../assets/carrito-de-compras.png";
 type NavProps = {
   navOpen: boolean;
   setNavOpen: (open: boolean) => void;
-  setCartOpen: (open: boolean) => void; // 👈 nuevo: abrir/cerrar carrito
+  setCartOpen: (open: boolean) => void; //  abrir/cerrar carrito
 };
 
 export function Nav({ navOpen, setNavOpen, setCartOpen }: NavProps) {

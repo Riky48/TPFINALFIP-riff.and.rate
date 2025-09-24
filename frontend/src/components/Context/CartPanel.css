@@ -27,7 +27,7 @@
   width: 350px;            /* ancho fijo del sidebar */
   max-width: 90vw;         /* en móvil quepa */
   height: 100%;
-  background: var(--color-nav, #18181b); /* usa tu variable, o fallback */
+  background: var(--color-nav, #18181b); /* usa la variable, o fallback */
   color: var(--color-text, #e4e4e7);
   box-shadow: -6px 0 18px rgba(0,0,0,0.45);
   z-index: var(--z-panel);
@@ -46,7 +46,7 @@
   transform: translateX(0); /* visible */
 }
 
-/* Para ver límites durante debug (comentá si no lo necesitás) */
+/* Para ver límites durante debug */
 /* .cart-panel { outline: 2px dashed lime; } */
 
 .close-cart {
@@ -114,6 +114,16 @@
   background: crimson;
   border: none;
   color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.buy-cart {
+  margin-top: 0.6rem;
+  padding: 0.7rem;
+  background: var(--color-hover);
+  border: none;
+  color: white;
   border-radius: 8px;
   cursor: pointer;
 }

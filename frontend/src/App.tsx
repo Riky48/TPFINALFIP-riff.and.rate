@@ -12,8 +12,8 @@ import CartPanel from './components/Context/CartPanel';
 
 function App() {
   
-  const [cartOpen, setCartOpen] = useState(false)
-  const [navOpen, setNavOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false); // panel de carrito cerrado
+  const [navOpen, setNavOpen] = useState(false); // panel de nav en moviles, cerrado
   
 
   return (

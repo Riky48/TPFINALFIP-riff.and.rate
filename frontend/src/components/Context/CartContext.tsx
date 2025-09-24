@@ -13,8 +13,9 @@ type CartItem = Producto & { cantidad: number };
 type CartContextType = {
   cart: CartItem[];
   addToCart: (producto: Producto) => void;
-  removeFromCart: (id: number) => void; // 👈 agregado
+  removeFromCart: (id: number) => void; 
   clearCart: () => void; // opcional, para vaciar todo
+  buyCart: () => void; // opcional, para comprar todo
 };
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -50,8 +51,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCart([]);
   };
 
+  const buyCart = () => {
+    
+    alert("compra de realizada");
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, buyCart }}>
       {children}
     </CartContext.Provider>
   );

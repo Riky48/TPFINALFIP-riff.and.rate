@@ -8,7 +8,7 @@ type CartPanelProps = {
 };
 
 export default function CartPanel({ onClose, open }: CartPanelProps) {
-  const { cart, removeFromCart, clearCart } = useCart();
+  const { cart, removeFromCart, clearCart, buyCart } = useCart();
 
   // debug rápido: ver estado en consola al abrir/cerrar
   useEffect(() => {
@@ -74,9 +74,12 @@ export default function CartPanel({ onClose, open }: CartPanelProps) {
         )}
 
         {cart.length > 0 && (
-          <button className="clear-cart" onClick={clearCart}>
+          <><button className="clear-cart" onClick={clearCart}>
             Vaciar carrito
-          </button>
+          </button > 
+          <button className="buy-cart" onClick={buyCart}> 
+            Comprar Todo
+          </button></>
         )}
       </aside>
     </>

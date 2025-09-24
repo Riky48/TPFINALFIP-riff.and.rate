@@ -128,7 +128,7 @@ nav {
   }
 
   .main-content {
-    /* NO agregues margin-left ni nada */
+   
     width: 100%;
     padding: 1.5rem;
   }
@@ -169,7 +169,7 @@ nav {
   width: 28px;
   height: 28px;
   object-fit: contain;
-  filter: brightness(0) invert(1); /* si tu navbar es oscura, pone el ícono blanco */
+  filter: brightness(0) invert(1); /* si navbar es oscura, pone el ícono blanco */
   transition: transform 0.2s ease-in-out;
 }
 
