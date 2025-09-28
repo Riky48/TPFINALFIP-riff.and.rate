@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { useCart } from "./CartContext";
-import "./CartPanel.css"; // <- IMPORTAR obligatoriamente
+import "./CartPanel.css"; 
+
 
 type CartPanelProps = {
   onClose: () => void;
   open: boolean;
+  onBuy: () => void;
 };
 
-export default function CartPanel({ onClose, open }: CartPanelProps) {
+export default function CartPanel({ onClose, open, onBuy }: CartPanelProps) {
   const { cart, removeFromCart, clearCart, buyCart } = useCart();
 
   // debug rápido: ver estado en consola al abrir/cerrar
@@ -24,6 +26,8 @@ export default function CartPanel({ onClose, open }: CartPanelProps) {
     return () => window.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
+  const total = cart.reduce((suma, item) => suma + item.precio * item.cantidad, 0);
+   
   return (
     <>
       <div
@@ -60,7 +64,7 @@ export default function CartPanel({ onClose, open }: CartPanelProps) {
                 <img src={item.img} alt={item.nombre} />
                 <div className="cart-item-info">
                   <div className="cart-item-name">{item.nombre}</div>
-                  <div className="cart-item-meta">x{item.cantidad} • ${item.precio}</div>
+                  <div className="cart-item-meta">x{item.cantidad} • ${item.precio.toLocaleString("es-AR")}</div>
                 </div>
                 <button
                   className="cart-item-remove"
@@ -74,10 +78,12 @@ export default function CartPanel({ onClose, open }: CartPanelProps) {
         )}
 
         {cart.length > 0 && (
-          <><button className="clear-cart" onClick={clearCart}>
+          <>
+          <p className= "total"> Total: ${total.toLocaleString("es-AR")}</p>
+          <button className="clear-cart" onClick={clearCart}>
             Vaciar carrito
           </button > 
-          <button className="buy-cart" onClick={buyCart}> 
+          <button className="buy-cart" onClick={onBuy}> 
             Comprar Todo
           </button></>
         )}

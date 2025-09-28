@@ -4,7 +4,7 @@ export type Producto = {
   id: number;
   nombre: string;
   categoria: string;
-  precio: string;
+  precio: number;
   img: string;
 };
 
@@ -56,6 +56,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     alert("compra de realizada");
   };
 
+  
   return (
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, buyCart }}>
       {children}

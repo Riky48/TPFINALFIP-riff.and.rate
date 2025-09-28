@@ -5,12 +5,12 @@ import { useCart, Producto } from '../components/Context/CartContext';
 const categories = ['Todos', 'Baterías', 'Guitarras', 'Teclados', 'Micrófonos', 'Accesorios'];
 
 const productos: Producto[] = [
-  { id: 1, nombre: 'Batería electrónica Roland', categoria: 'Baterías', precio: '$120.000', img: '/bateria.jpg' },
-  { id: 2, nombre: 'Guitarra Fender Stratocaster', categoria: 'Guitarras', precio: '$80.000', img: '/guitarra.jpg' },
-  { id: 3, nombre: 'Teclado Yamaha PSR', categoria: 'Teclados', precio: '$50.000', img: '/teclado.jpg' },
-  { id: 4, nombre: 'Micrófono Shure SM58', categoria: 'Micrófonos', precio: '$25.000', img: '/mic.jpg' },
-  { id: 5, nombre: 'Set de baquetas Pro', categoria: 'Accesorios', precio: '$5.000', img: '/baquetas.jpg' },
-  { id: 6, nombre: 'Amplificador guitarra 30W', categoria: 'Accesorios', precio: '$40.000', img: '/ampli.jpg' },
+  { id: 1, nombre: 'Batería electrónica Roland', categoria: 'Baterías', precio: 120000, img: '/bateria.jpg' },
+  { id: 2, nombre: 'Guitarra Fender Stratocaster', categoria: 'Guitarras', precio: 80000, img: '/guitarra.jpg' },
+  { id: 3, nombre: 'Teclado Yamaha PSR', categoria: 'Teclados', precio: 50000, img: '/teclado.jpg' },
+  { id: 4, nombre: 'Micrófono Shure SM58', categoria: 'Micrófonos', precio: 25000, img: '/mic.jpg' },
+  { id: 5, nombre: 'Set de baquetas Pro', categoria: 'Accesorios', precio: 5000, img: '/baquetas.jpg' },
+  { id: 6, nombre: 'Amplificador guitarra 30W', categoria: 'Accesorios', precio: 40000, img: '/ampli.jpg' },
 ];
 
 export default function Marketplace() {
@@ -57,7 +57,7 @@ export default function Marketplace() {
           <div key={producto.id} className="producto-card">
             <img src={producto.img} alt={producto.nombre} />
             <h3>{producto.nombre}</h3>
-            <p className="precio">{producto.precio}</p>
+            <p className="precio">${producto.precio.toLocaleString("es-AR")}</p>
             <button onClick={() => addToCart(producto)}>Agregar al carrito</button>
           </div>
         ))}
