@@ -64,23 +64,27 @@
     height: 5vh;
 }
 
-.buttons {
+.toggleLoginReg {
     display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-}
-
-.buttons > button {
-    background-color: var(--color-primary);
+    width: 23.5%;
+    height: 100%;
     color: var(--color-text);
-    border: none;
-    padding: 10px 20px;
+    font-size: larger;
+    margin-top: 25px;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
+    justify-self: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: var(--color-surface);
+    
 }
 
-header, .form-container, .buttons {
+.toggleLoginReg:hover {
+    color: var(--color-hover);
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+header, .forms {
     margin-bottom: 20px;
 }
