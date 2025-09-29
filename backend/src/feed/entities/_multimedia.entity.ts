@@ -18,7 +18,10 @@ export class _multimedia {
     @Column()
     id_user: number;
 
-    @ManyToOne(() => _post, post => post.multimedias)
+    @Column({length:50})
+    type: string; // tipo de multimedia: imagen, video, audio, documento
+
+    @ManyToOne(() => _post, post => post.multimedias,{onDelete:'CASCADE'})
     @JoinColumn({ name: 'id_post' })
     post: _post;
 }

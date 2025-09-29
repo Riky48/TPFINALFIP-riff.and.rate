@@ -10,8 +10,6 @@ import PaymentPanel from './Pages/PaymentPanel';
 import Login from './Pages/Login/Login';
 import Register from './components/RegisterForm/RegisterForm';
 import { Home } from './Pages/Home';
-import PublicacionInicio from './components/PublicacionInicio/PublicacionInicio';
-
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
@@ -25,6 +23,7 @@ function App() {
           {/* Nav solo visible en Marketplace */}
           <Routes>
             <Route path="/marketplace" element={<Nav navOpen={navOpen} setNavOpen={setNavOpen} setCartOpen={setCartOpen} />} />
+            <Route path="/inicio" element={<Nav navOpen={navOpen} setNavOpen={setNavOpen} setCartOpen={setCartOpen} />} />
           </Routes>
 
           {/* Overlay del nav */}
@@ -37,7 +36,7 @@ function App() {
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/inicio" element={<PublicacionInicio />} />
+              <Route path="/inicio" element={<Inicio />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/marketplace" element={<Marketplace />} />

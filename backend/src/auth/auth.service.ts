@@ -43,9 +43,4 @@ export class AuthService {
     return { access_token: token, user: userWithoutPassword };
   }
 
-//   async register(dto: CreateAuthDto): Promise < _user > {
-//   const hashedPassword = await bcrypt.hash(dto.password, 10); // Hash password
-//   const user = this.usersRepository.create({ name_: dto.name, last_name: dto.lastName, email: dto.email, password: hashedPassword, is_admin: dto.isAdmin, code: dto.code });
-//   return this.usersRepository.save(user);
-// }
 }

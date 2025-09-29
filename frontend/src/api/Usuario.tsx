@@ -72,7 +72,11 @@ export const Axios = () => {
           {usr.posts?.flat().map((post, idx) => (
             <div key={post.id ?? idx} className="imagecontent">
               <div className="post-header">
-                <p>{post.content}</p>
+                {post.content && post.content.trim().length > 0 ? (
+                  <p>{post.content}</p>
+                ) : (
+                  <p className="menu-container"></p>
+                )}
                 <div className="menu-container">
                   <img
                     src={menuEllipsis}
@@ -89,14 +93,19 @@ export const Axios = () => {
                 </div>
               </div>
 
-              {post.multimedia?.map((m, j) => (
-                <div key={j} className="multimedia">
-                  <img
-                    src={`http://localhost:3000${m.src}`}
-                    alt={`Publicación de ${usr.user?.name ?? "Usuario"}`}
-                  />
+              {post.multimedia?.length > 1 ? (
+                <div className="multimedia-flex">
+                  {post.multimedia.map((m, j) => (
+                    <img key={j} src={`http://localhost:3000${m.src}`} alt={`Multimedia ${j + 1}`} />
+                  ))}
                 </div>
-              ))}
+              ) : (
+                post.multimedia?.map((m, j) => (
+                  <div key={j} className="multimedia">
+                    <img src={`http://localhost:3000${m.src}`} alt={`Publicación de ${usr.user?.name ?? "Usuario"}`} />
+                  </div>
+                ))
+              )}
 
               <div className="social-interactions">
                 <div className="likes comments shares">
