@@ -7,13 +7,19 @@ import bell from '../../assets/bell-solid-full.svg';
 import msg from '../../assets/envelope-regular-full.svg';
 import contact from '../../assets/user-group-solid-full.svg';
 import userIcon from '../../assets/circle-user-regular.svg';
+import { useCart } from "../Context/CartContext";
+import cartIcon from "../../assets/carrito-de-compras.png";
+ // icono del carrito
 
 type NavProps = {
   navOpen: boolean;
   setNavOpen: (open: boolean) => void;
+  setCartOpen: (open: boolean) => void; //  abrir/cerrar carrito
 };
 
-export function Nav({ navOpen, setNavOpen }: NavProps) {
+export function Nav({ navOpen, setNavOpen, setCartOpen }: NavProps) {
+  const { cart } = useCart();
+
   const options = [
     { icon: house, label: 'Inicio', link: '/' },
     { icon: mercado, label: 'Mercado', link: '/marketplace' },
@@ -44,6 +50,14 @@ export function Nav({ navOpen, setNavOpen }: NavProps) {
               </div>
             </Link>
           ))}
+
+          {/* 🛒 Botón del carrito */}
+          <div className="cart-nav">
+            <button className="cart-button" onClick={() => setCartOpen(true)}>
+              <img src={cartIcon} alt="Carrito" />
+              {cart.length > 0 && <span className="cart-count">{cart.length}</span>}
+            </button>
+          </div>
         </div>
       </nav>
     </>
