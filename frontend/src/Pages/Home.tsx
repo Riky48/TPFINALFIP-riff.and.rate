@@ -41,8 +41,8 @@ export function Home() {
       </section>
 
       <div className="buttons">
-        <Link to="/login" className="btn">LOGIN</Link>
-        <Link to="/register" className="btn">REGISTER</Link>
+        <Link to="/login" className="btn">LOGIN/REGISTER</Link>
+        
         <Link to="/marketplace" className="btn">IR AL MARKETPLACE</Link>
       </div>
     </main>
