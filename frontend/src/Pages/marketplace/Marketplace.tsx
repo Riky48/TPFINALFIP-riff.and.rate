@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 
 
+
 const categories = ['Todos', 'Baterías', 'Guitarras', 'Teclados', 'Micrófonos', 'Accesorios'];
 
 const productos: Producto[] = [
