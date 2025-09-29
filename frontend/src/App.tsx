@@ -2,7 +2,7 @@ import './App.css';
 import { Inicio } from './Pages/feed/Inicio';
 import { Nav } from './components/Nav/Nav';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Marketplace from './Pages/marketplace/Marketplace';
+import Marketplace from './Pages/Marketplace/Marketplace';
 import { useState } from 'react';
 import { CartProvider } from './components/Context/CartContext';
 import CartPanel from './components/Context/CartPanel';
@@ -10,6 +10,7 @@ import PaymentPanel from './Pages/PaymentPanel';
 import Login from './Pages/Login/Login';
 import Register from './components/RegisterForm/RegisterForm';
 import { Home } from './Pages/Home';
+import PublicacionInicio from './components/PublicacionInicio/PublicacionInicio';
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
@@ -36,6 +37,7 @@ function App() {
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/inicio" element={<PublicacionInicio />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/marketplace" element={<Marketplace />} />

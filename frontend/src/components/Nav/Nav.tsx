@@ -21,7 +21,7 @@ export function Nav({ navOpen, setNavOpen, setCartOpen }: NavProps) {
   const { cart } = useCart();
 
   const options = [
-    { icon: house, label: 'Inicio', link: '/' },
+    { icon: house, label: 'Inicio', link: '/inicio' },
     { icon: mercado, label: 'Mercado', link: '/marketplace' },
     { icon: bell, label: 'Notificaciones', link: '/login' },
     { icon: msg, label: 'Mensajes', link: '#' },
