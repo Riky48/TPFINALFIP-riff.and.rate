@@ -1,12 +1,10 @@
 import './Inicio.css'
 import './Inicioresponsive.css'
-import Axios from '../api/Axios'
-import { PublicacionInicio } from '../components/PublicacionInicio/PublicacionInicio'
+import Axios from '../../api/Usuario'
+import { PublicacionInicio } from '../../components/PublicacionInicio/PublicacionInicio'
 
 
 export function Inicio() {
-
-
     return (
         <>
             <div className="main">
@@ -17,7 +15,7 @@ export function Inicio() {
                     </div>
                 </main>
                 <div className="contacts">
-                    <div className="contacts">
+                    <div className="suggContact">
 
                     </div>
                 </div>

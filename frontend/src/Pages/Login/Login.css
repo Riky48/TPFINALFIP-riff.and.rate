@@ -1,0 +1,86 @@
+:root {
+    /* Paleta base */
+    --color-bg: #121212;
+    /* Fondo general oscuro */
+    --color-surface: #1e1e2f;
+    /* Fondos de secciones, aside, tarjetas */
+    --color-primary: #7c3aed;
+    /* Acento violeta (botones, enlaces) */
+    --color-secondary: #f59e0b;
+    /* Acento naranja suave */
+    --color-border: #2c2c3a;
+    /* Bordes sutiles */
+    --color-text: #e4e4e7;
+    /* Texto principal */
+    --color-muted: #a1a1aa;
+    /* Texto secundario */
+    --color-hover: #9333ea;
+    /* Hover violeta más fuerte */
+    --color-alert: #ef4444;
+    /* Para errores o alertas */
+
+    /* Nav específico */
+    --color-nav: #18181b;
+}
+
+.body {
+    display : flex;
+    flex-direction: column;
+    min-height: 92.5vh;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    background-color: var(--color-bg);
+    overflow-y: hidden;
+}
+.main {
+    flex : 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    color: var(--color-text);
+    justify-self: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: var(--color-surface);
+}
+.header > h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.footer {
+    background-color: var(--color-surface);
+    color: var(--color-muted);
+    text-align: center;
+    height: 5vh;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.buttons > button {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+header, .form-container, .buttons {
+    margin-bottom: 20px;
+}

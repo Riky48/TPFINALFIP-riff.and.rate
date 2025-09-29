@@ -1,0 +1,89 @@
+@font-face {
+    font-family: 'Solway';
+    src: url('../assets/font/Solway-Regular.ttf');
+}
+
+:root{
+      /* Paleta base */
+    --color-bg: #121212;
+    /* Fondo general oscuro */
+    --color-surface: #1e1e2f;
+    /* Fondos de secciones, aside, tarjetas */
+    --color-primary: #7c3aed;
+    /* Acento violeta (botones, enlaces) */
+    --color-secondary: #f59e0b;
+    /* Acento naranja suave */
+    --color-border: #2c2c3a;
+    /* Bordes sutiles */
+    --color-text: #e4e4e7;
+    /* Texto principal */
+    --color-muted: #a1a1aa;
+    /* Texto secundario */
+    --color-hover: #9333ea;
+    /* Hover violeta más fuerte */
+    --color-alert: #ef4444;
+    /* Para errores o alertas */
+
+    /* Nav específico */
+    --color-nav: #18181b;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Solway', Arial;
+
+}
+
+.signupdiv {
+    display: flex;
+    width: 400px;
+    height: 400px;
+    justify-self: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    background-color: var(--color-surface);
+    border-radius: 15px;
+    margin-top: 40px;
+}
+
+.signup {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-items: center;
+    align-items: center;
+}
+
+
+form > div {
+    display: flex;
+    width: auto;
+    height: 100%;
+    flex-direction: column;
+}
+
+form > div > label {
+    color: var(--color-text);
+    font-weight: bold;
+    padding-top: 20px;
+    padding-bottom: 5px;
+}
+
+form > div > input {
+    width: 250px;
+    text-align: center;
+}
+
+.signupbtn > button {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+} 

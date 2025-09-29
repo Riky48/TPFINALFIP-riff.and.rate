@@ -23,10 +23,10 @@ export function Nav({ navOpen, setNavOpen, setCartOpen }: NavProps) {
   const options = [
     { icon: house, label: 'Inicio', link: '/' },
     { icon: mercado, label: 'Mercado', link: '/marketplace' },
-    { icon: bell, label: 'Notificaciones', link: '#' },
+    { icon: bell, label: 'Notificaciones', link: '/login' },
     { icon: msg, label: 'Mensajes', link: '#' },
     { icon: contact, label: 'Contactos', link: '#' },
-    { icon: userIcon, label: 'Usuario', link: '#' },
+    { icon: userIcon, label: 'Usuario', link: '/perfil' },
   ];
 
   return (
@@ -63,3 +63,4 @@ export function Nav({ navOpen, setNavOpen, setCartOpen }: NavProps) {
     </>
   );
 }
+ 

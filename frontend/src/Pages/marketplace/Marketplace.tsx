@@ -1,6 +1,9 @@
 import './Marketplace.css';
 import { useState } from 'react';
-import { useCart, Producto } from '../components/Context/CartContext';
+import { Producto } from '../../components/Context/CartContext';
+import { useCart } from '../../components/Context/CartContext';
+
+
 
 const categories = ['Todos', 'Baterías', 'Guitarras', 'Teclados', 'Micrófonos', 'Accesorios'];
 

@@ -1,0 +1,75 @@
+.home-container {
+  padding: 2rem;
+  text-align: center;
+  background-color: #0c2233; /* fondo exclusivo de Home */
+  min-height: 100vh;
+  color: white;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.icon {
+  width: 200px;
+  height: 200px;
+}
+
+.hero h1 {
+  font-size: 80px;
+  margin: 0;
+  color: #1d6ca1;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #74a2c3;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background-color: #0e2d45;
+  padding: 1.5rem;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  text-align: left;
+  min-height: 250px;
+}
+
+.card:hover {
+  background-color: #195d82;
+}
+
+.btn {
+  background-color: #333;
+  color: white;
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 0 0.5rem;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #555;
+}
+
+.buttons {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

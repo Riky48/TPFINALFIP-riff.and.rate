@@ -1,7 +1,26 @@
+import { Type } from "class-transformer";
+import { IsDate, IsInt, IsNotEmpty, IsOptional, IsString } from "class-validator";
+
 export class CreatePostDto {
+    @Type(() => Number)
+    @IsInt()
+    @IsOptional()
+    id_post: number;
 
-    descripcion: string;
+    @Type(() => Number)
+    @IsInt()
+    @IsNotEmpty()
+    id_user: number;
 
-    multimedia_url: string;
 
+    @IsString()
+    @IsOptional()
+    title:string;
+
+    @IsString()
+    content:string;
+
+    @IsDate()
+    @IsOptional()
+    created_at:Date;
 }

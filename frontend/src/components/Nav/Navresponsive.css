@@ -3,7 +3,6 @@
   nav {
   position: fixed;
   top: 0;
-  left: -95vw;            
   transition: left 0.3s ease-in-out;
   width: 100vw;
   height: 100vh;

@@ -1,0 +1,77 @@
+:root {
+    /* Paleta base */
+    --color-bg: #121212;
+    /* Fondo general oscuro */
+    --color-surface: #1e1e2f;
+    /* Fondos de secciones, aside, tarjetas */
+    --color-primary: #7c3aed;
+    /* Acento violeta (botones, enlaces) */
+    --color-secondary: #f59e0b;
+    /* Acento naranja suave */
+    --color-border: #2c2c3a;
+    /* Bordes sutiles */
+    --color-text: #e4e4e7;
+    /* Texto principal */
+    --color-muted: #a1a1aa;
+    /* Texto secundario */
+    --color-hover: #9333ea;
+    /* Hover violeta más fuerte */
+    --color-alert: #ef4444;
+    /* Para errores o alertas */
+
+    /* Nav específico */
+    --color-nav: #18181b;
+}
+
+@media (max-width: 768px) {
+.componente-extra {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+.close-btn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+}
+.close-btn button{
+    padding: 0.6rem;
+    margin-right: 1rem;
+    background-color: var(--color-hover);
+    border-radius: 25px;
+    border: none;
+}
+.close-btn button:hover{
+    background-color: var(--color-text);
+    color: var(--color-hover);
+}
+
+
+#post{
+    width: 99%;
+    height: 40%;
+    border: none;
+    max-height: 40%;
+    min-height: 40%;
+    color: #ffffff;
+    background-color: var(--color-nav);
+    max-width: 99vw;
+    min-width: 99vw;
+}
+
+.opciones{
+    display: flex;
+    width: 99%;
+    height: 48%;
+    flex-direction: column;
+}
+.opcion{
+    width: 100%;
+    height: 25%;
+}
+}

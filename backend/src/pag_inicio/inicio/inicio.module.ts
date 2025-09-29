@@ -11,5 +11,6 @@ import { users } from './entities/inicio.entity';
   ])],
   controllers: [InicioController],
   providers: [InicioService],
+  exports: [TypeOrmModule],
 })
 export class InicioModule {}
