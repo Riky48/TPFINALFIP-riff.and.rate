@@ -8,6 +8,9 @@ import { FeedModule } from './feed/feed.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { MarketplaceModule } from './marketplace/marketplace.module';
+
+
 
 
 @Module({
@@ -40,7 +43,9 @@ import { AuthModule } from './auth/auth.module';
     PostsModule,
     FeedModule,
     UserModule,
-    AuthModule
+    AuthModule,
+    MarketplaceModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],
