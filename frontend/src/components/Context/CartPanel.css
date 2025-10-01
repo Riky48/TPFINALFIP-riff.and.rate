@@ -1,0 +1,136 @@
+:root{
+  --z-overlay: 1500;
+  --z-panel: 1600;
+}
+
+/* Overlay */
+.cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: var(--z-overlay);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.cart-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Sidebar */
+.cart-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;            /* ancho fijo del sidebar */
+  max-width: 90vw;         /* en móvil quepa */
+  height: 100%;
+  background: var(--color-nav, #18181b); /* usa la variable, o fallback */
+  color: var(--color-text, #e4e4e7);
+  box-shadow: -6px 0 18px rgba(0,0,0,0.45);
+  z-index: var(--z-panel);
+  padding: 1rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  transform: translateX(100%); /* oculto */
+  transition: transform 0.28s ease;
+  border-left: 1px solid var(--color-border, #2c2c3a);
+  overflow: hidden;
+}
+
+.cart-panel.open {
+  transform: translateX(0); /* visible */
+}
+
+/* Para ver límites durante debug */
+/* .cart-panel { outline: 2px dashed lime; } */
+
+.close-cart {
+  align-self: flex-end;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--color-text, #e4e4e7);
+}
+
+/* Contenido */
+.cart-panel h2 {
+  margin: 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-border, #2c2c3a);
+  font-size: 1.1rem;
+}
+
+.cart-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.02);
+  padding: 0.5rem;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.cart-item img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.cart-item-info { flex: 1; min-width: 0; }
+.cart-item-name { font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cart-item-meta { font-size: 0.85rem; opacity: 0.8; }
+
+.cart-item-remove {
+  background: var(--color-hover, #9333ea);
+  border: none;
+  color: white;
+  padding: 0.35rem 0.45rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Vaciar carrito */
+.clear-cart {
+  margin-top: 0.6rem;
+  padding: 0.7rem;
+  background: crimson;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.buy-cart {
+  margin-top: 0.6rem;
+  padding: 0.7rem;
+  background: var(--color-hover);
+  border: none;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* Safety: si algún CSS global pisa width:100% lo sobreescribimos */
+.cart-panel {
+  min-width: 0 !important;
+  width: 350px !important;
+  max-width: 90vw !important;
+}

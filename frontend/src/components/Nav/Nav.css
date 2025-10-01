@@ -127,7 +127,7 @@ nav {
   }
 
   .main-content {
-    /* NO agregues margin-left ni nada */
+   
     width: 100%;
    
   }
@@ -149,3 +149,45 @@ nav {
   }
 }
 
+.cart-nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+}
+
+.cart-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+}
+
+.cart-button img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  filter: brightness(0) invert(1); /* si navbar es oscura, pone el ícono blanco */
+  transition: transform 0.2s ease-in-out;
+}
+
+.cart-button:hover img {
+  transform: scale(1.1);
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -8px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 6px;
+  min-width: 18px;
+  text-align: center;
+  line-height: 1;
+  box-shadow: 0 0 4px rgba(0,0,0,0.3);
+}

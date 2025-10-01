@@ -2,7 +2,7 @@
 .marketplace-container {
   margin-top: 2rem;
   padding: 2rem;
-  background-color: var(--color-surface); /* conserva tu color de fondo original */
+  /*background-color: var(--color-surface); /* conserva tu color de fondo original */
   flex: 1;
   box-sizing: border-box;
 }
@@ -92,7 +92,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%; /* fuerza altura uniforme */
+  height: 100%; 
 }
 
 .producto-card:hover {
