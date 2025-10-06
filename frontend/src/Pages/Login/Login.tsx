@@ -6,7 +6,7 @@ import { useState} from 'react';
 
 
 function Login() {
-    const [showLogin, setShowLogin] = useState(false);
+    const [showLogin, setShowLogin] = useState(true);
     const [showRegister, setShowRegister] = useState(false);
     
 
@@ -33,11 +33,9 @@ function Login() {
                 <div className="forms">
                     {showLogin && <LoginForm />}
                     {showRegister && <RegisterForm />}
-                </div>
-
-                <div className="buttons">
-                    <button className="loginButton" onClick={handleLogin}>Iniciar Sesión</button>
-                    <button className="registerButton" onClick={handleRegister}>Crear una cuenta</button>
+                    <div className="toggleLoginReg">
+                        <p onClick={showLogin ? handleRegister : handleLogin}>{showLogin ? "¿No tenés una cuenta? Podés crear una aquí" : "¿Ya tenés una cuenta? Iniciá sesión"}</p>
+                    </div>
                 </div>
             </div>
             <div className="footer">© 2025 Marketplace Músicos - Todos los derechos reservados.</div>

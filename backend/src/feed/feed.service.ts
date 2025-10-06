@@ -75,24 +75,6 @@ export class FeedService {
     )
   );
 
-  // Agrupo los posts por usuario
-  // const grouped = mappedPosts.reduce((acc, feed) => {
-  //   const userId = feed.user.id;
-
-  //   if (!acc[userId]) {
-  //     acc[userId] = {
-  //       user: feed.user,
-  //       profile: feed.user.profile,
-  //       posts: [],
-  //     };
-  //   }
-
-  //   acc[userId].posts.push(...feed.posts);
-  //   return acc;
-  // }, {});
-
-  // return Object.values(grouped);
-
   return mappedPosts;
 }
 

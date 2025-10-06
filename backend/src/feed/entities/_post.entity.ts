@@ -28,6 +28,6 @@ export class _post {
   @OneToMany(() => _comment, (comment) => comment.post)
   comments: _comment[];
 
-  @OneToMany(() => _multimedia, (multimedia) => multimedia.post,{cascade:['insert']})
+  @OneToMany(() => _multimedia, (multimedia) => multimedia.post,{cascade:true,onDelete:'CASCADE'})
   multimedias: _multimedia[];
 }
