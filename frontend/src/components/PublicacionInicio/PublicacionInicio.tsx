@@ -11,6 +11,7 @@ export const PublicacionInicio: React.FC = () => {
 
     const [mostrarComponente, setMostrarComponente] = useState(false);
 
+
     const handleClick = () => {
         if (!mostrarComponente) {
             setMostrarComponente(true);
@@ -27,7 +28,7 @@ export const PublicacionInicio: React.FC = () => {
                     <img src={imagen} alt="Usuario" />
                 </div>
                 <div className="inputPost">
-                    <textarea name="" id="postinput" placeholder="Di tu opinion sobre 💬... "
+                    <textarea name=""  id="postinput" placeholder="Di tu opinion sobre 💬... "
                         onClick={handleClick} onFocus={handleClick}
                     ></textarea>
                 </div>

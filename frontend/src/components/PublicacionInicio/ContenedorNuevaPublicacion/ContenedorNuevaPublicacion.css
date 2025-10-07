@@ -75,3 +75,30 @@
     height: 25%;
 }
 }
+
+@media (min-width: 769px){
+    .componente-extra {
+        border: 1px solid red;
+        margin-top: 5vh;
+        border-radius: 20px;
+        z-index: 100;
+        margin-left: -10vw;
+        width: 73vw;
+        height: 60vh;
+        position: fixed;
+        color: white;
+    }
+    .componente-extra #post{
+        width: 100%;
+        height: 40%;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 40%;
+        max-height: 40%;
+    }
+    .componente-extra .opciones{
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+}

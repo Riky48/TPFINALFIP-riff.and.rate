@@ -27,6 +27,7 @@ export interface FeedDto {
             id:number;
             src:string;
             title:string;
+            type:string;
             createdAt:Date;
         }[];
     likes:number;

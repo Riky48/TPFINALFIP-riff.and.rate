@@ -24,7 +24,7 @@ export const Axios = () => {
   };
 
   const handleEdit = (id: number) => {
-    console.log("Se tendría que editar el post con id:", id);
+    console.log("Editar post con id:", id);
   };
 
   const handleDelete = (id: number) => {
@@ -38,12 +38,20 @@ export const Axios = () => {
       });
 
       if (response.ok) {
-        setData((prev) =>
-          prev.map((usr) => ({
-            ...usr,
-            posts: usr.posts?.filter((post) => post.id !== id),
-          }))
-        );
+        setData((prev) => {
+          const newData = structuredClone(prev);
+
+          for (const usr of newData) {
+            if (usr.posts?.some((post) => post.id === id)) {
+              usr.posts = usr.posts.filter((post) => post.id !== id);
+              break;
+            }
+          }
+
+          // 🔥 Filtramos usuarios sin posts
+          return newData.filter((usr) => usr.posts && usr.posts.length > 0);
+        });
+
         setShowDeleteModal(null);
         setActivePostId(null);
       } else {
@@ -54,88 +62,118 @@ export const Axios = () => {
     }
   };
 
+  const getMediaType = (src: string): "image" | "video" | "file" => {
+    const ext = src.split(".").pop()?.toLowerCase();
+    if (!ext) return "file";
+
+    if (["jpg", "jpeg", "png", "gif", "webp"].includes(ext)) return "image";
+    if (["mp4", "webm", "ogg"].includes(ext)) return "video";
+
+    return "file";
+  };
+
   return (
     <>
-      {data.map((usr, i) => (
-        <div key={i} className="usersDiv">
-          <div className="user">
-            <img
-              src={usr.user?.profile?.image ?? defaultImage}
-              alt={`Foto de ${usr.user?.name ?? "Usuario"}`}
-            />
-            <div className="textdatauser">
-              <h3>{usr.user?.name}</h3>
-              <p>{usr.user?.email}</p>
-            </div>
-          </div>
-
-          {usr.posts?.flat().map((post, idx) => (
-            <div key={post.id ?? idx} className="imagecontent">
-              <div className="post-header">
-                {post.content && post.content.trim().length > 0 ? (
-                  <p>{post.content}</p>
-                ) : (
-                  <p className="menu-container"></p>
-                )}
-                <div className="menu-container">
-                  <img
-                    src={menuEllipsis}
-                    alt="menu"
-                    className="ellipsis"
-                    onClick={() => toggleMenu(post.id)}
-                  />
-                  {activePostId === post.id && (
-                    <ol className="menuOptions show">
-                      <li onClick={() => handleEdit(post.id)}>Editar Publicación</li>
-                      <li onClick={() => handleDelete(post.id)}>Eliminar Publicación</li>
-                    </ol>
-                  )}
+      {data.length === 0 ? (
+        <p className="no-posts">No hay publicaciones.</p>
+      ) : (
+        data
+          // 👇 Filtramos usuarios con posts válidos antes del render
+          .filter((usr) => usr.posts && usr.posts.length > 0)
+          .map((usr) => (
+            <div key={usr.user?.id} className="usersDiv">
+              <div className="user">
+                <img
+                  src={usr.user?.profile?.image ?? defaultImage}
+                  alt={`Foto de ${usr.user?.name ?? "Usuario"}`}
+                />
+                <div className="textdatauser">
+                  <h3>{usr.user?.name}</h3>
+                  <p>{usr.user?.email}</p>
                 </div>
               </div>
 
-              {post.multimedia?.length > 1 ? (
-                <div className="multimedia-flex">
-                  {post.multimedia.map((m, j) => (
-                    <img key={j} src={`http://localhost:3000${m.src}`} alt={`Multimedia ${j + 1}`} />
-                  ))}
-                </div>
-              ) : (
-                post.multimedia?.map((m, j) => (
-                  <div key={j} className="multimedia">
-                    <img src={`http://localhost:3000${m.src}`} alt={`Publicación de ${usr.user?.name ?? "Usuario"}`} />
-                  </div>
-                ))
-              )}
+              {usr.posts.map((post) => (
+                <div key={post.id} className="imagecontent">
+                  <div className="post-header">
+                    {post.content && post.content.trim().length > 0 ? (
+                      <p>{post.content}</p>
+                    ) : (
+                      <p className="menu-container"></p>
+                    )}
 
-              <div className="social-interactions">
-                <div className="likes comments shares">
-                  <p>{post.likes} likes</p>
-                  <p>{post.comments?.length} comments</p>
-                </div>
-                <div className="comments-interactions">
-                  {post.comments?.map((c, u) => (
-                    <div key={u}>
-                      <p>{c.user}</p>
-                      <p>{new Date(c.createdAt).toLocaleDateString()}</p>
-                      <p>{c.content}</p>
+                    <div className="menu-container">
+                      <img
+                        src={menuEllipsis}
+                        alt="menu"
+                        className="ellipsis"
+                        onClick={() => toggleMenu(post.id)}
+                      />
+                      {activePostId === post.id && (
+                        <ol className="menuOptions show">
+                          <li onClick={() => handleEdit(post.id)}>Editar Publicación</li>
+                          <li onClick={() => handleDelete(post.id)}>Eliminar Publicación</li>
+                        </ol>
+                      )}
                     </div>
-                  ))}
+                  </div>
+
+                  <div className={post.multimedia?.length > 1 ? "multimedia-flex" : "multimedia"}>
+                    {post.multimedia?.map((m, j) => {
+                      const type = getMediaType(m.src);
+
+                      switch (type) {
+                        case "image":
+                          return (
+                            <img
+                              key={j}
+                              src={`http://localhost:3000${m.src}`}
+                              alt={`Publicación de ${usr.user?.name ?? "Usuario"}`}
+                            />
+                          );
+                        case "video":
+                          return <video key={j} src={`http://localhost:3000${m.src}`} controls />;
+                        default:
+                          return (
+                            <a
+                              key={j}
+                              href={`http://localhost:3000${m.src}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Descargar archivo ({m.title ?? `Archivo ${j + 1}`})
+                            </a>
+                          );
+                      }
+                    })}
+                  </div>
+
+                  <div className="social-interactions">
+                    <div className="likes comments shares">
+                      <p>{post.likes} likes</p>
+                      <p>{post.comments?.length} comments</p>
+                    </div>
+                    <div className="comments-interactions">
+                      {post.comments?.map((c, u) => (
+                        <div key={u}>
+                          <p>{c.user}</p>
+                          <p>{new Date(c.createdAt).toLocaleDateString()}</p>
+                          <p>{c.content}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
-        </div>
-      ))}
+          ))
+      )}
 
       {showDeleteModal !== null && (
         <div className="delete-modal" role="dialog" aria-modal="true">
           <h2>¿Estás seguro de que deseas eliminar este post?</h2>
-          <button aria-label="Cancelar eliminación" onClick={() => setShowDeleteModal(null)}>
-            Cancelar
-          </button>
-          <button aria-label="Confirmar eliminación" onClick={() => asyncDeletePost(showDeleteModal)}>
-            Eliminar
-          </button>
+          <button onClick={() => setShowDeleteModal(null)}>Cancelar</button>
+          <button onClick={() => asyncDeletePost(showDeleteModal)}>Eliminar</button>
         </div>
       )}
     </>

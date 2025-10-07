@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Solway';
+    src: url('./assets/font/Solway-Regular.ttf');
+}
 :root {
     /* Paleta base */
     --color-bg: #121212;
@@ -26,7 +30,7 @@
 
 .main {
     grid-area: main;
-
+    font-family:'Solway', Cambria;
 }
 
 main {
@@ -59,6 +63,38 @@ main {
     border-radius: 10px;
     margin: 1rem;
 
+}
+
+.usersDiv .user{
+    padding: 0.1rem;
+    width: 100%;
+}
+
+.usersDiv .user img{
+    width: 15%;
+}
+
+.usersDiv .user .textdatauser{
+    width: 100%;
+}
+
+.usersDiv .imagecontent .post-header{
+    display: flex;
+    width: 100%;
+    color: #fff;
+}
+
+.usersDiv .imagecontent .post-header p{
+    width: 91%;
+    padding-left: 0.5vh;
+}
+
+.usersDiv .imagecontent .post-header .menu-container{
+    width: 8%;
+}
+
+.imagecontent .multimedia video{
+    width: 100%;
 }
 
 .publish {
@@ -285,15 +321,21 @@ main {
     background-color: var(--color-nav);
 }
 
-/*  Menu desplegable de las publicaciones        */
+/*  Menu desplegable de las publicaciones  */
 .menuOptions{
     background: var(--color-border);
     border: 1px solid var(--color-border);
 }
+
 .menuOptions li{
     cursor: pointer;
 }
+
 .menuOptions li:hover{
     background: var(--color-hover);
 
+}
+
+.delete-modal{
+    color: var(--color-text);
 }
