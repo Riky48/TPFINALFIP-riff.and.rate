@@ -24,11 +24,20 @@
     width: 95%;
     display: flex;
     height: auto;
+    color: var(--color-text);
 }
 .post-header p {
     width: 90%;
     overflow-wrap: break-word; /* evita overflow de texto */
     word-wrap: break-word;     /* compatibilidad */
+}
+
+.imagecontent .multimedia{
+    width: 100%;
+}
+
+.imagecontent .multimedia a,video{
+    width: 100%;
 }
 
 .menu-container {
@@ -43,6 +52,7 @@
 
 .social-interactions {
     border-top: 1px solid #494949f2;
+    color: var(--color-text);
     width: 100%;
 }
 
@@ -58,6 +68,7 @@
     height: auto;
     font-size: 12px;
     list-style: none;
+    color: var(--color-text);
     background: var(--color-border); /* opcional para diferenciar */
     border: 2px solid var(--color-border); /* opcional */
 }
@@ -73,7 +84,6 @@
     flex-wrap: wrap;
     width: 100%;
 }
-
 }
 
 @media(min-width: 769px)and (max-width: 1280px){

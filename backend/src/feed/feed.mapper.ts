@@ -28,6 +28,7 @@ export function mappingFeed(user: _user, profile: _profile, post: _post, likeCou
             multimedia: multimedia.map(m => ({
                 id: m.id_multimedia,
                 src: m.src,
+                type: m.type,
                 title: m.title,
                 createdAt: m.created_at,
             })),

@@ -6,34 +6,33 @@ type Props = {
   onClose: () => void;
 };
 export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [files, setFiles] = useState<File[]>([]);
+  const [previewUrl, setPreviewUrl] = useState<string[]>([]);
   const [descripcion, setDescripcion] = useState('');
-  const userId = 1; //Es de ejemplo, se puede cambiar por el usuario logueado
+  const userId = 2; //Es de ejemplo, se puede cambiar por el usuario logueado
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+    if (e.target.files) {
+      const selectedFiles = Array.from(e.target.files);
+      setFiles(selectedFiles);
     }
   };
 
-  useEffect(()=>{
-    if(file){
-      const objectUrl = URL.createObjectURL(file);
-      setPreviewUrl(objectUrl);
+  useEffect(() => {
+    if (files.length > 0) {
+      const urls = files.map((file) => URL.createObjectURL(file));
+      setPreviewUrl(urls);
 
-      return () => URL.revokeObjectURL(objectUrl);
+      return () => urls.forEach((url) => URL.revokeObjectURL(url));
     }
-  }, [file]);
+  }, [files]);
 
   const handlePublicar = async () => {
-    if (!descripcion) return alert('Escribí algo!');
-    if (!file) return alert('Seleccioná un archivo');
 
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('descripcion', descripcion);
-    formData.append('userId', userId.toString());
+    files.forEach((file) => formData.append('files', file));
+    formData.append('content', descripcion);
+    formData.append('id_user', userId.toString());
 
     try {
       const res = await fetch('http://localhost:3000/posts/upload', {
@@ -52,36 +51,52 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
   return (
     <div className="componente-extra">
       <div className="close-btn" onClick={onClose}>
-        <p></p>
+        <p>x</p>
         <h3>Escribe tu publicación</h3>
-        <button onClick={handlePublicar}>Publicar</button>
       </div>
       <textarea name="post" id="post" placeholder="Di tu opinion sobre 💬... " value={descripcion} onChange={(e) => setDescripcion(e.target.value)}></textarea>
       <div className="opciones">
         <label className="upload-btn imgpubli">
           <img src={iconMultimedia} alt="" />
-          <input type="file" id="fileInput" accept="image/*,video/*,.pdf,image/gif" className="file-input" onChange={handleFileChange} />
+          <input type="file" id="fileInput" multiple accept="image/*,video/*,.pdf,image/gif" className="file-input" onChange={handleFileChange} />
         </label>
         <p className='opcion'>2</p>
         <p className='opcion'>3</p>
         <p className='opcion'>4</p>
+        <button onClick={handlePublicar}>Publicar</button>
       </div>
       {/* PREVISUALIZACIÓN */}
-      {previewUrl && (
-        <div className="preview">
-          {file?.type.startsWith('image/') && (
-            <img src={previewUrl} alt="Preview" className="preview-img" />
-          )}
-          {file?.type.startsWith('video/') && (
-            <video src={previewUrl} controls className="preview-video" />
-          )}
-          {file?.type === 'application/pdf' && (
-            <embed src={previewUrl} type="application/pdf" width="100%" height="400px" />
-          )}
+    
+      {previewUrl.length > 0 && (
+        <div className="preview-container">
+          {files.map((file, i) => {
+            const url = previewUrl[i];
+            if (file.type.startsWith("image/")) {
+              return <img key={i} src={url} alt="Preview" className="preview-img" />;
+            } else if (file.type.startsWith("video/")) {
+              return <video key={i} src={url} controls className="preview-video" />;
+            } else if (file.type === "application/pdf") {
+              return (
+                <embed
+                  key={i}
+                  src={url}
+                  type="application/pdf"
+                  width="100%"
+                  height="400px"
+                  className="preview-pdf"
+                />
+              );
+            } else {
+              return (
+                <div key={i} className="preview-file">
+                  <p>📄 {file.name}</p>
+                </div>
+              );
+            }
+          })}
         </div>
       )}
     </div>
- 
-    
+
   )
 }
