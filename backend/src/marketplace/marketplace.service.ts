@@ -1,26 +1,41 @@
 import { Injectable } from '@nestjs/common';
-import { CreateMarketplaceDto } from './dto/create-marketplace.dto';
-import { UpdateMarketplaceDto } from './dto/update-marketplace.dto';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Producto } from './entities/Producto.entity';
+import { CreateProductoDto } from './dto/create-producto.dto';
+import { UpdateProductoDto } from './dto/update-producto.dto';
 
 @Injectable()
 export class MarketplaceService {
-  create(createMarketplaceDto: CreateMarketplaceDto) {
-    return 'This action adds a new marketplace';
+  constructor(
+    @InjectRepository(Producto)
+    private productoRepository: Repository<Producto>,
+  ) {}
+
+  async create(createProductoDto: CreateProductoDto): Promise<Producto> {
+    const producto = this.productoRepository.create(createProductoDto);
+    return this.productoRepository.save(producto);
   }
 
-  findAll() {
-    return `This action returns all marketplace`;
+  async findAll(): Promise<Producto[]> {
+    return this.productoRepository.find({
+      relations: ['marca', 'categorias', 'reviews'],
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} marketplace`;
+  async findOne(id: number): Promise<Producto | null> {
+    return this.productoRepository.findOne({
+      where: { id },
+      relations: ['marca', 'categorias', 'reviews'],
+    });
   }
 
-  update(id: number, updateMarketplaceDto: UpdateMarketplaceDto) {
-    return `This action updates a #${id} marketplace`;
+  async update(id: number, updateProductoDto: UpdateProductoDto): Promise<Producto | null> {
+    await this.productoRepository.update(id, updateProductoDto);
+    return this.findOne(id);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} marketplace`;
+  async remove(id: number): Promise<void> {
+    await this.productoRepository.delete(id);
   }
 }

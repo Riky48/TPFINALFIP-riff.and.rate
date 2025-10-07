@@ -25,6 +25,7 @@ function App() {
           {/* Nav solo visible en Marketplace */}
           <Routes>
             <Route path="/marketplace" element={<Nav navOpen={navOpen} setNavOpen={setNavOpen} setCartOpen={setCartOpen} />} />
+            
           </Routes>
 
           {/* Overlay del nav */}

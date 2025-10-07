@@ -2,8 +2,8 @@ import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTabl
 import { _user } from '../../feed/entities/_user.entity';
 import { Categoria } from './Categoria.entity';
 import { Marca } from './Marca.entity'; 
-import { Review } from './review.entity';
-import { PostProducto } from './postproducto.entity';
+import { Review } from './Review.entity';
+import { PostProducto } from './PostProducto.entity';
 import { PedidoProducto } from './PedidoProducto.entity'; // <-- entidad intermedia
 
 @Entity()

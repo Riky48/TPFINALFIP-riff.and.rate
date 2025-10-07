@@ -1,15 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
 import { MarketplaceService } from './marketplace.service';
-import { CreateMarketplaceDto } from './dto/create-marketplace.dto';
-import { UpdateMarketplaceDto } from './dto/update-marketplace.dto';
+import { CreateProductoDto } from './dto/create-producto.dto';
+import { UpdateProductoDto } from './dto/update-producto.dto';
 
-@Controller('marketplace')
+@Controller('productos')
 export class MarketplaceController {
   constructor(private readonly marketplaceService: MarketplaceService) {}
 
   @Post()
-  create(@Body() createMarketplaceDto: CreateMarketplaceDto) {
-    return this.marketplaceService.create(createMarketplaceDto);
+  create(@Body() createProductoDto: CreateProductoDto) {
+    return this.marketplaceService.create(createProductoDto);
   }
 
   @Get()
@@ -22,9 +22,9 @@ export class MarketplaceController {
     return this.marketplaceService.findOne(+id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateMarketplaceDto: UpdateMarketplaceDto) {
-    return this.marketplaceService.update(+id, updateMarketplaceDto);
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateProductoDto: UpdateProductoDto) {
+    return this.marketplaceService.update(+id, updateProductoDto);
   }
 
   @Delete(':id')
