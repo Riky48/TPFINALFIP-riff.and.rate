@@ -5,6 +5,7 @@ import { Marca } from './Marca.entity';
 import { Review } from './Review.entity';
 import { PostProducto } from './PostProducto.entity';
 import { PedidoProducto } from './PedidoProducto.entity'; // <-- entidad intermedia
+import { CarritoProducto } from './CarritoProducto.entity';
 
 @Entity()
 export class Producto {
@@ -45,4 +46,8 @@ export class Producto {
   // relación con pedidos a través de la tabla intermedia PedidoProducto
   @OneToMany(() => PedidoProducto, pedidoProducto => pedidoProducto.producto)
   pedidoProductos: PedidoProducto[];
+
+  @OneToMany(() => CarritoProducto, carritoProducto => carritoProducto.producto)
+carritoProductos: CarritoProducto[];
+
 }

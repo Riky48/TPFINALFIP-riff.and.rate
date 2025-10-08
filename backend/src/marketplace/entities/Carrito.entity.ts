@@ -8,7 +8,7 @@ export class Carrito {
   id: number;
 
   // Relación con el usuario
-  @ManyToOne(() => _user, user => user.carritos)
+  @ManyToOne(() => _user, user => user.carrito)
   user: _user;
 
   // Relación con productos a través de tabla intermedia

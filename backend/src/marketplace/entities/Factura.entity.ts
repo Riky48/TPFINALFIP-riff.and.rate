@@ -1,3 +1,7 @@
+import { Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn } from 'typeorm';
+import { Pedido } from './Pedido.entity';
+
+
 @Entity()
 export class Factura {
   @PrimaryGeneratedColumn()
