@@ -141,6 +141,11 @@
 }
 
 /* Tipografía y espaciado */
+
+.marketplace-container{
+  margin-left: 10vw;
+}
+
 .marketplace-container h1 {
   font-size: 2rem;
   margin-bottom: 0.5rem;

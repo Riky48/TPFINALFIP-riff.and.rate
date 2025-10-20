@@ -1,19 +1,21 @@
-import './ContenedorNuevaPublicacion.css';
+import './ContenedorNuevoArticulo.css';
 import { useEffect, useState } from 'react';
-import iconMultimedia from '../../../assets/IconMultimedia.svg';
+import iconMultimedia from '../../../assets/image-solid-full.svg';
 import 'animate.css';
+import iconUpload from '../../../assets/arrow-up-from-bracket-solid-full.svg'
 
 type Props = {
   onClose: () => void;
 };
 
-export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
+export const ContenedorNuevoArticulo: React.FC<Props> = ({ onClose }) => {
   const ANIMATION_IN = 'animate__animated animate__zoomIn animate__faster';
   const ANIMATION_OUT = 'animate__animated animate__zoomOut animate__faster';
 
   const [files, setFiles] = useState<File[]>([]);
   const [previewUrl, setPreviewUrl] = useState<string[]>([]);
   const [descripcion, setDescripcion] = useState('');
+  const [content, setContent] = useState('');
   const [animationClass, setAnimationClass] = useState(ANIMATION_IN);
   const [isClosing, setIsClosing] = useState(false);
   const userId = 2;
@@ -38,6 +40,7 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
     files.forEach((file) => formData.append('files', file));
     formData.append('content', descripcion);
     formData.append('id_user', userId.toString());
+    formData.append('content', content.toString());
 
     try {
       const res = await fetch('http://localhost:3000/posts/upload', {
@@ -61,8 +64,8 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
   };
 
   return (
-    <div
-      className={`componente-extra ${animationClass}`}
+    <div id='componente-articulo'
+      className={`componente-articulo ${animationClass}`}
       onAnimationEnd={() => {
         if (animationClass === ANIMATION_OUT) {
           onClose();
@@ -73,19 +76,14 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
       <div className="close-btn">
         <h3>Escribe tu publicación</h3>
         <p onClick={handleCloseClick}>X</p>
+
       </div>
-
-      <textarea
-        name="post"
-        id="post"
-        placeholder="Di tu opinión sobre 💬... "
-        value={descripcion}
-        onChange={(e) => setDescripcion(e.target.value)}
-      ></textarea>
-
-      <div className="opciones">
-        <label className="upload-btn imgpubli">
-          <img src={iconMultimedia} alt="" />
+      <div className="opcional">
+        <img src={iconMultimedia} alt="" />
+        <p>Añade una imagen o un video de portada a tu articulo</p>
+        <label id='upload-content button-content'>
+          <img src={iconUpload} alt="" />
+          <p>Subir imagen</p>
           <input
             type="file"
             id="fileInput"
@@ -95,10 +93,23 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
             onChange={handleFileChange}
           />
         </label>
-        <p className="opcion">2</p>
-        <p className="opcion">3</p>
-        <p className="opcion">4</p>
       </div>
+
+      <textarea
+        name="post"
+        id="post"
+        placeholder="Titulo 💬"
+        value={descripcion}
+        onChange={(e) => setDescripcion(e.target.value)}
+      ></textarea>
+
+      <textarea
+        name="content"
+        id="content"
+        placeholder="Escribe tu artículo aquí 🖊"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+      ></textarea>
 
       <button onClick={handlePublicar} id='btnpublish'>Publicar</button>
 
