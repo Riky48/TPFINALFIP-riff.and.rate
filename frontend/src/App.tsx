@@ -10,6 +10,7 @@ import PaymentPanel from './Pages/PaymentPanel';
 import Login from './Pages/Login/Login';
 import Register from './components/RegisterForm/RegisterForm';
 import { Home } from './Pages/Home';
+import Perfil from './Pages/Perfil/Perfil';
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
@@ -40,6 +41,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/marketplace" element={<Marketplace />} />
+              <Route path="/Perfil" element={<Perfil/>}/>
             </Routes>
           </div>
 

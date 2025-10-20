@@ -12,7 +12,6 @@ export class CreatePostDto {
     @IsNotEmpty()
     id_user: number;
 
-
     @IsString()
     @IsOptional()
     title:string;

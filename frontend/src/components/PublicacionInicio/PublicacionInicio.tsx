@@ -6,10 +6,24 @@ import iconArticulo from '../../assets/iconArticulo.svg'
 import type React from 'react'
 import { useState } from 'react'
 import { ContenedorNuevaPublicacion } from './ContenedorNuevaPublicacion/ContenedorNuevaPublicacion'
+import { ContenedorNuevoArticulo } from './ContenedorNuevoArticulo/ContenedorNuevoArticulo'
+
 
 export const PublicacionInicio: React.FC = () => {
 
     const [mostrarComponente, setMostrarComponente] = useState(false);
+
+    const [mostrarComponenteArticle, setMostrarComponenteArticle] = useState(false);
+
+    const handleClickArticle = () => {
+        if (!mostrarComponenteArticle) {
+            setMostrarComponenteArticle(true);
+        }
+    }
+
+    const handleCloseArticle = () => {
+        setMostrarComponenteArticle(false);
+    };
 
 
     const handleClick = () => {
@@ -17,7 +31,8 @@ export const PublicacionInicio: React.FC = () => {
             setMostrarComponente(true);
         }
     }
-    const handleClose = () => {
+
+        const handleClose = () => {
         setMostrarComponente(false);
     };
 
@@ -35,12 +50,12 @@ export const PublicacionInicio: React.FC = () => {
             </div>
 
             <div className="iconPost">
-                <label htmlFor="fileInput" className="upload-btn imgpubli">
+                <label onClick={handleClick}  className="upload-btn imgpubli">
                     <img src={iconMultimedia} alt="" />
                 </label>
-                <input type="file" id="fileInput" accept="image/*,video/*,.pdf,image/gif" className="file-input" multiple />
+                
                 <a href="" className="imgpubli"><img src={iconEvento} alt="" /></a>
-                <a href="" className="imgpubli"><img src={iconArticulo} alt="" /></a>
+                <label className='imgpubli' onClick={handleClickArticle}><img src={iconArticulo} alt="" /></label>
             </div>
 
 
@@ -48,6 +63,7 @@ export const PublicacionInicio: React.FC = () => {
                 <img id="imagePreview" />
             </div>
             {mostrarComponente && <ContenedorNuevaPublicacion onClose={handleClose} />}
+            {mostrarComponenteArticle && <ContenedorNuevoArticulo onClose={handleCloseArticle} />}
         </div>
     )
 };
