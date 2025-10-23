@@ -26,12 +26,12 @@ export class UserService {
     return this.userRepository.save(user);
   }
 
-  // Método para buscar todos los usuarios
+  // Metodo para buscar todos los usuarios
   async findAll(): Promise<User[]> {
     return this.userRepository.find();
   }
 
-  // Método para buscar un usuario por id
+  // Metodo para buscar un usuario por id
   async findOne(id: number): Promise<User> {
     const user = await this.userRepository.findOne({ where: { id } });
     if (!user) {

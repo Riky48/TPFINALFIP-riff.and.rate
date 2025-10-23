@@ -7,14 +7,17 @@ import { FeedModule } from './feed/feed.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { ProductoModule } from './marketplace/producto.module';
+import { CategoriaModule } from './marketplace/categoria/categoria.module';
+import { MarcaModule } from './marketplace/marca/marca.module';
+
+
 
 
 
 @Module({
   imports: 
-  [ ConfigModule.forRoot({
-      isGlobal: true,
-  }),
+  [ ConfigModule.forRoot({isGlobal: true,}),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
@@ -24,9 +27,7 @@ import { AuthModule } from './auth/auth.module';
       "username": config.get<string>('DB_USER'),
       "password": config.get<string>('DB_PASSWORD'),
       "database": config.get<string>('DB_NAME'),
-      "entities": [
-              "dist//.entity{.ts,.js}",
-      ],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       "synchronize": true,
       extra:{
         connectionLimit: 10,
@@ -41,6 +42,9 @@ import { AuthModule } from './auth/auth.module';
     FeedModule,
     UserModule,
     AuthModule,
+    ProductoModule,
+    MarcaModule,
+    CategoriaModule,
     
   ],
   controllers: [AppController],

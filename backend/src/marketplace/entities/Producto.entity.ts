@@ -7,7 +7,7 @@ import { PostProducto } from './PostProducto.entity';
 import { PedidoProducto } from './PedidoProducto.entity'; // <-- entidad intermedia
 import { CarritoProducto } from './CarritoProducto.entity';
 
-@Entity()
+@Entity(`producto`)
 export class Producto {
   @PrimaryGeneratedColumn()
   id: number;
