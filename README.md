@@ -40,3 +40,6 @@ MySQL
 
 JWT para autenticación y Multer para carga de archivos
 
+
+
+$ npm install animate.css --save
