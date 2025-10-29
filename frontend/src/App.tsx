@@ -2,7 +2,7 @@ import './App.css';
 import { Inicio } from './Pages/feed/Inicio';
 import { Nav } from './components/Nav/Nav';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Marketplace from './Pages/Marketplace/Marketplace';
+import Marketplace from './Pages/marketplace/Marketplace';
 import { useState } from 'react';
 import { CartProvider } from './components/Context/CartContext';
 import CartPanel from './components/Context/CartPanel';
@@ -41,7 +41,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/marketplace" element={<Marketplace />} />
-              <Route path="/Perfil" element={<Perfil/>}/>
+               <Route path="/perfil" element={<Perfil />} />
             </Routes>
           </div>
 

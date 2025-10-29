@@ -1,22 +1,48 @@
-import { Injectable } from '@nestjs/common';
+// src/perfil/perfil.service.ts
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Perfil } from './entitys/perfil.entity';
+import { CreatePerfilDto } from './dto/create-perfil.dto';
+import { UpdatePerfilDto } from './dto/update-perfil.dto';
 
 @Injectable()
 export class PerfilService {
-  private perfiles = [
-    { id: '1', nombre: 'Valentín', bio: 'Amante de la música 🎵', foto: 'default.jpg' },
-  ];
+  constructor(
+    @InjectRepository(Perfil)
+    private perfilRepository: Repository<Perfil>,
+  ) {}
 
-  getPerfil(id: string) {
-    return this.perfiles.find(p => p.id === id);
+  async create(createDto: CreatePerfilDto): Promise<Perfil> {
+    const perfil = this.perfilRepository.create(createDto);
+    return this.perfilRepository.save(perfil);
   }
 
-  updatePerfil(id: string, data: any) {
-    const perfil = this.perfiles.find(p => p.id === id);
-    if (perfil) {
-      Object.assign(perfil, data);
-      return { mensaje: 'Perfil actualizado', perfil };
+  async findAll(): Promise<Perfil[]> {
+    return this.perfilRepository.find({ relations: ['country'] });
+  }
+
+  async findOne(id_user: number): Promise<Perfil> {
+    const perfil = await this.perfilRepository.findOne({
+      where: { id_user },
+      relations: ['country'],
+    });
+
+    if (!perfil) {
+      throw new NotFoundException(`Perfil con id ${id_user} no encontrado`);
     }
-    return { mensaje: 'Perfil no encontrado' };
+
+    return perfil;
+  }
+
+  async update(id_user: number, updateDto: UpdatePerfilDto): Promise<Perfil> {
+    const perfil = await this.findOne(id_user); // Verifica existencia
+    const updated = Object.assign(perfil, updateDto);
+    return this.perfilRepository.save(updated);
+  }
+
+  async remove(id_user: number): Promise<void> {
+    const perfil = await this.findOne(id_user); // Verifica existencia
+    await this.perfilRepository.remove(perfil);
   }
 }
-
