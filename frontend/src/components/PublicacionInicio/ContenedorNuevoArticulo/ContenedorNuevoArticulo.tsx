@@ -1,8 +1,10 @@
 import './ContenedorNuevoArticulo.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import iconMultimedia from '../../../assets/image-solid-full.svg';
 import 'animate.css';
 import iconUpload from '../../../assets/arrow-up-from-bracket-solid-full.svg'
+import PostFeed from '../PostFeed/Postfeed'
+
 
 type Props = {
   onClose: () => void;
@@ -12,6 +14,8 @@ export const ContenedorNuevoArticulo: React.FC<Props> = ({ onClose }) => {
   const ANIMATION_IN = 'animate__animated animate__zoomIn animate__faster';
   const ANIMATION_OUT = 'animate__animated animate__zoomOut animate__faster';
 
+
+  const [isPublishing, setIsPublishing] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   const [previewUrl, setPreviewUrl] = useState<string[]>([]);
   const [descripcion, setDescripcion] = useState('');
@@ -19,6 +23,12 @@ export const ContenedorNuevoArticulo: React.FC<Props> = ({ onClose }) => {
   const [animationClass, setAnimationClass] = useState(ANIMATION_IN);
   const [isClosing, setIsClosing] = useState(false);
   const userId = 2;
+
+
+  const [activo, setActivo] = useState(false)
+  const claseActiva = () => {
+    setActivo(true)
+  }
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -36,24 +46,23 @@ export const ContenedorNuevoArticulo: React.FC<Props> = ({ onClose }) => {
   }, [files]);
 
   const handlePublicar = async () => {
-    const formData = new FormData();
-    files.forEach((file) => formData.append('files', file));
-    formData.append('content', descripcion);
-    formData.append('id_user', userId.toString());
-    formData.append('content', content.toString());
-
+    if (isPublishing) return;
+    setIsPublishing(true);
     try {
-      const res = await fetch('http://localhost:3000/posts/upload', {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await res.json();
-      console.log('Post creado:', data);
-      alert('¡Post subido correctamente!');
-      handleCloseClick();
+      const type = 'article';
+      const formData = new FormData();
+      files.forEach((file) => formData.append('files', file));
+      formData.append('title', descripcion.toString());
+      formData.append('id_user', userId.toString());
+      formData.append('content', content.toString());
+      formData.append('type', type.toString());
+      await PostFeed({ formData, handleCloseClick })
     } catch (err) {
       console.error(err);
-      alert('Error al subir el post');
+      handleCloseClick()
+    }
+    finally {
+      setIsPublishing(false);
     }
   };
 
@@ -76,49 +85,14 @@ export const ContenedorNuevoArticulo: React.FC<Props> = ({ onClose }) => {
       <div className="close-btn">
         <h3>Escribe tu publicación</h3>
         <p onClick={handleCloseClick}>X</p>
-
       </div>
-      <div className="opcional">
-        <img src={iconMultimedia} alt="" />
-        <p>Añade una imagen o un video de portada a tu articulo</p>
-        <label id='upload-content button-content'>
-          <img src={iconUpload} alt="" />
-          <p>Subir imagen</p>
-          <input
-            type="file"
-            id="fileInput"
-            multiple
-            accept="image/*,video/*,.pdf,image/gif"
-            className="file-input"
-            onChange={handleFileChange}
-          />
-        </label>
-      </div>
-
-      <textarea
-        name="post"
-        id="post"
-        placeholder="Titulo 💬"
-        value={descripcion}
-        onChange={(e) => setDescripcion(e.target.value)}
-      ></textarea>
-
-      <textarea
-        name="content"
-        id="content"
-        placeholder="Escribe tu artículo aquí 🖊"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      ></textarea>
-
-      <button onClick={handlePublicar} id='btnpublish'>Publicar</button>
 
       {previewUrl.length > 0 && (
-        <div className="preview-container">
+        <div className={activo ? 'opcional opcional_img' : 'oculto'} >
           {files.map((file, i) => {
             const url = previewUrl[i];
             if (file.type.startsWith("image/")) {
-              return <img key={i} src={url} alt="Preview" className="preview-img" />;
+              return <img key={i} src={url} alt="Preview" className="preview" />;
             } else if (file.type.startsWith("video/")) {
               return <video key={i} src={url} controls className="preview-video" />;
             } else if (file.type === "application/pdf") {
@@ -142,6 +116,44 @@ export const ContenedorNuevoArticulo: React.FC<Props> = ({ onClose }) => {
           })}
         </div>
       )}
+
+
+      <div className={activo ? 'oculto' : 'opcional'}>
+        <img src={iconMultimedia} alt="" className='img' />
+        <p>Añade una imagen o un video de portada a tu articulo</p>
+        <label id='upload-content button-content' onClick={claseActiva}>
+          <img src={iconUpload} alt="" className='img' />
+          <p>Subir imagen</p>
+          <input
+            type="file"
+            id="fileInput"
+            multiple
+            accept="image/*,video/*,image/gif"
+            className="file-input"
+            onChange={handleFileChange}
+          />
+        </label>
+      </div>
+
+      <textarea
+        name="post"
+        id="post"
+        placeholder="Titulo 💬"
+        value={descripcion}
+        onChange={(e) => setDescripcion(e.target.value)}
+      ></textarea>
+
+      <textarea
+        name="content"
+        id="content"
+        placeholder="Escribe tu artículo aquí 🖊"
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+      ></textarea>
+
+      <button onClick={handlePublicar} id='btnpublish' disabled={isPublishing}>{isPublishing ? 'Publicando...' : 'Publicar'}</button>
+     
+     
     </div>
   );
 };

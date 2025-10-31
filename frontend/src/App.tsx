@@ -2,7 +2,7 @@ import './App.css';
 import { Inicio } from './Pages/feed/Inicio';
 import { Nav } from './components/Nav/Nav';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Marketplace from './Pages/marketplace/Marketplace';
+import Marketplace from './Pages/Marketplace/Marketplace';
 import { useState } from 'react';
 import { CartProvider } from './components/Context/CartContext';
 import CartPanel from './components/Context/CartPanel';
@@ -11,6 +11,11 @@ import Login from './Pages/Login/Login';
 import Register from './components/RegisterForm/RegisterForm';
 import { Home } from './Pages/Home';
 import Perfil from './Pages/Perfil/Perfil';
+import 'primereact/resources/themes/lara-light-blue/theme.css';  // o el tema que prefieras
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+
+
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
   const [navOpen, setNavOpen] = useState(false);

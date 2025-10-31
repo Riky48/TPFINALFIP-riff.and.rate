@@ -4,17 +4,21 @@ import "./usuario.css";
 import "./usuarioResponsive.css";
 import defaultImage from "../../../Frieren_Assembly_Language_For_x86_Processors.png";
 import menuEllipsis from "../assets/ellipsis-solid-full.svg";
+import { GalleriaFeed } from '../Peticion feed/galleria/GalleriaFeed'
 
 export const Axios = () => {
   const [data, setData] = useState<FeedDto[]>([]);
   const [activePostId, setActivePostId] = useState<number | null>(null);
   const [showDeleteModal, setShowDeleteModal] = useState<number | null>(null);
 
+
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch("http://localhost:3000/feed/users/2");
       const json = await response.json();
       setData(json);
+      console.log(json);
+
     };
     fetchData();
   }, []);
@@ -48,7 +52,7 @@ export const Axios = () => {
             }
           }
 
-          // 🔥 Filtramos usuarios sin posts
+          //  Filtramos usuarios sin posts
           return newData.filter((usr) => usr.posts && usr.posts.length > 0);
         });
 
@@ -74,6 +78,7 @@ export const Axios = () => {
 
   return (
     <>
+
       {data.length === 0 ? (
         <p className="no-posts">No hay publicaciones.</p>
       ) : (
@@ -81,6 +86,7 @@ export const Axios = () => {
           // 👇 Filtramos usuarios con posts válidos antes del render
           .filter((usr) => usr.posts && usr.posts.length > 0)
           .map((usr) => (
+
             <div key={usr.user?.id} className="usersDiv">
               <div className="user">
                 <img
@@ -94,6 +100,7 @@ export const Axios = () => {
               </div>
 
               {usr.posts.map((post) => (
+
                 <div key={post.id} className="imagecontent">
                   <div className="post-header">
                     {post.content && post.content.trim().length > 0 ? (
@@ -118,35 +125,49 @@ export const Axios = () => {
                     </div>
                   </div>
 
-                  <div className={post.multimedia?.length > 1 ? "multimedia-flex" : "multimedia"}>
-                    {post.multimedia?.map((m, j) => {
-                      const type = getMediaType(m.src);
+                  <div className="multimedia">
+                    {post.multimedia && post.multimedia.length > 0 && (
+                      post.multimedia.length > 1 ? (
+                        <GalleriaFeed multimedia={post.multimedia} />
+                      ) : (
+                        (() => {
+                          const m = post.multimedia[0];
+                          const type = getMediaType(m.src);
 
-                      switch (type) {
-                        case "image":
-                          return (
-                            <img
-                              key={j}
-                              src={`http://localhost:3000${m.src}`}
-                              alt={`Publicación de ${usr.user?.name ?? "Usuario"}`}
-                            />
-                          );
-                        case "video":
-                          return <video key={j} src={`http://localhost:3000${m.src}`} controls />;
-                        default:
-                          return (
-                            <a
-                              key={j}
-                              href={`http://localhost:3000${m.src}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              Descargar archivo ({m.title ?? `Archivo ${j + 1}`})
-                            </a>
-                          );
-                      }
-                    })}
+                          switch (type) {
+                            case "image":
+                              return (
+                                <img
+                                  src={`http://localhost:3000${m.src}`}
+                                  alt={`Publicación de ${usr.user?.name ?? "Usuario"}`}
+                                  className="rounded-2xl shadow-md"
+                                />
+                              );
+                            case "video":
+                              return (
+                                <video
+                                  src={`http://localhost:3000${m.src}`}
+                                  controls
+                                  className="rounded-2xl shadow-md"
+                                />
+                              );
+                            default:
+                              return (
+                                <a
+                                  href={`http://localhost:3000${m.src}`}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  Descargar archivo ({m.title ?? "Archivo"})
+                                </a>
+                              );
+                          }
+                        })()
+                      )
+                    )}
                   </div>
+
+
 
                   <div className="social-interactions">
                     <div className="likes comments shares">
