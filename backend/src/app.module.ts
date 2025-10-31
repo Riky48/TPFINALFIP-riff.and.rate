@@ -8,6 +8,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { PerfilModule } from './perfil/perfil.module';
+import { join } from 'path';
 
 
 @Module({
@@ -24,8 +25,8 @@ import { PerfilModule } from './perfil/perfil.module';
       "username": config.get<string>('DB_USER'),
       "password": config.get<string>('DB_PASSWORD'),
       "database": config.get<string>('DB_NAME'),
-      "entities": [
-              "dist/**/**.entity{.ts,.js}",
+      entities: [
+              join(__dirname, 'database/entities/*.entity{.ts,.js}'),
       ],
       "synchronize": true,
       extra:{

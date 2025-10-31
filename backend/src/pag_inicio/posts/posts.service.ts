@@ -2,9 +2,9 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
-import { _profile } from 'src/feed/entities/_profile.entity';
-import { _post } from 'src/feed/entities/_post.entity';
-import { _multimedia } from 'src/feed/entities/_multimedia.entity';
+import { _profile } from '../../database/entities/_profile.entity';
+import { _post } from '../../database/entities/_post.entity';
+import { _multimedia } from '../../database/entities/_multimedia.entity';
 import { BadRequestException } from '@nestjs/common';
 import { UpdatePostDto } from './dto/update-post.dto';
 

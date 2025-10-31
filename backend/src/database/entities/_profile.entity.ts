@@ -1,6 +1,7 @@
-import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { _user } from "./_user.entity";
 import { _post } from "./_post.entity";
+import { _country } from "./_country.entity";
 
 @Entity('_profile')
 export class _profile {
@@ -46,4 +47,9 @@ export class _profile {
 
     @OneToMany(() => _post, (post) => post.profile)
     posts: _post[];
+
+
+    @ManyToOne(() => _country, country => country.perfiles)
+    @JoinColumn({ name: 'country_id' })
+    country: _country;
 }
