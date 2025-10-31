@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { FeedService } from './feed.service';
 import { FeedController } from './feed.controller';
-import { _post } from './entities/_post.entity';
+import { _post } from '../database/entities/_post.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { _multimedia } from './entities/_multimedia.entity';
-import { _user } from './entities/_user.entity';
-import { _comment } from './entities/_comment.entity';
-import { _profile } from './entities/_profile.entity';
-import { _comment_of_comment } from './entities/_comment_of_comment.entity';
-import { _like } from './entities/_like.entity';
+import { _multimedia } from '../database/entities/_multimedia.entity';
+import { _user } from '../database/entities/_user.entity';
+import { _comment } from '../database/entities/_comment.entity';
+import { _profile } from '../database/entities/_profile.entity';
+import { _comment_of_comment } from '../database/entities/_comment_of_comment.entity';
+import { _like } from '../database/entities/_like.entity';
 
 @Module({
   imports: [

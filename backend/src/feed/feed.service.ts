@@ -4,9 +4,9 @@ import { UpdateFeedDto } from './dto/update-feed.dto';
 import { FeedDto } from './dto/feed.dto';
 import { mappingFeed } from './feed.mapper';
 import { InjectRepository } from '@nestjs/typeorm';
-import { _post } from './entities/_post.entity';
+import { _post } from '../database/entities/_post.entity';
 import { Repository } from 'typeorm';
-import { _multimedia } from './entities/_multimedia.entity';
+import { _multimedia } from '../database/entities/_multimedia.entity';
 
 @Injectable()
 export class FeedService {

@@ -1,8 +1,8 @@
 // src/perfil/dto/create-perfil.dto.ts
-import { IsBoolean, IsDateString, IsEmail, IsInt, IsOptional, IsString, Length } from 'class-validator';
+import { IsBoolean, IsDateString, IsEmail, IsNumber, IsOptional, IsString, Length } from 'class-validator';
 
 export class CreatePerfilDto {
-  @IsInt()
+  @IsNumber()
   id_user: number;
 
   @IsBoolean()
@@ -20,11 +20,9 @@ export class CreatePerfilDto {
   bio: string;
 
   @IsString()
-  @Length(0, 255)
   image: string;
 
   @IsString()
-  @Length(0, 255)
   image_header: string;
 
   @IsBoolean()
@@ -37,6 +35,6 @@ export class CreatePerfilDto {
   @IsBoolean()
   is_verified: boolean;
 
-  @IsInt()
+  @IsNumber()
   country_id: number;
 }
