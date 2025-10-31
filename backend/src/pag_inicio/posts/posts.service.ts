@@ -75,6 +75,7 @@ export class PostsService {
       title: createPostDto.title ?? 'Sin título',
       content: createPostDto.content,
       created_at: now,
+      type: createPostDto.type,
       profile,
       multimedias,
     });

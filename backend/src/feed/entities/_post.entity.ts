@@ -9,6 +9,9 @@ export class _post {
   @PrimaryGeneratedColumn()
   id_post: number;
 
+  @Column()
+  type:string;    // | 'post' | 'event' | 'article' |
+
   @Column({ length: 300,default:'Sin título' })
   title: string;
 

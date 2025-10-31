@@ -13,13 +13,16 @@ export class CreatePostDto {
     id_user: number;
 
     @IsString()
-    @IsOptional()
-    title:string;
+    type: string;
 
     @IsString()
-    content:string;
+    @IsOptional()
+    title: string;
+
+    @IsString()
+    content: string;
 
     @IsDate()
     @IsOptional()
-    created_at:Date;
+    created_at: Date;
 }

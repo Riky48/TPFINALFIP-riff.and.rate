@@ -88,7 +88,7 @@
         z-index: 100;
         margin-left: -10vw;
         width: 73vw;
-        height: 60vh;
+        height: 65vh;
         position: fixed;
         display: flex;
         flex-direction: column;
@@ -103,6 +103,21 @@
         border-bottom: 2px solid var(--color-border);
         margin-bottom: 2%;
     }
+    .componente-extra textarea::-webkit-scrollbar{
+        width:0.6rem;
+    }
+    .componente-extra textarea::-webkit-scrollbar-track{
+        background: var(--color-border);
+        border-radius: 20px;
+    }
+    .componente-extra textarea::-webkit-scrollbar-thumb{
+        background: var(--color-primary);
+        border-radius: 20px;
+        cursor: pointer;
+    }
+    .componente-extra textarea::-webkit-scrollbar-thumb:hover{
+        background: var(--color-hover);
+    }
 
     .componente-extra #post {
         width: 95%;
@@ -110,7 +125,7 @@
         font-size: 1.2rem;
         resize: none;
         outline: none;
-        height: 40%;
+        height: 100%;
         min-width: 95%;
         max-width: 95%;
         min-height: 40%;
@@ -133,9 +148,51 @@
     }
 
     .componente-extra .opciones {
+        margin-top: 1rem;
         width: 100%;
         display: flex;
         justify-content: space-around;
+    }
+    .componente-extra .preview-container{
+        border-top: 1px solid var(--color-border);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 25%;
+    }
+    .componente-extra .preview-container .preview-img{
+        width: 15%;
+        height: 80%;
+        margin: 0.5rem;
+        object-fit:cover;
+        border-radius: 20px;
+    }
+    .componente-extra .preview-container .preview-video{
+        width: 15%;
+        height: 80%;
+        margin: 0.5rem;
+        object-fit:cover;
+        border-radius: 20px;
+    }
+    .componente-extra .preview-container embed{
+        width: 15%;
+        height: 80%;
+        margin: 0.5rem;
+        object-fit:cover;
+        border-radius: 20px;
+    }
+    .componente-extra .preview-container .icon-pdf{
+        width: 100%;
+        height: 100%;
+        margin: 0.5rem;
+        object-fit:cover;
+        border-radius: 20px;
+    }
+    .componente-extra .preview-file{
+        width: 15%;
+        height: 80%;
     }
 
     #btnpublish{
@@ -145,8 +202,9 @@
         color: var(--color-primary);
         font-size: 1.2rem;
         padding: 0.5rem;
-        margin-top: 1rem;
+        margin-top: 0.5rem;
         border: none;
+        margin-bottom: 1rem;
     }
     #btnpublish:hover{
         cursor: pointer;

@@ -2,6 +2,8 @@ import './ContenedorNuevaPublicacion.css';
 import { useEffect, useState } from 'react';
 import iconMultimedia from '../../../assets/IconMultimedia.svg';
 import 'animate.css';
+import PostFeed from '../PostFeed/Postfeed'
+import iconPDF from '../../../assets/pdf.png'
 
 type Props = {
   onClose: () => void;
@@ -11,6 +13,7 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
   const ANIMATION_IN = 'animate__animated animate__zoomIn animate__faster';
   const ANIMATION_OUT = 'animate__animated animate__zoomOut animate__faster';
 
+  const [isPublishing, setIsPublishing] = useState(false);
   const [files, setFiles] = useState<File[]>([]);
   const [previewUrl, setPreviewUrl] = useState<string[]>([]);
   const [descripcion, setDescripcion] = useState('');
@@ -34,23 +37,23 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
   }, [files]);
 
   const handlePublicar = async () => {
-    const formData = new FormData();
-    files.forEach((file) => formData.append('files', file));
-    formData.append('content', descripcion);
-    formData.append('id_user', userId.toString());
-
+    if (isPublishing) return;
+    setIsPublishing(true);
     try {
-      const res = await fetch('http://localhost:3000/posts/upload', {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await res.json();
-      console.log('Post creado:', data);
-      alert('¡Post subido correctamente!');
-      handleCloseClick();
-    } catch (err) {
+      const formData = new FormData();
+      files.forEach((file) => formData.append('files', file));
+      formData.append('content', descripcion);
+      formData.append('id_user', userId.toString());
+      formData.append('type', 'post');
+
+      await PostFeed({ formData, handleCloseClick })
+    }
+    catch (err) {
       console.error(err);
-      alert('Error al subir el post');
+      handleCloseClick()
+    }
+    finally {
+      setIsPublishing(false);
     }
   };
 
@@ -83,6 +86,37 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
         onChange={(e) => setDescripcion(e.target.value)}
       ></textarea>
 
+      {previewUrl.length > 0 && (
+        <div className="preview-container">
+          {files.map((file, i) => {
+            const url = previewUrl[i];
+
+            if (file.type.startsWith("image/")) {
+              return <img key={i} src={url} alt="Preview" className="preview-img" />;
+            }
+            else if (file.type.startsWith("video/")) {
+              return <video key={i} src={url} controls className="preview-video" />;
+            }
+            else if (file.type === "application/pdf") {
+              return (
+                <div key={i} className="preview-file">
+                  <img src={iconPDF} alt="PDF File" className="icon-pdf" />
+                  {/* <p>{file.name}</p> */}
+                </div>
+              );
+            }
+            else {
+              return (
+                <div key={i} className="preview-file">
+                  <p>📄 {file.name}</p>
+                </div>
+              );
+            }
+          })}
+        </div>
+      )}
+
+
       <div className="opciones">
         <label className="upload-btn imgpubli">
           <img src={iconMultimedia} alt="" />
@@ -95,42 +129,14 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
             onChange={handleFileChange}
           />
         </label>
-        <p className="opcion">2</p>
-        <p className="opcion">3</p>
-        <p className="opcion">4</p>
+        <p className="opcion"></p>
+        <p className="opcion"></p>
+        <p className="opcion"></p>
       </div>
 
-      <button onClick={handlePublicar} id='btnpublish'>Publicar</button>
+      <button onClick={handlePublicar} id='btnpublish' disabled={isPublishing}>{isPublishing ? 'Publicando...' : 'Publicar'}</button>
 
-      {previewUrl.length > 0 && (
-        <div className="preview-container">
-          {files.map((file, i) => {
-            const url = previewUrl[i];
-            if (file.type.startsWith("image/")) {
-              return <img key={i} src={url} alt="Preview" className="preview-img" />;
-            } else if (file.type.startsWith("video/")) {
-              return <video key={i} src={url} controls className="preview-video" />;
-            } else if (file.type === "application/pdf") {
-              return (
-                <embed
-                  key={i}
-                  src={url}
-                  type="application/pdf"
-                  width="100%"
-                  height="400px"
-                  className="preview-pdf"
-                />
-              );
-            } else {
-              return (
-                <div key={i} className="preview-file">
-                  <p>📄 {file.name}</p>
-                </div>
-              );
-            }
-          })}
-        </div>
-      )}
-    </div>
+
+    </div >
   );
 };

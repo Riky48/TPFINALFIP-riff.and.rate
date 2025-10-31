@@ -1,6 +1,6 @@
 import './Inicio.css'
 import './Inicioresponsive.css'
-import Axios from '../../api/Usuario'
+import Axios from '../../Peticion feed/Usuario'
 import { PublicacionInicio } from '../../components/PublicacionInicio/PublicacionInicio'
 
 
@@ -13,6 +13,7 @@ export function Inicio() {
                     <div id="contentPosted">
                         <Axios />
                     </div>
+                    
                 </main>
                 <div className="contacts">
                     <div className="suggContact">
