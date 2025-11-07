@@ -10,7 +10,7 @@ export class _post {
   id_post: number;
 
   @Column()
-  type:string;    // | 'post' | 'event' | 'article' |
+  type:string; 
 
   @Column({ length: 300,default:'Sin título' })
   title: string;

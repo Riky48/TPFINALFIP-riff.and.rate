@@ -1,4 +1,3 @@
-// src/perfil/dto/update-perfil.dto.ts
 import { IsBoolean, IsDateString, IsEmail, IsInt, IsOptional, IsString, Length } from 'class-validator';
 
 export class UpdatePerfilDto {

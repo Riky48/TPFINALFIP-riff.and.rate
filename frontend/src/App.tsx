@@ -14,7 +14,7 @@ import Perfil from './Pages/Perfil/Perfil';
 import 'primereact/resources/themes/lara-light-blue/theme.css';  // o el tema que prefieras
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-
+import { ArticlePage } from './Peticion_feed/FeedContainer/CardFeed/ArticleCard/ArticlePage/ArticlePage';
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
@@ -47,6 +47,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/marketplace" element={<Marketplace />} />
                <Route path="/perfil" element={<Perfil />} />
+               <Route path="/article/:id" element={<ArticlePage />} />
             </Routes>
           </div>
 
