@@ -20,36 +20,6 @@
     font-size: 0.8rem;
 }
 
-.post-header {
-    width: 95%;
-    display: flex;
-    height: auto;
-    color: var(--color-text);
-}
-.post-header p {
-    width: 90%;
-    overflow-wrap: break-word; /* evita overflow de texto */
-    word-wrap: break-word;     /* compatibilidad */
-}
-
-.imagecontent .multimedia{
-    width: 100%;
-}
-
-.imagecontent .multimedia a,video{
-    width: 100%;
-}
-
-.menu-container {
-    height: 4vh;
-    width: 4vh;
-    position: relative; /* para ubicar el menú flotante */
-}
-.menu-container .ellipsis {
-    cursor: pointer;
-    margin-top: -0.5rem;
-}
-
 .social-interactions {
     border-top: 1px solid #494949f2;
     color: var(--color-text);

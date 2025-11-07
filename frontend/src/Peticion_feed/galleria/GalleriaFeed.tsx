@@ -47,42 +47,17 @@ export const GalleriaFeed: React.FC<GalleriaFeedProps> = ({ multimedia }) => {
     );
   };
 
-  const thumbnailTemplate = (item: {
-    title: string; src: string 
-}) => {
-    const ext = item.src.split(".").pop()?.toLowerCase();
-    const fullSrc = `http://localhost:3000${item.src}`;
-
-    if (["jpg", "jpeg", "png", "gif", "webp"].includes(ext ?? "")) {
-      return (
-        <img
-          src={fullSrc}
-          alt={item.title}
-          className="galleria-img"
-        />
-      );
-    }
-
-    return (
-      <div className="">
-        {item.title ?? "Archivo"}
-      </div>
-    );
-  };
+  
 
   return (
     <Galleria
       value={multimedia}
-      responsiveOptions={responsiveOptions}
-      numVisible={4}
-      circular
-      showThumbnails={multimedia.length > 1}
       showIndicators={multimedia.length > 1}
       showIndicatorsOnItem
       item={itemTemplate}
-      thumbnail={thumbnailTemplate}
-      style={{ maxWidth: "100%", margin: "0 auto" }}
     />
   );
 };
 export default GalleriaFeed;
+
+

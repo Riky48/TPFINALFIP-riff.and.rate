@@ -1,0 +1,45 @@
+
+.imageContent .post-header {
+    display: flex;
+    width: 100%;
+    height: auto;
+    color: #fff;
+}
+
+
+.imageContent .post-header .post-text {
+    width: 100%;
+    color: white;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+.imageContent .multimedia video {
+    width: 100%;
+}
+
+
+.imageContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imageContent p {
+    width: 90%;
+    padding-bottom: 1vh;
+    font-size: 1.8vh;
+}
+
+.imageContent img {
+    height: auto;
+    max-height: 60vh;
+    object-fit: cover;
+    width: 100%;
+    min-width: 90%;
+    border-radius: 10px;
+}

@@ -1,8 +1,8 @@
-import './Inicio.css'
-import './Inicioresponsive.css'
-import Axios from '../../Peticion feed/Usuario'
-import { PublicacionInicio } from '../../components/PublicacionInicio/PublicacionInicio'
-
+import './Inicio.css';
+import './Inicioresponsive.css';
+import FeedContainer from "../../Peticion_feed/FeedContainer/FeedContainer";
+import { PublicacionInicio } from '../../components/PublicacionInicio/PublicacionInicio';
+// '../../Peticion_feed/FeedContainer/a'
 
 export function Inicio() {
     return (
@@ -11,7 +11,7 @@ export function Inicio() {
                 <main>
                     <PublicacionInicio />
                     <div id="contentPosted">
-                        <Axios />
+                        <FeedContainer />
                     </div>
                     
                 </main>
