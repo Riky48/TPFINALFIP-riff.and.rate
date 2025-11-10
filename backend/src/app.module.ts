@@ -9,8 +9,7 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { PerfilModule } from './perfil/perfil.module';
 import { join } from 'path';
-
-
+import { User } from './user/entities/user.entity';
 @Module({
   imports: 
   [ ConfigModule.forRoot({
@@ -25,10 +24,9 @@ import { join } from 'path';
       "username": config.get<string>('DB_USER'),
       "password": config.get<string>('DB_PASSWORD'),
       "database": config.get<string>('DB_NAME'),
-      entities: [
-              join(__dirname, 'database/entities/*.entity{.ts,.js}'),
-      ],
-      "synchronize": true,
+      entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+      autoLoadEntities: true,
+      synchronize: true,
       extra:{
         connectionLimit: 10,
         connectTimeout: 5000,
