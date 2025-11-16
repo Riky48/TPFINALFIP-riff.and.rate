@@ -14,7 +14,7 @@ import Perfil from './Pages/Perfil/Perfil';
 import 'primereact/resources/themes/lara-light-blue/theme.css';  // o el tema que prefieras
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
-import { ArticlePage } from './Peticion_feed/FeedContainer/CardFeed/ArticleCard/ArticlePage/ArticlePage';
+import { ArticlePage } from './components/Peticion_feed/FeedContainer/CardFeed/ArticleCard/ArticlePage/ArticlePage';
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
