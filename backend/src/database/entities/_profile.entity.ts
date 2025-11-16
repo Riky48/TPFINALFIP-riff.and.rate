@@ -38,11 +38,8 @@ export class _profile {
     @Column()
     is_verified: boolean;
 
-    @Column()
-    country_id: number;
-
     @OneToOne(() => _user, (user) => user.profile)
-    @JoinColumn({ name: 'id_user' })
+    @JoinColumn({name: 'id_user'})
     user: _user;
 
     @OneToMany(() => _post, (post) => post.profile)

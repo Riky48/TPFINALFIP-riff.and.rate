@@ -15,14 +15,14 @@ export class _post {
   @Column({ length: 300,default:'Sin título' })
   title: string;
 
-  @Column({ length: 1000, nullable: true })
+  @Column({ length: 4500, nullable: true })
   content: string;
 
   @CreateDateColumn({ type: 'timestamp' })
   created_at: Date;
 
   @ManyToOne(() => _profile, (profile) => profile.posts, { eager: true })
-  @JoinColumn({ name: 'id_profile' })
+  @JoinColumn({ name: 'id_user' })
   profile: _profile;
 
   @OneToMany(() => _like, (like) => like.post)

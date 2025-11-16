@@ -23,18 +23,47 @@
     --color-nav: #18181b;
 }
 
+@keyframes cambiarFondo {
+    0% {
+        background-image: url("../../assets/fondo/adi-goldstein-2B89G7ZHYMQ-unsplash.jpg");
+    }
+
+    20% {
+        background-image: url("../../assets/fondo/joseph-recca-0115krVNoXw-unsplash.jpg");
+    }
+
+    40% {
+        background-image: url("../../assets/fondo/kaushik-dey-kB3d2H-CpCI-unsplash.jpg");
+    }
+
+    65% {
+        background-image: url("../../assets/fondo/kenny-eliason-zMp8AEXbPTU-unsplash.jpg");
+    }
+
+    85% {
+        background-image: url("../../assets/fondo/lorenzo-semadeni-BS45NoLKDYo-unsplash.jpg");
+    }
+    100%{background-image: url("../../assets/fondo/adi-goldstein-2B89G7ZHYMQ-unsplash.jpg");
+   }
+}
+
+
+
 .body {
-    display : flex;
+    display: flex;
     flex-direction: column;
     min-height: 92.5vh;
     margin: 0;
-    width: 100%;
+    width: 100vw;
+    background-size: cover;
+    background-position: center;
     position: relative;
-    background-color: var(--color-bg);
+    animation: cambiarFondo 15s infinite ease-in;
     overflow-y: hidden;
 }
+
 .main {
-    flex : 1 0 auto;
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,15 +72,16 @@
 
 .header {
     display: flex;
-    width: 100%;
-    height: 100px;
+    width: 100vw;
+    height: 10vh;
     color: var(--color-text);
     justify-self: center;
     flex-direction: column;
     text-align: center;
     background-color: var(--color-surface);
 }
-.header > h1 {
+
+.header>h1 {
     font-size: 40px;
     margin-bottom: 15px;
 }
@@ -60,7 +90,8 @@
     background-color: var(--color-surface);
     color: var(--color-muted);
     text-align: center;
-    height: 5vh;
+    height: 2vh;
+    width: 100vw;
 }
 
 .toggleLoginReg {
@@ -75,7 +106,7 @@
     flex-direction: column;
     text-align: center;
     background-color: var(--color-surface);
-    
+
 }
 
 .toggleLoginReg:hover {
@@ -84,6 +115,7 @@
     text-decoration: underline;
 }
 
-header, .forms {
+header,
+.forms {
     margin-bottom: 20px;
 }
