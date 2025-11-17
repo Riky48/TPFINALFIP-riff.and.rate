@@ -27,6 +27,7 @@ function RegisterForm() {
     return (
         <div className='containRegister'>
             <div className="signupdiv">
+                    <h2>Crea una cuenta</h2>
                 <form onSubmit={handleSubmit}>
                     <div id="signup">
                         <div className="name separate">

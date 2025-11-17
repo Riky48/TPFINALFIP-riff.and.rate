@@ -2,7 +2,7 @@ import './Inicio.css';
 import './Inicioresponsive.css';
 import FeedContainer from "../../components/Peticion_feed/FeedContainer/FeedContainer";
 import { PublicacionInicio } from '../../components/PublicacionInicio/PublicacionInicio';
-// '../../Peticion_feed/FeedContainer/a'
+
 
 export function Inicio() {
     return (

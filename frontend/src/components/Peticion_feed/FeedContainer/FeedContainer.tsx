@@ -18,7 +18,14 @@ export const FeedContainer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:3000/feed/users/");
+        const token = localStorage.getItem('token')
+        const response = await fetch("http://localhost:3000/feed/users",{
+          headers: {
+            "Authorization": `Bearer ${token}`
+          },
+        });
+
+
         if (!response.ok) throw new Error(`Error ${response.status}`);
         const json = await response.json();
         setData(json);
@@ -34,14 +41,18 @@ export const FeedContainer = () => {
 
   const asyncDeletePost = async (id: number) => {
     try {
-      const response = await fetch(`http://localhost:3000/posts/${id}`, {
+      const token = localStorage.getItem('token');
+      const response = await fetch(`http://localhost:3000/feed/posts/${id}`, {
         method: "DELETE",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        }
       });
+
       if (!response.ok) throw new Error("Error al eliminar el post");
 
       setData((prev) =>
-        prev
-          .map((usr) => ({
+        prev.map((usr) => ({
             ...usr,
             posts: usr.posts.filter((post) => post.id !== id),
           }))
@@ -57,14 +68,15 @@ export const FeedContainer = () => {
 
   const asyncEditPost = async (id_post: number, title: string, content: string) => {
     try {
-      const id_user = 2; //  De momento hardcodeado, luego del JWT
+      const token = localStorage.getItem('token');
 
       const response = await fetch(`http://localhost:3000/feed/${id_post}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
         },
-        body: JSON.stringify({ id_user, title, content }), // Enviamos id_user
+        body: JSON.stringify({ title, content }), // Enviamos id_user
       });
 
       if (!response.ok) throw new Error(`Error ${response.status} al editar el post`);
