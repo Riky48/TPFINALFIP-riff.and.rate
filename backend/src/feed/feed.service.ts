@@ -34,7 +34,7 @@ export class FeedService {
       if (!createFeedDto.title) {
         throw new BadRequestException('El título es obligatorio');
       }
-      if (!createFeedDto.profile_id) {
+      if (!createFeedDto.user_id) {
         throw new BadRequestException('El perfil (profile_id) es obligatorio');
       }
 
@@ -42,7 +42,7 @@ export class FeedService {
         title: createFeedDto.title,
         content: createFeedDto.content ?? '',
         created_at: new Date(),
-        profile: { id_user: createFeedDto.profile_id } as any,
+        profile: { id_user: createFeedDto.user_id } as any,
       });
 
       await this.postRepository.save(post);
@@ -60,7 +60,7 @@ export class FeedService {
         await this.postRepository.save(post);
       }
 
-      return this.joinFeed(createFeedDto.profile_id);
+      return this.joinFeed(createFeedDto.user_id);
     } catch (error) {
       // Re-lanzar excepciones HTTP conocidas para que el controlador las maneje
       if (

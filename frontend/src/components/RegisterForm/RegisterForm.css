@@ -53,7 +53,9 @@
     width: 45vw;
     height: 62vh;
 }
-
+.signupdiv h2{
+    color: var(--color-text);
+}
 
 .separate{
     display: flex;
