@@ -10,7 +10,12 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'uploads'),{
     prefix: '/uploads', // la ruta "Publica"
   });
-  app.enableCors();
+  app.enableCors({
+    origin: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+    allowedHeaders: 'Content-Type,Authorization'
+  });
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
   await app.listen(process.env.PORT ?? 3000);
 }

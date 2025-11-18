@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import './LoginForm.css';
+import { useAuth } from '../../context/authContext';
+import { loginUser } from '../../services/authService';
+import { useNavigate } from 'react-router-dom';  
+
 
 function LoginForm() {
     
-    const testEmail = 'correoejemplo@outlook.com'
-    const testPassword = '123123123'
+    const { login } = useAuth();
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -21,15 +25,19 @@ function LoginForm() {
 
 
 
-    const handleSubmit = (e: { preventDefault: () => void; }) => {
+    const handleSubmit = async (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
-        if ((email !== testEmail) || (password !== testPassword)) {
-            alert('Uno de los campos es incorrecto.')
+        const data = await loginUser(email, password);
+        if (!data.token) {
+            alert(data.message || 'Error en el inicio de sesión');
             return;
-        } else {
-            alert('¡Bienvenido a Riff and Raff!')
         }
+        
+        login (data.token);
+
+        alert('Bienvenido a Riff & Rate!');
+        navigate('/inicio');
     }
 
     return (

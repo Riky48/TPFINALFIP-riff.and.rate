@@ -16,13 +16,31 @@ export class AuthService {
   ) {}
 
   async register(userObject: RegisterAuthDto) {
-    const { password } = userObject;
-    if (!password) {
-      throw new BadRequestException('Password is required');
+    try {
+      const { password } = userObject;
+      if (!password) {
+        throw new BadRequestException('Password is required');
+      }
+      const hashed = await hash(password, 10);
+      const userToSave = { ...userObject, password: hashed } as Partial<User>;
+      const user = await this.userRepository.save(userToSave as any);
+
+      const payload = { id: user.id, email: user.email};
+      const token = this.jwtService.sign(payload);
+
+      const data = {
+        user,
+        token
+      };
+      return data;
+    } catch (error: any) {
+      console.error('Error en register:', error);
+      // Manejar errores de duplicado de email
+      if (error?.code === 'ER_DUP_ENTRY' || error?.sqlMessage?.includes('Duplicate')) {
+        throw new BadRequestException('El email ya está registrado');
+      }
+      throw error;
     }
-    const hashed = await hash(password, 10);
-    const userToSave = { ...userObject, password: hashed } as Partial<User>;
-    return this.userRepository.save(userToSave as any);
   }
 
   async login(userObjectLogin: LoginAuthDto) {

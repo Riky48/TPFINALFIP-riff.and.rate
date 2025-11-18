@@ -6,19 +6,9 @@ import { useState} from 'react';
 
 
 function Login() {
-    const [showLogin, setShowLogin] = useState(true);
-    const [showRegister, setShowRegister] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
     
-
-    const handleLogin = () => {
-        setShowLogin(true);
-        setShowRegister(false);
-    }
-
-    const handleRegister = () => {
-        setShowLogin(false);
-        setShowRegister(true);
-    }
+    const toggleForm = () => setIsLogin(!isLogin);
 
 
 
@@ -31,10 +21,9 @@ function Login() {
                 </div>
 
                 <div className="forms">
-                    {showLogin && <LoginForm />}
-                    {showRegister && <RegisterForm />}
+                    {isLogin ? <LoginForm /> : <RegisterForm />}
                     <div className="toggleLoginReg">
-                        <p onClick={showLogin ? handleRegister : handleLogin}>{showLogin ? "¿No tenés una cuenta? Podés crear una aquí" : "¿Ya tenés una cuenta? Iniciá sesión"}</p>
+                        <p onClick={() => { console.log('Click'); toggleForm(); }}>{isLogin ? "¿No tenés una cuenta? Podés crear una aquí" : "¿Ya tenés una cuenta? Iniciá sesión"}</p>
                     </div>
                 </div>
             </div>

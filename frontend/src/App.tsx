@@ -2,9 +2,8 @@ import './App.css';
 import { Inicio } from './Pages/feed/Inicio';
 import { Nav } from './components/Nav/Nav';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Marketplace from './Pages/Marketplace/Marketplace';
+import Marketplace from './Pages/marketplace/Marketplace';
 import { useState } from 'react';
-import { CartProvider } from './components/Context/CartContext';
 import CartPanel from './components/Context/CartPanel';
 import PaymentPanel from './Pages/PaymentPanel';
 import Login from './Pages/Login/Login';
@@ -15,6 +14,7 @@ import 'primereact/resources/themes/lara-light-blue/theme.css';  // o el tema qu
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import { ArticlePage } from './components/Peticion_feed/FeedContainer/CardFeed/ArticleCard/ArticlePage/ArticlePage';
+import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
@@ -23,7 +23,6 @@ function App() {
 
   return (
     <BrowserRouter>
-      <CartProvider>
         <div className="app-container">
 
           {/* Nav solo visible en Marketplace */}
@@ -33,8 +32,8 @@ function App() {
           </Routes>
 
           {/* Overlay del nav */}
-          <div 
-            className={`overlay ${navOpen ? 'show' : ''}`} 
+          <div
+            className={`overlay ${navOpen ? 'show' : ''}`}
             onClick={() => setNavOpen(false)}
           ></div>
 
@@ -42,32 +41,31 @@ function App() {
           <div className="main-content">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/inicio" element={<Inicio />} />
+              <Route path="/inicio" element={<PrivateRoute><Inicio /></PrivateRoute>} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/marketplace" element={<Marketplace />} />
-               <Route path="/perfil" element={<Perfil />} />
-               <Route path="/article/:id" element={<ArticlePage />} />
+              <Route path="/marketplace" element={<PrivateRoute><Marketplace /></PrivateRoute>} />
+              <Route path="/perfil" element={<PrivateRoute><Perfil /></PrivateRoute>} />
+              <Route path="/article/:id" element={<ArticlePage />} />
             </Routes>
           </div>
 
           {/* Panel del carrito */}
-          <CartPanel 
-            open={cartOpen} 
-            onClose={() => setCartOpen(false)} 
-            onBuy={() => setPaymentOpen(true)} 
+          <CartPanel
+            open={cartOpen}
+            onClose={() => setCartOpen(false)}
+            onBuy={() => setPaymentOpen(true)}
           />
 
           {/* Panel de pagos */}
           {paymentOpen && (
-            <PaymentPanel 
-              open={paymentOpen} 
-              onClose={() => setPaymentOpen(false)} 
+            <PaymentPanel
+              open={paymentOpen}
+              onClose={() => setPaymentOpen(false)}
             />
           )}
 
         </div>
-      </CartProvider>
     </BrowserRouter>
   );
 }

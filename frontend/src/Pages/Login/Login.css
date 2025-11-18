@@ -43,8 +43,10 @@
     85% {
         background-image: url("../../assets/fondo/lorenzo-semadeni-BS45NoLKDYo-unsplash.jpg");
     }
-    100%{background-image: url("../../assets/fondo/adi-goldstein-2B89G7ZHYMQ-unsplash.jpg");
-   }
+
+    100% {
+        background-image: url("../../assets/fondo/adi-goldstein-2B89G7ZHYMQ-unsplash.jpg");
+    }
 }
 
 
@@ -107,6 +109,13 @@
     text-align: center;
     background-color: var(--color-surface);
 
+}
+
+.toggleLoginReg p {
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 10;
+    user-select: none;
 }
 
 .toggleLoginReg:hover {

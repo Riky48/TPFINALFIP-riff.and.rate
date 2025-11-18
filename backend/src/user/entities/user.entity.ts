@@ -14,4 +14,16 @@ export class User {
   @Column()
   @IsNotEmpty()
   password: string;
+
+  @Column()
+  @IsNotEmpty()
+  name: string;
+
+  @Column()
+  @IsNotEmpty()
+  lastName: string;
+
+  @Column()
+  @IsNotEmpty()
+  country: string;
 }
