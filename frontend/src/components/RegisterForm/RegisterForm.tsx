@@ -47,7 +47,7 @@ function RegisterForm() {
                     <div id="signup">
                         <div className="name separate">
                             <div>
-                                <label htmlFor="user">Nombre de usuario</label>
+                                <label htmlFor="user">Nombre</label>
                                 <input type="text" id="user" placeholder="Nombre" required value={name} onChange={(e) => setName(e.target.value)} />
                             </div>
                             <div>
