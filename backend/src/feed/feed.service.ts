@@ -119,7 +119,7 @@ export class FeedService {
       throw new NotFoundException('No se encontró el post');
     }
 
-    if(post.profile.user.id_user !== userId){
+    if(post.profile.user.id !== userId){
       throw new ForbiddenException('No tienes permisos para borrar este post');
     }
     await this.postRepository.remove(post);

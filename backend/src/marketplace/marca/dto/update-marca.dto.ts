@@ -1,4 +1,8 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateMarcaDto } from './create-marca.dto';
+import { IsOptional, IsString, MaxLength } from 'class-validator';
 
-export class UpdateMarcaDto extends PartialType(CreateMarcaDto) {}
+export class UpdateMarcaDto {
+  @IsOptional()
+  @IsString()
+  @MaxLength(50, { message: 'El nombre no puede superar los 50 caracteres' })
+  nombre?: string;
+}

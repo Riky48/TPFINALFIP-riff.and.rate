@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { ProductoModule } from './marketplace/producto.module';
 import { CategoriaModule } from './marketplace/categoria/categoria.module';
 import { MarcaModule } from './marketplace/marca/marca.module';
+import { CarritoModule } from './marketplace/carrito/carrito.module';
 
 
 
@@ -45,6 +46,7 @@ import { MarcaModule } from './marketplace/marca/marca.module';
     ProductoModule,
     MarcaModule,
     CategoriaModule,
+    CarritoModule,
     
   ],
   controllers: [AppController],

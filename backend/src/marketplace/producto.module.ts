@@ -16,11 +16,12 @@ import { Pedido } from './entities/Pedido.entity';
 import { Pago } from './entities/Pago.entity';
 import { CategoriaModule } from './categoria/categoria.module';
 import { MarcaModule } from './marca/marca.module';
+import { CarritoModule } from './carrito/carrito.module';
 
 
 @Module({
   imports: [TypeOrmModule.forFeature([Producto, _user, Categoria, Marca, Factura,Carrito,CarritoProducto, 
-    Review,PostProducto,PedidoProducto,Pedido,Pago]), CategoriaModule, MarcaModule],
+    Review,PostProducto,PedidoProducto,Pedido,Pago]), CategoriaModule, MarcaModule, CarritoModule],
   
 
 controllers: [ProductoController],

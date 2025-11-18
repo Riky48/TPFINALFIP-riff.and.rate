@@ -10,7 +10,7 @@ import { _user } from "./entities/_user.entity";
 export function mappingFeed(user: _user, profile: _profile, post: _post, likeCount: number, multimedia: _multimedia[], comment: (_comment & { replies: _comment_of_comment[] })[]): FeedDto {
     return {
         user: {
-            id: user?.id_user ?? null,
+            id: user?.id ?? null,
             name: user?.name_ ?? 'El nombre del usuario no se pudo encontrar',
             lastName: user?.last_name ?? 'El apellido del usuario no se pudo encontrar',
             email: user?.email ?? 'El email del usuario no se pudo encontrar',

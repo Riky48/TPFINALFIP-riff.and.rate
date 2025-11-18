@@ -39,7 +39,7 @@ export class PostsService {
         src: publicUrl,
         title: createPostDto.title ?? 'Sin título', // obligatorio
         created_at: new Date(),
-        id_user: profile.user.id_user,
+        id_user: profile.user.id,
         // asignamos la relación explícitamente
       }]
     });

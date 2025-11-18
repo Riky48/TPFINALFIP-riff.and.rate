@@ -9,7 +9,7 @@ import { Carrito } from "src/marketplace/entities/Carrito.entity";
 @Entity('_user')
 export class _user {
     @PrimaryGeneratedColumn()
-    id_user: number;
+    id: number;
 
     @Column()
     name_: string;
@@ -46,5 +46,8 @@ export class _user {
 
     @OneToOne(() => Carrito, carrito => carrito.user)
     carrito: Carrito;
+
+  
+
 
 }
