@@ -11,6 +11,7 @@ import { ProductoModule } from './marketplace/producto.module';
 import { CategoriaModule } from './marketplace/categoria/categoria.module';
 import { MarcaModule } from './marketplace/marca/marca.module';
 import { CarritoModule } from './marketplace/carrito/carrito.module';
+import { PedidoModule } from './marketplace/pedido/pedido.module';
 
 
 
@@ -47,6 +48,7 @@ import { CarritoModule } from './marketplace/carrito/carrito.module';
     MarcaModule,
     CategoriaModule,
     CarritoModule,
+    PedidoModule,
     
   ],
   controllers: [AppController],

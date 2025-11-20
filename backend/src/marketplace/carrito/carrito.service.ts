@@ -39,32 +39,43 @@ export class CarritoService {
   }
 
   async addProducto(userId: number, productoId: number, cantidad: number) {
-    const carrito = await this.getCarritoByUser(userId);
-    const producto = await this.productoRepo.findOne({ where: { id: productoId } });
+  const carrito = await this.getCarritoByUser(userId);
+  const producto = await this.productoRepo.findOne({ where: { id: productoId } });
 
-    if (!producto) {
-      throw new Error('Producto no encontrado');
-    }
-
-    const item = carrito.productos.find(p => p.producto.id === productoId);
-
-    if (item) {
-      item.cantidad += cantidad;
-      await this.cpRepo.save(item);
-    } else {
-      const nuevo = this.cpRepo.create({
-        carrito,
-        producto,
-        cantidad,
-      });
-
-      carrito.productos.push(nuevo);
-      await this.cpRepo.save(nuevo);
-    }
-
-    carrito.total = this.calculateTotal(carrito);
-    return this.carritoRepo.save(carrito);
+  if (!producto) {
+    throw new Error('Producto no encontrado');
   }
+
+  // Buscar si ya existe el producto en el carrito
+  let item = carrito.productos.find(
+    (p) => p.producto.id === productoId,
+  );
+
+  if (item) {
+    // Si ya existe, sumamos cantidad
+    item.cantidad += cantidad;
+    await this.cpRepo.save(item);
+  } else {
+    // Si no existe, creamos la relación
+    item = this.cpRepo.create({
+      carrito,
+      producto,
+      cantidad,
+    });
+
+    carrito.productos.push(item);
+    await this.cpRepo.save(item);
+  }
+
+  // Recalcular total
+  carrito.total = carrito.productos.reduce(
+    (sum, p) => sum + p.cantidad * Number(p.producto.precio),
+    0,
+  );
+
+  return this.carritoRepo.save(carrito);
+}
+
 
   async removeProducto(userId: number, productoId: number) {
     const carrito = await this.getCarritoByUser(userId);
@@ -75,11 +86,18 @@ export class CarritoService {
   }
 
   async clearCarrito(userId: number): Promise<void> {
-    const carrito = await this.getCarritoByUser(userId);
-    carrito.productos = [];
-    carrito.total = 0;
-    await this.carritoRepo.save(carrito);
-  }
+  const carrito = await this.getCarritoByUser(userId);
+
+  // Primero borro las relaciones en la tabla intermedia
+  await this.cpRepo.delete({ carrito: { id: carrito.id } });
+
+  // Luego dejo el carrito limpio
+  carrito.productos = [];
+  carrito.total = 0;
+
+  await this.carritoRepo.save(carrito);
+}
+
 
   private calculateTotal(carrito: Carrito): number {
     return carrito.productos.reduce(

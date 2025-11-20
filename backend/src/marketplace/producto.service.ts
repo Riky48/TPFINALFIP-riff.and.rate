@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Producto } from './entities/Producto.entity';
 
 @Injectable()
@@ -60,4 +60,13 @@ export class ProductoService {
   async remove(id: number): Promise<void> {
     await this.productoRepository.delete(id);
   }
+
+  // Buscar productos por nombre
+  async searchByNombre(nombre: string): Promise<Producto[]> {
+  return await this.productoRepository.find({
+    where: { nombre: ILike(`%${nombre}%`) },
+    relations: ['marca', 'categorias', 'reviews'],
+  });
+}
+
 }

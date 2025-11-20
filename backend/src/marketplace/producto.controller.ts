@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
 import { ProductoService } from './producto.service';
 import { Producto } from './entities/Producto.entity';
 
@@ -21,11 +21,7 @@ export class ProductoController {
   // GET - Buscar por ID
   @Get(':id')
   async findOne(@Param('id') id: string): Promise<Producto> {
-    const producto = await this.productoService.findOne(+id);
-    if (!producto) {
-      throw new NotFoundException(`Producto con id ${id} no encontrado`);
-    }
-    return producto;
+    return this.productoService.findOne(+id);
   }
 
   // PUT - Actualizar producto
@@ -42,4 +38,11 @@ export class ProductoController {
   async remove(@Param('id') id: string): Promise<void> {
     return this.productoService.remove(+id);
   }
+
+  // Buscar productos por nombre
+  @Get('search/:nombre')
+async search(@Param('nombre') nombre: string): Promise<Producto[]> {
+  return this.productoService.searchByNombre(nombre);
+}
+
 }

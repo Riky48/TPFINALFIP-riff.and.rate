@@ -10,14 +10,15 @@ export class CarritoController {
   async getCarrito(@Param('userId') userId: number) {
     return this.carritoService.getCarritoByUser(userId);
   }
-
-  @Post(':userId/add')
-  async addProducto(
-    @Param('userId') userId: number,
-    @Body() body: { productoId: number; cantidad: number }
-  ) {
-    return this.carritoService.addProducto(userId, body.productoId, body.cantidad);
-  }
+  
+  @Post(':userId/agregar')
+addProductoToCarrito(
+  @Param('userId') userId: number,
+  @Body() data: AddProductDto,
+) {
+  return this.carritoService.addProducto(userId, data.productId, data.quantity);
+}
+  
 
   @Delete(':userId/remove/:productoId')
   async removeProducto(
@@ -34,13 +35,7 @@ export class CarritoController {
 
  
 
-@Post(':userId/agregar')
-addProductoToCarrito(
-  @Param('userId') userId: number,
-  @Body() data: AddProductDto,
-) {
-  return this.carritoService.addProducto(userId, data.productId, data.quantity);
-}
+
 
 }
 
