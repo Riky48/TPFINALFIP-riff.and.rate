@@ -2,12 +2,15 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreatePostDto } from './dto/create-post.dto';
-import { _profile } from 'src/feed/entities/_profile.entity';
-import { _post } from 'src/feed/entities/_post.entity';
-import { _multimedia } from 'src/feed/entities/_multimedia.entity';
+import { _profile } from '../../database/entities/_profile.entity';
+import { _post } from '../../database/entities/_post.entity';
+import { _multimedia } from '../../database/entities/_multimedia.entity';
+import { BadRequestException } from '@nestjs/common';
+import { UpdatePostDto } from './dto/update-post.dto';
 
 @Injectable()
 export class PostsService {
+
   constructor(
     @InjectRepository(_post)
     private postRepository: Repository<_post>,
@@ -17,7 +20,9 @@ export class PostsService {
     private multimediaRepository: Repository<_multimedia>,
   ) { }
 
-  async createPostWithFile(createPostDto: CreatePostDto, file: Express.Multer.File): Promise<_post> {
+
+
+  async createPostWithFiles(createPostDto: CreatePostDto, files: Express.Multer.File[]): Promise<_post> {
     const profile = await this.profileRepository.findOne({
       where: { id_user: createPostDto.id_user },
       relations: ['user'],
@@ -27,8 +32,9 @@ export class PostsService {
       throw new NotFoundException('Perfil no encontrado');
     }
 
-    const publicUrl = `/uploads/${file.filename}`;
+    const now = new Date();
 
+<<<<<<< HEAD
     // Crear el post
     const post = this.postRepository.create({
       title: createPostDto.title ?? 'Sin título', // valor por defecto si no hay título
@@ -42,37 +48,65 @@ export class PostsService {
         id_user: profile.user.id,
         // asignamos la relación explícitamente
       }]
+=======
+    // tipos MIME permitidos
+    const allowedMimeTypes = [
+      'image/',           // jpg, png, gif, etc.
+      'video/',           // mp4, webm, etc.
+      'application/pdf',  // pdf
+    ];
+
+    // validar que todos los archivos sean permitidos
+    for (const file of files) {
+      if (!allowedMimeTypes.some(type => file.mimetype.startsWith(type))) {
+        throw new BadRequestException(`Formato de archivo no permitido: ${file.originalname}`);
+      }
+    }
+
+    // mapear a entidades multimedia
+    const multimedias = files.map(file => {
+      let type: string;
+
+      if (file.mimetype.startsWith('image/')) {
+        type = 'image';
+      } else if (file.mimetype.startsWith('video/')) {
+        type = 'video';
+      } else if (file.mimetype === 'application/pdf') {
+        type = 'pdf';
+      } else {
+        throw new BadRequestException(`Formato no soportado: ${file.originalname}`);
+      }
+
+      return {
+        src: `/uploads/${file.filename}`,
+        title: createPostDto.title ?? 'Sin título',
+        created_at: now,
+        id_user: profile.user.id_user,
+        type,
+      };
+>>>>>>> main
     });
 
-    // Crear la multimedia y asignarle el post
-
+    const post = this.postRepository.create({
+      title: createPostDto.title ?? 'Sin título',
+      content: createPostDto.content,
+      created_at: now,
+      type: createPostDto.type,
+      profile,
+      multimedias,
+    });
 
     return await this.postRepository.save(post);
   }
 
 
 
-  // async findAll(): Promise<Post[]> {
-  //   return await this.postRepository.find({
-  //     relations: ['user'], // para que traiga el usuario relacionado
-  //   });
-  // }
-
-  // async findOne(id: number): Promise<Post> {
-  //   const post = await this.postRepository.findOneBy({ id });
-  //   if (!post) {
-  //     throw new NotFoundException(`Post con id ${id} no encontrado`);
-  //   }
-  //   return post;
-  // }
-
-
-  // async update(id: number, updatePostDto: UpdatePostDto): Promise<Post> {
-  //   await this.postRepository.update(id, updatePostDto);
-  //   return this.findOne(id);
-  // }
-
   async remove(id: number): Promise<void> {
+
     await this.postRepository.delete(id);
+  }
+
+  async update(arg0: number, updatePostDto: UpdatePostDto) {
+    throw new Error('Method not implemented.');
   }
 }

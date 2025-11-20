@@ -5,10 +5,11 @@ import { Pedido } from '../entities/Pedido.entity';
 import { PedidoProducto } from '../entities/PedidoProducto.entity';
 import { Carrito } from '../entities/Carrito.entity';
 import { CarritoProducto } from '../entities/CarritoProducto.entity';
-import { _user } from 'src/feed/entities/_user.entity';
+
 
 import { PedidoService } from './pedido.service';
 import { PedidoController } from './pedido.controller';
+import { _user } from 'src/database/entities/_user.entity';
 
 @Module({
   imports: [

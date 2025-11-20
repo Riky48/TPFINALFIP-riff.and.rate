@@ -12,15 +12,17 @@ export class CreatePostDto {
     @IsNotEmpty()
     id_user: number;
 
+    @IsString()
+    type: string;
 
     @IsString()
     @IsOptional()
-    title:string;
+    title: string;
 
     @IsString()
-    content:string;
+    content: string;
 
     @IsDate()
     @IsOptional()
-    created_at:Date;
+    created_at: Date;
 }

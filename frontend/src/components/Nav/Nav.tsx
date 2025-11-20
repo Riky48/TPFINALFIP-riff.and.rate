@@ -26,7 +26,7 @@ export function Nav({ navOpen, setNavOpen, setCartOpen }: NavProps) {
     { icon: bell, label: 'Notificaciones', link: '/login' },
     { icon: msg, label: 'Mensajes', link: '#' },
     { icon: contact, label: 'Contactos', link: '#' },
-    { icon: userIcon, label: 'Usuario', link: '/perfil' },
+    { icon: userIcon, label: 'Usuario', link: '/Perfil' },
   ];
 
   return (

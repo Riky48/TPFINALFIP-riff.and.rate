@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Solway';
+    src: url('./assets/font/Solway-Regular.ttf');
+}
+
 :root {
     /* Paleta base */
     --color-bg: #121212;
@@ -26,12 +31,13 @@
 
 .main {
     grid-area: main;
+    font-family: 'Solway', Cambria;
 
 }
 
 main {
     height: 100%;
-    width: 70%;
+    width: 60%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -49,16 +55,9 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 98%;
 }
 
-
-#contentPosted .usersDiv {
-    background: var(--color-nav);
-    width: 100%;
-    border-radius: 10px;
-    margin: 1rem;
-
-}
 
 .publish {
     background: var(--color-nav);
@@ -142,42 +141,7 @@ main {
     text-align: center;
 }
 
-/* .usercontentPosted {
-    margin-top: 1.5vh;
-    margin-bottom: 2vh;
-    width: 97%;
-    background: var(--color-general);
-    border-radius: 10px;
-    padding: 1.5vh;
-    gap: 1vh;
-    border: 1px solid salmon;
-} */
 
-/* .usercontentPosted {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
-
-.imagecontent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.imagecontent p {
-    width: 90%;
-    padding-bottom: 1vh;
-    font-size: 1.8vh;
-}
-
-.imagecontent img {
-    height: 80%;
-    width: 90%;
-    min-width: 90%;
-    border-radius: 10px;
-
-}
 
 .reactions {
     width: 90%;
@@ -284,15 +248,3 @@ main {
     background-color: var(--color-nav);
 }
 
-/*  Menu desplegable de las publicaciones        */
-.menuOptions{
-    background: var(--color-border);
-    border: 1px solid var(--color-border);
-}
-.menuOptions li{
-    cursor: pointer;
-}
-.menuOptions li:hover{
-    background: var(--color-hover);
-
-}

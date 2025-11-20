@@ -79,12 +79,11 @@ form > div > input {
 }
 
 .loginbtn > button {
-    align-self: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
     background-color: var(--color-primary);
-    font-size: larger;
-    border-radius: 1rem;
     color: var(--color-text);
-    width: 150px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
 } 

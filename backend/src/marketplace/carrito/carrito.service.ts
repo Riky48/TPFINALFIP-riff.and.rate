@@ -5,7 +5,7 @@ import { Carrito } from '../entities/Carrito.entity';
 import { CarritoProducto } from '../entities/CarritoProducto.entity';
 import { Producto } from '../entities/Producto.entity';
 import { AddProductDto } from './dto/add-product.dto';
-import { _user } from 'src/feed/entities/_user.entity';
+
 
 @Injectable()
 export class CarritoService {

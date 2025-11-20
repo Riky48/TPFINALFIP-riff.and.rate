@@ -1,87 +1,142 @@
-import './ContenedorNuevaPublicacion.css'
-import { useEffect, useState } from 'react'
-import iconMultimedia from '../../../assets/IconMultimedia.svg'
+import './ContenedorNuevaPublicacion.css';
+import { useEffect, useState } from 'react';
+import iconMultimedia from '../../../assets/IconMultimedia.svg';
+import 'animate.css';
+import PostFeed from '../PostFeed/Postfeed'
+import iconPDF from '../../../assets/pdf.png'
 
 type Props = {
   onClose: () => void;
 };
+
 export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
-  const [file, setFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const ANIMATION_IN = 'animate__animated animate__zoomIn animate__faster';
+  const ANIMATION_OUT = 'animate__animated animate__zoomOut animate__faster';
+
+  const [isPublishing, setIsPublishing] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
+  const [previewUrl, setPreviewUrl] = useState<string[]>([]);
   const [descripcion, setDescripcion] = useState('');
-  const userId = 1; //Es de ejemplo, se puede cambiar por el usuario logueado
+  const [animationClass, setAnimationClass] = useState(ANIMATION_IN);
+  const [isClosing, setIsClosing] = useState(false);
+  const userId = 2;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      setFile(e.target.files[0]);
+    if (e.target.files) {
+      const selectedFiles = Array.from(e.target.files);
+      setFiles(selectedFiles);
     }
   };
 
-  useEffect(()=>{
-    if(file){
-      const objectUrl = URL.createObjectURL(file);
-      setPreviewUrl(objectUrl);
-
-      return () => URL.revokeObjectURL(objectUrl);
+  useEffect(() => {
+    if (files.length > 0) {
+      const urls = files.map((file) => URL.createObjectURL(file));
+      setPreviewUrl(urls);
+      return () => urls.forEach((url) => URL.revokeObjectURL(url));
     }
-  }, [file]);
+  }, [files]);
 
   const handlePublicar = async () => {
-    if (!descripcion) return alert('Escribí algo!');
-    if (!file) return alert('Seleccioná un archivo');
-
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('descripcion', descripcion);
-    formData.append('userId', userId.toString());
-
+    if (isPublishing) return;
+    setIsPublishing(true);
     try {
-      const res = await fetch('http://localhost:3000/posts/upload', {
-        method: 'POST',
-        body: formData,
-      });
-      const data = await res.json();
-      console.log('Post creado:', data);
-      alert('¡Post subido correctamente!');
-      onClose(); // cerrar el contenedor después de subir
-    } catch (err) {
+      const formData = new FormData();
+      files.forEach((file) => formData.append('files', file));
+      formData.append('content', descripcion);
+      formData.append('id_user', userId.toString());
+      formData.append('type', 'post');
+
+      await PostFeed({ formData, handleCloseClick })
+    }
+    catch (err) {
       console.error(err);
-      alert('Error al subir el post');
+      handleCloseClick()
+    }
+    finally {
+      setIsPublishing(false);
     }
   };
+
+  const handleCloseClick = () => {
+    if (isClosing) return;
+    setIsClosing(true);
+    setAnimationClass(ANIMATION_OUT);
+  };
+
   return (
-    <div className="componente-extra">
-      <div className="close-btn" onClick={onClose}>
-        <p></p>
+    <div
+      className={`componente-extra ${animationClass}`}
+      onAnimationEnd={() => {
+        if (animationClass === ANIMATION_OUT) {
+          onClose();
+        }
+      }}
+      style={{ '--animate-duration': '0.9s' } as React.CSSProperties}
+    >
+      <div className="close-btn">
         <h3>Escribe tu publicación</h3>
-        <button onClick={handlePublicar}>Publicar</button>
+        <p onClick={handleCloseClick}>X</p>
       </div>
-      <textarea name="post" id="post" placeholder="Di tu opinion sobre 💬... " value={descripcion} onChange={(e) => setDescripcion(e.target.value)}></textarea>
+
+      <textarea
+        name="post"
+        id="post"
+        placeholder="Di tu opinión sobre 💬... "
+        value={descripcion}
+        onChange={(e) => setDescripcion(e.target.value)}
+      ></textarea>
+
+      {previewUrl.length > 0 && (
+        <div className="preview-container">
+          {files.map((file, i) => {
+            const url = previewUrl[i];
+
+            if (file.type.startsWith("image/")) {
+              return <img key={i} src={url} alt="Preview" className="preview-img" />;
+            }
+            else if (file.type.startsWith("video/")) {
+              return <video key={i} src={url} controls className="preview-video" />;
+            }
+            else if (file.type === "application/pdf") {
+              return (
+                <div key={i} className="preview-file">
+                  <img src={iconPDF} alt="PDF File" className="icon-pdf" />
+                  {/* <p>{file.name}</p> */}
+                </div>
+              );
+            }
+            else {
+              return (
+                <div key={i} className="preview-file">
+                  <p>📄 {file.name}</p>
+                </div>
+              );
+            }
+          })}
+        </div>
+      )}
+
+
       <div className="opciones">
         <label className="upload-btn imgpubli">
           <img src={iconMultimedia} alt="" />
-          <input type="file" id="fileInput" accept="image/*,video/*,.pdf,image/gif" className="file-input" onChange={handleFileChange} />
+          <input
+            type="file"
+            id="fileInput"
+            multiple
+            accept="image/*,video/*,.pdf,image/gif"
+            className="file-input"
+            onChange={handleFileChange}
+          />
         </label>
-        <p className='opcion'>2</p>
-        <p className='opcion'>3</p>
-        <p className='opcion'>4</p>
+        <p className="opcion"></p>
+        <p className="opcion"></p>
+        <p className="opcion"></p>
       </div>
-      {/* PREVISUALIZACIÓN */}
-      {previewUrl && (
-        <div className="preview">
-          {file?.type.startsWith('image/') && (
-            <img src={previewUrl} alt="Preview" className="preview-img" />
-          )}
-          {file?.type.startsWith('video/') && (
-            <video src={previewUrl} controls className="preview-video" />
-          )}
-          {file?.type === 'application/pdf' && (
-            <embed src={previewUrl} type="application/pdf" width="100%" height="400px" />
-          )}
-        </div>
-      )}
-    </div>
- 
-    
-  )
-}
+
+      <button onClick={handlePublicar} id='btnpublish' disabled={isPublishing}>{isPublishing ? 'Publicando...' : 'Publicar'}</button>
+
+
+    </div >
+  );
+};

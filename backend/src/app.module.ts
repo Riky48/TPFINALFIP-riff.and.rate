@@ -13,31 +13,31 @@ import { MarcaModule } from './marketplace/marca/marca.module';
 import { CarritoModule } from './marketplace/carrito/carrito.module';
 import { PedidoModule } from './marketplace/pedido/pedido.module';
 
-
-
-
-
+import { PerfilModule } from './perfil/perfil.module';
+import { join } from 'path';
 @Module({
-  imports: 
-  [ ConfigModule.forRoot({isGlobal: true,}),
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
-      "type": 'mysql',
-      "host": config.get<string>('DB_HOST'),
-      "port": config.get<number>('DB_PORT'),
-      "username": config.get<string>('DB_USER'),
-      "password": config.get<string>('DB_PASSWORD'),
-      "database": config.get<string>('DB_NAME'),
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      "synchronize": true,
-      extra:{
-        connectionLimit: 10,
-        connectTimeout: 5000,
-      },
-      retryAttempts: 6,
-      retryDelay: 3000,
-    }),
+        type: 'mysql',
+        host: config.get<string>('DB_HOST'),
+        port: config.get<number>('DB_PORT'),
+        username: config.get<string>('DB_USER'),
+        password: config.get<string>('DB_PASSWORD'),
+        database: config.get<string>('DB_NAME'),
+
+        entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+        autoLoadEntities: true,
+        synchronize: true,
+        extra: {
+          connectionLimit: 10,
+          connectTimeout: 5000,
+        },
+        retryAttempts: 6,
+        retryDelay: 3000,
+      }),
     }),
 
     PostsModule,
@@ -49,7 +49,8 @@ import { PedidoModule } from './marketplace/pedido/pedido.module';
     CategoriaModule,
     CarritoModule,
     PedidoModule,
-    
+
+    PerfilModule,
   ],
   controllers: [AppController],
   providers: [AppService],
