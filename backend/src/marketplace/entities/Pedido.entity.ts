@@ -1,8 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, OneToOne, JoinColumn, CreateDateColumn } from 'typeorm';
-import { _user } from '../../feed/entities/_user.entity';
+
 import { PedidoProducto } from './PedidoProducto.entity';
 import { Pago } from './Pago.entity';
 import { Factura } from './Factura.entity';
+import { _user } from 'src/database/entities/_user.entity';
 
 @Entity()
 export class Pedido {

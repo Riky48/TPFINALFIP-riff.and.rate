@@ -34,21 +34,6 @@ export class PostsService {
 
     const now = new Date();
 
-<<<<<<< HEAD
-    // Crear el post
-    const post = this.postRepository.create({
-      title: createPostDto.title ?? 'Sin título', // valor por defecto si no hay título
-      content: createPostDto.content,
-      created_at: new Date(),
-      profile,
-      multimedias: [{
-        src: publicUrl,
-        title: createPostDto.title ?? 'Sin título', // obligatorio
-        created_at: new Date(),
-        id_user: profile.user.id,
-        // asignamos la relación explícitamente
-      }]
-=======
     // tipos MIME permitidos
     const allowedMimeTypes = [
       'image/',           // jpg, png, gif, etc.
@@ -81,10 +66,9 @@ export class PostsService {
         src: `/uploads/${file.filename}`,
         title: createPostDto.title ?? 'Sin título',
         created_at: now,
-        id_user: profile.user.id_user,
+        id_user: profile.user.id,
         type,
       };
->>>>>>> main
     });
 
     const post = this.postRepository.create({

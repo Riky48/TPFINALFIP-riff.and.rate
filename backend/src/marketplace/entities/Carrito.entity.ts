@@ -8,8 +8,9 @@ import {
   Column,
   CreateDateColumn,
 } from 'typeorm';
-import { _user } from 'src/feed/entities/_user.entity';
+
 import { CarritoProducto } from './CarritoProducto.entity';
+import { _user } from 'src/database/entities/_user.entity';
 
 @Entity('carrito')
 export class Carrito {

@@ -1,11 +1,11 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, ManyToMany, JoinTable, OneToMany, OneToOne } from 'typeorm';
-import { _user } from '../../feed/entities/_user.entity';
 import { Categoria } from './Categoria.entity';
 import { Marca } from './Marca.entity'; 
 import { Review } from './Review.entity';
 import { PostProducto } from './PostProducto.entity';
 import { PedidoProducto } from './PedidoProducto.entity'; // <-- entidad intermedia
 import { CarritoProducto } from './CarritoProducto.entity';
+import { _user } from 'src/database/entities/_user.entity';
 
 @Entity(`producto`)
 export class Producto {

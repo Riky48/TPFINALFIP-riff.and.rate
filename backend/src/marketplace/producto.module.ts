@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Producto } from './entities/Producto.entity';
 import { ProductoService } from './producto.service';
 import { ProductoController } from './producto.controller';
-import { _user } from 'src/feed/entities/_user.entity';
+import { _user } from 'src/database/entities/_user.entity';
 import { Categoria } from './entities/Categoria.entity';
 import { Marca } from './entities/Marca.entity';
 import { Factura } from './entities/Factura.entity';

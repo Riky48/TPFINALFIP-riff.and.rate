@@ -148,7 +148,7 @@ export class FeedService {
       }
 
       // Si el usuario no es el dueño → 403
-      if (post.profile.user.id_user !== userId) {
+      if (post.profile.user.id !== userId) {
         throw new ForbiddenException('No tienes permisos para editar este post');
       }
 
@@ -170,15 +170,6 @@ export class FeedService {
       console.error('Error al actualizar el post:', error);
       throw new InternalServerErrorException('Error interno al actualizar el post');
     }
-<<<<<<< HEAD
-
-    if(post.profile.user.id !== userId){
-      throw new ForbiddenException('No tienes permisos para borrar este post');
-    }
-    await this.postRepository.remove(post);
-    return {message: 'Post eliminado correctamente'};
-=======
->>>>>>> main
   }
 
 
@@ -193,7 +184,7 @@ export class FeedService {
         throw new NotFoundException('No se encontró el post');
       }
 
-      if (post.profile.user.id_user !== userId) {
+      if (post.profile.user.id !== userId) {
         throw new ForbiddenException('No tienes permisos para borrar este post');
       }
 

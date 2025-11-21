@@ -55,14 +55,7 @@ export class AuthService {
       throw new HttpException('PASSWORD_INCORRECT', 403);
     }
 
-<<<<<<< HEAD
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) throw new UnauthorizedException('Usuario o contraseña incorrectos');
-
-    const payload = { sub: user.id, email: user.email };
-=======
     const payload = {id: findUser.id, email: findUser.email};
->>>>>>> main
     const token = this.jwtService.sign(payload);
 
     const data = {
