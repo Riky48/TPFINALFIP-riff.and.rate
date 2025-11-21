@@ -52,11 +52,11 @@ export class CarritoService {
   );
 
   if (item) {
-    // Si ya existe, sumamos cantidad
+    // Si ya existe, sumo cantidad
     item.cantidad += cantidad;
     await this.cpRepo.save(item);
   } else {
-    // Si no existe, creamos la relación
+    // Si no existe, creo la relacion
     item = this.cpRepo.create({
       carrito,
       producto,
