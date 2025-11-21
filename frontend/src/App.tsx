@@ -2,7 +2,7 @@ import './App.css';
 import { Inicio } from './Pages/feed/Inicio';
 import { Nav } from './components/Nav/Nav';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Marketplace from './Pages/marketplace/Marketplace';
+import Marketplace from './Pages/Marketplace/Marketplace';
 import { useState } from 'react';
 import CartPanel from './components/Context/CartPanel';
 import PaymentPanel from './Pages/PaymentPanel';
@@ -10,7 +10,7 @@ import Login from './Pages/Login/Login';
 import Register from './components/RegisterForm/RegisterForm';
 import { Home } from './Pages/Home';
 import Perfil from './Pages/Perfil/Perfil';
-import 'primereact/resources/themes/lara-light-blue/theme.css';  // o el tema que prefieras
+import 'primereact/resources/themes/lara-light-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
 import { ArticlePage } from './components/Peticion_feed/FeedContainer/CardFeed/ArticleCard/ArticlePage/ArticlePage';
@@ -46,7 +46,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/marketplace" element={<PrivateRoute><Marketplace /></PrivateRoute>} />
               <Route path="/perfil" element={<PrivateRoute><Perfil /></PrivateRoute>} />
-              <Route path="/article/:id" element={<ArticlePage />} />
+              <Route path="/article/:id" element={<PrivateRoute><ArticlePage /></PrivateRoute>} />
             </Routes>
           </div>
 

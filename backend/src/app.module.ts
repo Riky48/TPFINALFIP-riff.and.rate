@@ -9,10 +9,23 @@ import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { PerfilModule } from './perfil/perfil.module';
 import { join } from 'path';
-import { User } from './user/entities/user.entity';
+import { MulterModule } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { ComentariosModule } from './comentarios/comentarios.module';
+
 @Module({
-  imports: 
-  [ ConfigModule.forRoot({
+  imports:
+  [ 
+    MulterModule.register({
+      storage: diskStorage({
+        destination: './uploads',
+        filename: (req, file, cb) => {
+          const unique = Date.now() + '-' + Math.round(Math.random() * 1e9);
+          cb(null, unique + file.originalname);
+        },
+      }),
+    }),
+    ConfigModule.forRoot({
       isGlobal: true,
   }),
     TypeOrmModule.forRootAsync({
@@ -40,7 +53,8 @@ import { User } from './user/entities/user.entity';
     FeedModule,
     UserModule,
     AuthModule,
-    PerfilModule
+    PerfilModule,
+    ComentariosModule
   ],
   controllers: [AppController],
   providers: [AppService],

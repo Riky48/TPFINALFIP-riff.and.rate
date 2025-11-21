@@ -18,13 +18,12 @@ export const FeedContainer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem('token')
-        const response = await fetch("http://localhost:3000/feed/users",{
+        const token = localStorage.getItem('token');
+        const response = await fetch("http://localhost:3000/feed/users", {
           headers: {
             "Authorization": `Bearer ${token}`
           },
         });
-
 
         if (!response.ok) throw new Error(`Error ${response.status}`);
         const json = await response.json();
@@ -38,6 +37,7 @@ export const FeedContainer = () => {
     };
     fetchData();
   }, []);
+
 
   const asyncDeletePost = async (id: number) => {
     try {
@@ -53,9 +53,9 @@ export const FeedContainer = () => {
 
       setData((prev) =>
         prev.map((usr) => ({
-            ...usr,
-            posts: usr.posts.filter((post) => post.id !== id),
-          }))
+          ...usr,
+          posts: usr.posts.filter((post) => post.id !== id),
+        }))
           .filter((usr) => usr.posts.length > 0)
       );
 

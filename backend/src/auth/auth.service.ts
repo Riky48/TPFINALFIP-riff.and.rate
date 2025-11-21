@@ -1,6 +1,8 @@
 import { Injectable, BadRequestException, HttpException } from '@nestjs/common';
 import { RegisterAuthDto } from './dto/register-auth.dto';
-import { User } from 'src/user/entities/user.entity';
+import { _user } from '../database/entities/_user.entity';
+import { _profile } from '../database/entities/_profile.entity';
+import { _country } from '../database/entities/_country.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { LoginAuthDto } from './dto/login-auth.dto';
@@ -10,58 +12,79 @@ import { JwtService } from '@nestjs/jwt';
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectRepository(User)
-    private readonly userRepository: Repository<User>,
+    @InjectRepository(_user)
+    private readonly userRepository: Repository<_user>,
+
+    @InjectRepository(_profile)
+    private readonly profileRepository: Repository<_profile>,
+
+    @InjectRepository(_country)
+    private readonly countryRepository: Repository<_country>,
+
     private jwtService: JwtService
-  ) {}
+  ) { }
 
-  async register(userObject: RegisterAuthDto) {
-    try {
-      const { password } = userObject;
-      if (!password) {
-        throw new BadRequestException('Password is required');
-      }
-      const hashed = await hash(password, 10);
-      const userToSave = { ...userObject, password: hashed } as Partial<User>;
-      const user = await this.userRepository.save(userToSave as any);
+  async register(registerDto: RegisterAuthDto) {
+    const { name, lastName, email, password, country } = registerDto;
 
-      const payload = { id: user.id, email: user.email};
-      const token = this.jwtService.sign(payload);
+    // 1. Validar email duplicado
+    const userExists = await this.userRepository.findOne({ where: { email } });
+    if (userExists) throw new BadRequestException("El email ya está registrado");
 
-      const data = {
-        user,
-        token
-      };
-      return data;
-    } catch (error: any) {
-      console.error('Error en register:', error);
-      // Manejar errores de duplicado de email
-      if (error?.code === 'ER_DUP_ENTRY' || error?.sqlMessage?.includes('Duplicate')) {
-        throw new BadRequestException('El email ya está registrado');
-      }
-      throw error;
-    }
-  }
+    // 2. Buscar país por nombre (en minúsculas, según tu front)
+    const countryEntity = await this.countryRepository.findOne({
+      where: { name_: country.toLowerCase() }
+    });
+    if (!countryEntity) throw new BadRequestException("El país enviado no existe");
 
-  async login(userObjectLogin: LoginAuthDto) {
-    const {email, password} = userObjectLogin;
-    const findUser = await this.userRepository.findOneBy({email});
-    if (!findUser) {
-      throw new HttpException('USER_NOT_FOUND', 404);
-    }
+    // 3. Crear usuario
+    const hashedPassword = await hash(password, 10);
+    const newUser = this.userRepository.create({
+      name_: name,
+      last_name: lastName,
+      email,
+      password: hashedPassword,
+      is_admin: false,
+      code: "" // opcional
+    });
+    const savedUser = await this.userRepository.save(newUser);
 
-    const checkPassword = await compare(password, findUser.password);
-    if (!checkPassword) {
-      throw new HttpException('PASSWORD_INCORRECT', 403);
-    }
+    // 4. Crear perfil mínimo, los demás campos opcionales
+    const profile = this.profileRepository.create({
+      id_user: savedUser.id_user,
+      gender: false,          // obligatorio
+      phone_number: '',       // obligatorio si no permite NULL
+      birthday: new Date(),
+      bio: '',
+      image_: '',
+      image_header: '',
+      is_premium: false,
+      email_perfil: email,
+      is_verified: false,
+      country: countryEntity,
+      user: savedUser
+    });
+    await this.profileRepository.save(profile);
 
-    const payload = {id: findUser.id, email: findUser.email};
+    // 5. Generar token
+    const payload = { id: savedUser.id_user, email: savedUser.email };
     const token = this.jwtService.sign(payload);
 
-    const data = {
-      user: findUser,
-      token
-    };
-    return data;
+    return { message: "Usuario creado correctamente", user: savedUser, token };
+  }
+
+  async login(loginDto: LoginAuthDto) {
+    const { email, password } = loginDto;
+
+    const user = await this.userRepository.findOne({ where: { email } });
+    if (!user) throw new HttpException("USER_NOT_FOUND", 404);
+
+    const isPasswordValid = await compare(password, user.password);
+    if (!isPasswordValid) throw new HttpException("PASSWORD_INCORRECT", 403);
+
+    const payload = { id: user.id_user, email: user.email };
+    const token = this.jwtService.sign(payload);
+
+    return { user, token };
   }
 }

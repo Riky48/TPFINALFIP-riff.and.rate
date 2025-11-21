@@ -17,7 +17,7 @@ export const GalleriaFeed: React.FC<GalleriaFeedProps> = ({ multimedia }) => {
     title: string | undefined; src: string 
 }) => {
     const ext = item.src.split(".").pop()?.toLowerCase();
-    const fullSrc = `http://localhost:3000${item.src}`;
+    const fullSrc = `http://localhost:3000/${item.src}`;
 
     if (["jpg", "jpeg", "png", "gif", "webp"].includes(ext ?? "")) {
       return (

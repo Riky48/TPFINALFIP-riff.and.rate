@@ -21,7 +21,7 @@ export const ArticleCard: React.FC<Props> = ({ post }) => {
                 <img
                     src={
                         post.multimedia.length > 0
-                            ? `http://localhost:3000${post.multimedia[0].src}`
+                            ? `http://localhost:3000/${post.multimedia[0].src}`
                             : ""
                     }
                     alt="article"

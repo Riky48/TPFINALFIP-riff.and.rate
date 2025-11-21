@@ -3,6 +3,7 @@ import { MenuEllipsis } from "../../../../MenuEllipsis/MenuEllipsis";
 import { GalleriaFeed } from "../../../galleria/GalleriaFeed";
 import "./PostCard.css";
 import "./PostCardResponsive.css";
+import Comentarios from "../../../../comentarios/Comentarios";
 
 type Props = {
     post: FeedDto["posts"][number];
@@ -34,7 +35,7 @@ export const PostCard: React.FC<Props> = ({
     return (
         <div key={post.id} className="imageContent">
             <div className="post-header">
-                <p className="post-text">{post.content}</p>
+                <p className="post-text">{post.title}</p>
                 <MenuEllipsis
                     postId={post.id}
                     activePostId={activePostId}
@@ -59,7 +60,7 @@ export const PostCard: React.FC<Props> = ({
                                 case "image":
                                     return (
                                         <img
-                                            src={`http://localhost:3000${m.src}`}
+                                            src={`http://localhost:3000/${m.src}`}
                                             alt={post.title}
                                             className="rounded-2xl shadow-md"
                                         />
@@ -67,7 +68,7 @@ export const PostCard: React.FC<Props> = ({
                                 case "video":
                                     return (
                                         <video
-                                            src={`http://localhost:3000${m.src}`}
+                                            src={`http://localhost:3000/${m.src}`}
                                             controls
                                             className="rounded-2xl shadow-md"
                                         />
@@ -75,7 +76,7 @@ export const PostCard: React.FC<Props> = ({
                                 default:
                                     return (
                                         <a
-                                            href={`http://localhost:3000${m.src}`}
+                                            href={`http://localhost:3000/${m.src}`}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                         >

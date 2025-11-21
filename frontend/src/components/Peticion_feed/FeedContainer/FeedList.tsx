@@ -4,6 +4,7 @@ import { PostCard } from "./CardFeed/PostCard/PostCard";
 import { EventCard } from "./CardFeed/EventCard/EventCard";
 import { ArticleCard } from "./CardFeed/ArticleCard/ArticleCard";
 import "./FeedList.css";
+import Comentarios from "../../comentarios/Comentarios";
 
 interface FeedListProps {
     data: FeedDto[];
@@ -68,6 +69,7 @@ export const FeedList: React.FC<FeedListProps> = ({
                             className="post-wrapper"
                         >
                             {renderPostType(post)}
+                            <Comentarios postId={post.id} />
                         </div>
                     ))}
                 </div>
