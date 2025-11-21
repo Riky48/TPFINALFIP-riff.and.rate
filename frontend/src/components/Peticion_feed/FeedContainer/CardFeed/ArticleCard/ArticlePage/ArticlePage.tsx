@@ -20,7 +20,7 @@ export const ArticlePage = () => {
                 {post.multimedia?.length > 0 && (
                     <div className="imageArticle">
                         <img
-                            src={`http://localhost:3000${post.multimedia[0].src}`}
+                            src={`http://localhost:3000/${post.multimedia[0].src}`}
                             alt={post.title}
                             className="article-image"
                         />

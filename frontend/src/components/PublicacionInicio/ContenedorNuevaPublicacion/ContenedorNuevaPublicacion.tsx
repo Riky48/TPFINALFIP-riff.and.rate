@@ -19,7 +19,6 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
   const [descripcion, setDescripcion] = useState('');
   const [animationClass, setAnimationClass] = useState(ANIMATION_IN);
   const [isClosing, setIsClosing] = useState(false);
-  const userId = 2;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -41,21 +40,19 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
     setIsPublishing(true);
     try {
       const formData = new FormData();
-      files.forEach((file) => formData.append('files', file));
-      formData.append('content', descripcion);
-      formData.append('id_user', userId.toString());
+      files.forEach(file => formData.append('files', file));
+      formData.append('title', descripcion);
       formData.append('type', 'post');
 
-      await PostFeed({ formData, handleCloseClick })
-    }
-    catch (err) {
+      await PostFeed({ formData, handleCloseClick });
+    } catch (err) {
       console.error(err);
-      handleCloseClick()
-    }
-    finally {
+      handleCloseClick();
+    } finally {
       setIsPublishing(false);
     }
   };
+
 
   const handleCloseClick = () => {
     if (isClosing) return;
@@ -90,7 +87,7 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
         <div className="preview-container">
           {files.map((file, i) => {
             const url = previewUrl[i];
-
+            console.log(url);
             if (file.type.startsWith("image/")) {
               return <img key={i} src={url} alt="Preview" className="preview-img" />;
             }
@@ -135,8 +132,6 @@ export const ContenedorNuevaPublicacion: React.FC<Props> = ({ onClose }) => {
       </div>
 
       <button onClick={handlePublicar} id='btnpublish' disabled={isPublishing}>{isPublishing ? 'Publicando...' : 'Publicar'}</button>
-
-
     </div >
   );
 };

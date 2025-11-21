@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import './RegisterForm.css';
-import { registerUser } from '../../services/authService';
 import { useNavigate } from 'react-router-dom';
 
 function RegisterForm() {
@@ -13,31 +12,35 @@ function RegisterForm() {
     const [country, setCountry] = useState('argentina');
 
     const navigate = useNavigate();
-    
-    const handleSubmit = async (e: { preventDefault: () => void; }) => {
+
+    const handleSubmit = async (e: { preventDefault: () => void }) => {
         e.preventDefault();
 
-        if ((password !== verifyPassword) || (email !== confirm)) {
-            alert('Contraseña o email incorrectos.')
+        if (password !== verifyPassword || email !== confirm) {
+            alert('Contraseña o email incorrectos.');
             return;
         }
 
-        const data = await registerUser({name, lastName, email, password, country});
-        
-        if (data.error) {
-            alert(data.error);
-            return;
-        }
-        
-        if (!data.token) {
-            alert(data.message || 'Error en el registro');
-            console.log(data.message);
-            
-            return;
-        }
+        try {
+            const response = await fetch('http://localhost:3000/auth/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, lastName, email, password, country }),
+            });
 
-        alert('Registro exitoso! Por favor, inicie sesión.');
-        navigate('/login')
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert(data.message || 'Error en el registro');
+                return;
+            }
+
+            alert('Registro exitoso! Por favor, inicie sesión.');
+            navigate('/login');
+        } catch (error) {
+            console.error('Error al registrar usuario:', error);
+            alert('Error de conexión con el servidor');
+        }
     };
 
     return (
@@ -55,6 +58,7 @@ function RegisterForm() {
                                 <input type="text" id="lastName" placeholder="Apellido" required value={lastName} onChange={(e) => setLastName(e.target.value)} />
                             </div>
                         </div>
+
                         <div className="email separate">
                             <div>
                                 <label htmlFor="email">E-mail</label>
@@ -65,6 +69,7 @@ function RegisterForm() {
                                 <input type="email" id="confirm" placeholder="correoejemplo@outlook.com" required value={confirm} onChange={(e) => setConfirm(e.target.value)} />
                             </div>
                         </div>
+
                         <div className="password separate">
                             <div>
                                 <label htmlFor="password">Contraseña</label>
@@ -75,6 +80,7 @@ function RegisterForm() {
                                 <input type="password" id="verifypassword" placeholder="123123123" required value={verifyPassword} onChange={(e) => setVerifyPassword(e.target.value)} />
                             </div>
                         </div>
+
                         <div className="country separate">
                             <div>
                                 <label htmlFor="country">País</label>
@@ -92,19 +98,21 @@ function RegisterForm() {
                                     <option value="costa rica">Costa Rica</option>
                                 </select>
                             </div>
+
                             <div className='term separate'>
                                 <input type="checkbox" id="term" required />
                                 <label htmlFor="term">Acepto los términos y condiciones</label>
                             </div>
                         </div>
                     </div>
+
                     <div className="signupbtn">
                         <button type="submit" className="signupButton">Registrarse</button>
                     </div>
                 </form>
             </div>
         </div>
-    )
+    );
 }
 
 export default RegisterForm;
