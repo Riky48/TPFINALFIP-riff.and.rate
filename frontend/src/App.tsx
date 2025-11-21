@@ -58,6 +58,8 @@ function App() {
           open={cartOpen}
           onClose={() => setCartOpen(false)}
           onBuy={() => setPaymentOpen(true)}
+          userId={1} // temporal, después sacalo del usuario logueado
+          
         />
 
         {paymentOpen && (

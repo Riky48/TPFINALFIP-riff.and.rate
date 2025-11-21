@@ -1,28 +1,43 @@
-import { Producto, useCart } from '../../components/Context/CartContext';
 import './Marketplace.css';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import { useCart } from '../../components/Context/CartContext';
+import { getProductos, addProductoCarrito } from '../../services/api';
 
 const categories = ['Todos', 'Baterías', 'Guitarras', 'Teclados', 'Micrófonos', 'Accesorios'];
-
-const productos: Producto[] = [
-  { id: 1, nombre: 'Batería electrónica Roland', categoria: 'Baterías', precio: 120000, img: '/bateria.jpg' },
-  { id: 2, nombre: 'Guitarra Fender Stratocaster', categoria: 'Guitarras', precio: 80000, img: '/guitarra.jpg' },
-  { id: 3, nombre: 'Teclado Yamaha PSR', categoria: 'Teclados', precio: 50000, img: '/teclado.jpg' },
-  { id: 4, nombre: 'Micrófono Shure SM58', categoria: 'Micrófonos', precio: 25000, img: '/mic.jpg' },
-  { id: 5, nombre: 'Set de baquetas Pro', categoria: 'Accesorios', precio: 5000, img: '/baquetas.jpg' },
-  { id: 6, nombre: 'Amplificador guitarra 30W', categoria: 'Accesorios', precio: 40000, img: '/ampli.jpg' },
-];
 
 export default function Marketplace() {
   const [activeCategory, setActiveCategory] = useState('Todos');
   const [searchTerm, setSearchTerm] = useState('');
-  const { addToCart } = useCart(); // usamos el hook
+  const [productos, setProductos] = useState<any[]>([]);
+  const { addToCart, removeFromCart } = useCart();
+  const userId = 1; // temporal, después sacalo del usuario logueado
+
+  useEffect(() => {
+    getProductos()
+      .then(res => setProductos(res.data))
+      .catch(err => console.error(err));
+  }, []);
 
   const filteredProducts = productos.filter(p => 
-    (activeCategory === 'Todos' || p.categoria === activeCategory) &&
+    (activeCategory === 'Todos' || p.categorias?.some((c: any) => c.nombre === activeCategory)) &&
     p.nombre.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handleAddToCart = async (producto: any) => {
+  // Primero lo agregamos al carrito local
+  addToCart(producto);
+
+  try {
+    const res = await addProductoCarrito(userId, producto.id, 1);
+    console.log('Producto agregado al carrito en back:', res.data);
+  } catch (err) {
+    console.error('Error agregando al carrito en backend:', err);
+    // Opcional: revertir el addToCart si falla el backend
+    removeFromCart(producto.id);
+    alert('No se pudo agregar el producto al carrito. Intenta de nuevo.');
+  }
+};
+
 
   return (
     <div className="marketplace-container">
@@ -56,10 +71,10 @@ export default function Marketplace() {
       <div className="productos-grid">
         {filteredProducts.map(producto => (
           <div key={producto.id} className="producto-card">
-            <img src={producto.img} alt={producto.nombre} />
+            <img src={producto.img || '/placeholder.jpg'} alt={producto.nombre} />
             <h3>{producto.nombre}</h3>
-            <p className="precio">${producto.precio.toLocaleString("es-AR")}</p>
-            <button onClick={() => addToCart(producto)}>Agregar al carrito</button>
+            <p className="precio">${Number(producto.precio).toLocaleString("es-AR")}</p>
+            <button onClick={() => handleAddToCart(producto)}>Agregar al carrito</button>
           </div>
         ))}
       </div>
