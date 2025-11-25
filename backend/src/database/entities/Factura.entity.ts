@@ -9,7 +9,7 @@ export class Factura {
 
   @OneToOne(() => Pedido)
   @JoinColumn()
-  pedido: Pedido;  // relación con el pedido
+  pedido: Pedido;  
 
   @Column()
   usuarioId: number; // para enviar la factura por mail
@@ -21,5 +21,5 @@ export class Factura {
   fechaEmision: Date;
 
   @Column()
-  estado: string; // ej: 'pendiente', 'pagada', 'enviada'
+  estado: string; // ejemplo 'pendiente', 'pagada', 'enviada'
 }

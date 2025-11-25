@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Carrito } from '../entities/Carrito.entity';
-import { CarritoProducto } from '../entities/CarritoProducto.entity';
-import { Producto } from '../entities/Producto.entity';
+import { Carrito } from 'src/database/entities/Carrito.entity';
+import { CarritoProducto } from 'src/database/entities/CarritoProducto.entity';
+import { Producto } from 'src/database/entities/Producto.entity';
 import { AddProductDto } from './dto/add-product.dto';
 
 

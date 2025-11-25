@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { MarcaService } from './marca.service';
 import { MarcaController } from './marca.controller';
-import { Marca } from '../entities/Marca.entity';
+import { Marca } from 'src/database/entities/Marca.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({

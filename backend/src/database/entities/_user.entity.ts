@@ -1,10 +1,10 @@
 import { IsBoolean, IsDate, IsNumber, IsString } from "class-validator";
 import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { _profile } from "./_profile.entity";
-import { Producto } from "src/marketplace/entities/Producto.entity";
-import { Pedido } from "src/marketplace/entities/Pedido.entity";
-import { Review } from "src/marketplace/entities/Review.entity";
-import { Carrito } from "src/marketplace/entities/Carrito.entity";
+import { Producto } from "./Producto.entity";
+import { Pedido } from "./Pedido.entity";
+import { Review } from "./Review.entity";
+import { Carrito } from "./Carrito.entity";
 
 @Entity('_user')
 export class _user {

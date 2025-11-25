@@ -3,7 +3,7 @@ import { CreateMarcaDto } from './dto/create-marca.dto';
 import { UpdateMarcaDto } from './dto/update-marca.dto';
 
 import { InjectRepository } from '@nestjs/typeorm';
-import { Marca } from '../entities/Marca.entity';
+import { Marca } from 'src/database/entities/Marca.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
