@@ -16,6 +16,13 @@
   transition: margin-left 0.3s ease;
 }
 
+html, body {
+  background-color: var(--color-bg) !important;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 /* RESPONSIVE MÓVIL / TABLET */
 @media (max-width: 900px) {
   .main-content {
@@ -23,3 +30,8 @@
     margin-left: 0vw;
   }
 }
+
+
+
+
+

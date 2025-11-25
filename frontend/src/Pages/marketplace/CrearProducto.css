@@ -1,0 +1,97 @@
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Contenedor principal del formulario */
+.crear-producto-container {
+  width: 100%;
+  min-height: 100vh;       /* ocupa toda la pantalla */
+  padding: 5vh 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  background-color: var(--color-bg); /* fondo uniforme igual que Marketplace */
+}
+
+/* Título */
+.crear-producto-container h2 {
+  color: var(--color-text);
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Formulario */
+.crear-producto-container form {
+  width: 70%;
+  max-width: 600px;
+
+  background-color: rgba(0, 0, 0, 0.6); /* cuadrito oscuro semi-transparente */
+  border-radius: 20px;
+  padding: 2rem;
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Labels e inputs */
+.crear-producto-container label {
+  color: var(--color-text);
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+}
+
+.crear-producto-container input,
+.crear-producto-container textarea {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background-color: rgba(255, 255, 255, 0.05); /* sutil fondo oscuro */
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.crear-producto-container input:focus,
+.crear-producto-container textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Botón */
+.btn-crear {
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  border: none;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn-crear:hover {
+  background-color: var(--color-hover);
+  transform: scale(1.03);
+}
+
+.btn-crear:active {
+  transform: scale(0.97);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .crear-producto-container form {
+    width: 90%;
+    padding: 1.5rem;
+  }
+}
