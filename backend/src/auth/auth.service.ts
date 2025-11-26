@@ -13,7 +13,7 @@ export class AuthService {
     @InjectRepository(_user)
     private readonly userRepository: Repository<_user>,
     private jwtService: JwtService
-  ) {}
+  ) { }
 
   async register(dto: RegisterAuthDto) {
     try {

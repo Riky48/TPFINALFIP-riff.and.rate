@@ -15,6 +15,7 @@ import { PedidoModule } from './marketplace/pedido/pedido.module';
 import { PerfilModule } from './perfil/perfil.module';
 import { join } from 'path';
 import { UserModule } from './user/user.module';
+import { ComentariosModule } from './comentarios/comentarios.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -51,6 +52,8 @@ import { UserModule } from './user/user.module';
     PedidoModule,
 
     PerfilModule,
+    PerfilModule,
+    ComentariosModule
   ],
   controllers: [AppController],
   providers: [AppService],

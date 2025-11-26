@@ -1,11 +1,12 @@
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryColumn, PrimaryGeneratedColumn } from "typeorm";
 import { _user } from "./_user.entity";
 import { _post } from "./_post.entity";
 import { _country } from "./_country.entity";
 
 @Entity('_profile')
 export class _profile {
-    @PrimaryGeneratedColumn()
+
+    @PrimaryColumn()
     id_user: number;
 
     @Column()
@@ -38,9 +39,10 @@ export class _profile {
     @Column()
     is_verified: boolean;
 
-    @OneToOne(() => _user, (user) => user.profile)
-    @JoinColumn({name: 'id_user'})
+    @OneToOne(() => _user, user => user.profile,{onDelete: 'CASCADE'})
+    @JoinColumn({ name: 'id_user' })
     user: _user;
+
 
     @OneToMany(() => _post, (post) => post.profile)
     posts: _post[];

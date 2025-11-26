@@ -1,24 +1,58 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Req, HttpCode, HttpStatus, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe, Req, HttpCode, HttpStatus, UseGuards, UseInterceptors, UploadedFiles } from '@nestjs/common';
 import { FeedService } from './feed.service';
 import { CreateFeedDto } from './dto/create-feed.dto';
 import { UpdateFeedDto } from './dto/update-feed.dto';
 import { FeedDto } from './dto/feed.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import { InjectRepository } from '@nestjs/typeorm';
+import { _multimedia } from 'src/database/entities/_multimedia.entity';
+import { Repository } from 'typeorm';
 
 @Controller('feed')
 export class FeedController {
-  constructor(private readonly feedService: FeedService) { }
+  constructor(private readonly feedService: FeedService,
+    @InjectRepository(_multimedia)
+    private readonly multimediaRepository: Repository<_multimedia>,
+  ) { }
 
+  @Post('posts')
   @UseGuards(JwtAuthGuard)
-  @Post('posts/postId')
-  @HttpCode(HttpStatus.CREATED)
+  @UseInterceptors(FilesInterceptor('files'))
   async createPost(
-    @Body() dto: CreateFeedDto,
+    @UploadedFiles() files: Express.Multer.File[],
+    @Body() body: any,
     @Req() req: any
   ) {
-    dto.user_id = req.user.id; // JWT da el userId
+    const dto = new CreateFeedDto();
+    dto.title = body.title;
+    dto.content = body.content;
+    dto.user_id = req.user.id;
+    dto.type = body.type;
+
+    // Guardar archivos:
+    const multimediaIds: number[] = [];
+
+    if (files?.length > 0) {
+      for (const file of files) {
+        const media = await this.multimediaRepository.save({
+          src: file.path,
+          title: file.originalname,
+          type: file.mimetype.startsWith("image")
+            ? "image"
+            : file.mimetype.startsWith("video")
+              ? "video"
+              : "file",
+          id_user: req.user.id,
+        });
+
+        multimediaIds.push(media.id_multimedia);
+      }
+    }
+    dto.multimediaIds = multimediaIds;
     return this.feedService.createPost(dto);
   }
+
 
 
   @UseGuards(JwtAuthGuard)

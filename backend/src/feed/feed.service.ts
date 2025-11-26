@@ -13,6 +13,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { _post } from '../database/entities/_post.entity';
 import { Repository } from 'typeorm';
 import { _multimedia } from '../database/entities/_multimedia.entity';
+import { _profile } from 'src/database/entities/_profile.entity';
 
 
 @Injectable()
@@ -22,7 +23,10 @@ export class FeedService {
     private readonly postRepository: Repository<_post>,
     @InjectRepository(_multimedia)
     private readonly multimediaRepository: Repository<_multimedia>,
+    @InjectRepository(_profile)
+    private readonly profileRepository: Repository<_profile>,
   ) { }
+
 
   // Nota: El controlador debe pasar el DTO; no usar @Body() aquí.
   async createPost(createFeedDto: CreateFeedDto): Promise<FeedDto[]> {
@@ -37,28 +41,39 @@ export class FeedService {
       if (!createFeedDto.user_id) {
         throw new BadRequestException('El perfil (profile_id) es obligatorio');
       }
+      const profile = await this.profileRepository.findOne({
+        where: { id_user: createFeedDto.user_id },
+      });
+      if (!profile) throw new NotFoundException('Perfil no encontrado');
 
       const post = this.postRepository.create({
         title: createFeedDto.title,
         content: createFeedDto.content ?? '',
         created_at: new Date(),
-        profile: { id_user: createFeedDto.user_id } as any,
+        profile,
+        type: createFeedDto.type,
       });
 
       await this.postRepository.save(post);
 
       if (createFeedDto.multimediaIds?.length) {
-        // Si usás TypeORM antiguo findByIds está OK; si no, reemplazá por find + In.
-        const multimedia = await this.multimediaRepository.findByIds(createFeedDto.multimediaIds);
+        const multimedias = await this.multimediaRepository.find({
+          where: createFeedDto.multimediaIds.map(id => ({ id_multimedia: id })),
+        });
 
-        // Si faltó alguno
-        if (multimedia.length !== createFeedDto.multimediaIds.length) {
+        if (multimedias.length !== createFeedDto.multimediaIds.length) {
           throw new NotFoundException('Algunos archivos multimedia no existen');
         }
 
-        post.multimedias = multimedia;
-        await this.postRepository.save(post);
+        // asignar el post a cada multimedia
+        for (const media of multimedias) {
+          media.post = post;
+          await this.multimediaRepository.save(media);
+        }
+
+        post.multimedias = multimedias;
       }
+
 
       return this.joinFeed(createFeedDto.user_id);
     } catch (error) {
@@ -94,7 +109,7 @@ export class FeedService {
         .leftJoinAndSelect('post.likes', 'likes');
 
       if (id_user) {
-        query.where('user.id_user = :id_user', { id_user });
+        query.where('profile.id_user = :id_user', { id_user });
       }
 
       const posts = await query.getMany();
