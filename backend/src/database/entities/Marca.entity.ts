@@ -15,4 +15,5 @@ export class Marca {
   // Relación: Una marca tiene muchos productos
   @OneToMany(() => Producto, producto => producto.marca)
   productos: Producto[];
+
 }

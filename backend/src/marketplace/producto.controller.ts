@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Put, Delete, Param, Body } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Param, Body, NotFoundException } from '@nestjs/common';
 import { ProductoService } from './producto.service';
 import { Producto } from 'src/database/entities/Producto.entity';
+import { CreateProductoDto } from './dto/create-producto.dto';
 
 @Controller('productos')
 export class ProductoController {
@@ -8,7 +9,7 @@ export class ProductoController {
 
   // POST - Crear producto
   @Post()
-  async create(@Body() data: Partial<Producto>): Promise<Producto> {
+  async create(@Body() data: CreateProductoDto): Promise<Producto> {
     return this.productoService.create(data);
   }
 
@@ -28,7 +29,7 @@ export class ProductoController {
   @Put(':id')
   async update(
     @Param('id') id: string,
-    @Body() data: Partial<Producto>,
+    @Body() data: Partial<CreateProductoDto>,
   ): Promise<Producto> {
     return this.productoService.update(+id, data);
   }
@@ -41,8 +42,7 @@ export class ProductoController {
 
   // Buscar productos por nombre
   @Get('search/:nombre')
-async search(@Param('nombre') nombre: string): Promise<Producto[]> {
-  return this.productoService.searchByNombre(nombre);
-}
-
+  async search(@Param('nombre') nombre: string): Promise<Producto[]> {
+    return this.productoService.searchByNombre(nombre);
+  }
 }

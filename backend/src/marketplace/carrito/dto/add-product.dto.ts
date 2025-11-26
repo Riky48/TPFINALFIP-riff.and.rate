@@ -2,8 +2,8 @@ import { IsNumber } from "class-validator";
 
 export class AddProductDto {
   @IsNumber()
-  productId: number;
+  productoId: number;
 
   @IsNumber()
-  quantity: number;
+  cantidad: number;
 }

@@ -18,9 +18,18 @@ export class CreateProductoDto {
   stock: number;
 
   @IsOptional()
-  @IsNumber()
-  marcaId?: number;
+  @IsString()
+  marca?: string;
 
   @IsOptional()
-  categoriasIds?: number[];
+  @IsString({ each: true })
+  categorias?: string[];
+
+  @IsOptional()
+  @IsString()
+  img?: string;
+
+  @IsOptional()
+  @IsNumber()
+  userId?: number;
 }

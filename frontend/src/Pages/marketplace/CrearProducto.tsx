@@ -8,23 +8,47 @@ export default function CrearProducto() {
     descripcion: "",
     precio: "",
     stock: "",
-    categoria: "",
-    marca: "",
+    categorias: "", // input del usuario, se convertirá en array
+    marca: "",      // input del usuario, se convertirá en array
     img: "",
   });
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const userId = 1; // después lo sacamos del usuario logueado
-      await crearProducto(userId, form);
+
+      // Transformar los datos antes de enviar al backend
+      const payload = {
+        nombre: form.nombre,
+        descripcion: form.descripcion,
+        precio: Number(form.precio),
+        stock: Number(form.stock),
+        categorias: form.categorias ? [form.categorias.trim()] : [], // array de strings
+        marca: form.marca,
+        img: form.img || undefined,
+        userId,
+      };
+
+      await crearProducto(userId, payload);
       alert("Producto creado con éxito!");
-    } catch (e) {
-      console.error(e);
+
+      // resetear form
+      setForm({
+        nombre: "",
+        descripcion: "",
+        precio: "",
+        stock: "",
+        categorias: "",
+        marca: "",
+        img: "",
+      });
+    } catch (error) {
+      console.error(error);
       alert("Hubo un error creando el producto");
     }
   };
@@ -62,7 +86,7 @@ export default function CrearProducto() {
 
         <div className="form-group">
           <label>Categoría</label>
-          <input name="categoria" value={form.categoria} onChange={handleChange} />
+          <input name="categorias" value={form.categorias} onChange={handleChange} />
         </div>
 
         <div className="form-group">

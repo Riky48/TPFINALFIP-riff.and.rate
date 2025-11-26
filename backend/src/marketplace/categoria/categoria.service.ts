@@ -10,7 +10,7 @@ export class CategoriaService {
   constructor(
     @InjectRepository(Categoria)
     private categoriaRepo: Repository<Categoria>,
-  ) {}
+  ) {}    
 
   create(createCategoriaDto: CreateCategoriaDto) {
     const nueva = this.categoriaRepo.create(createCategoriaDto);

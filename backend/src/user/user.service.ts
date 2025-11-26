@@ -1,42 +1,36 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from './entities/user.entity';
-import { CreateUserDto } from './dto/create-user.dto';  // DTO para la creación de usuarios
-import * as bcrypt from 'bcrypt';
+import { _user } from 'src/database/entities/_user.entity';
 
 @Injectable()
 export class UserService {
   constructor(
-    @InjectRepository(User)
-    private userRepository: Repository<User>,
+    @InjectRepository(_user)
+    private readonly userRepository: Repository<_user>,
   ) {}
 
-  // Crear un nuevo usuario
-  async create(createUserDto: CreateUserDto): Promise<User> {
-    const saltRounds = 10;
-    
-    const hashedPassword = await bcrypt.hash(createUserDto.password, saltRounds);
-    
-    const user = this.userRepository.create({
-      ...createUserDto,
-      password: hashedPassword,
+  async findAll(): Promise<_user[]> {
+    return this.userRepository.find({
+      relations: ['profile', 'productos', 'pedidos', 'reviews', 'carrito']
+    });
+  }
+
+  async findOne(id: number): Promise<_user> {
+    const user = await this.userRepository.findOne({
+      where: { id },
+      relations: ['profile', 'productos', 'pedidos', 'reviews', 'carrito'],
     });
 
-    return this.userRepository.save(user);
-  }
+    if (!user) throw new NotFoundException('Usuario no encontrado');
 
-  // Metodo para buscar todos los usuarios
-  async findAll(): Promise<User[]> {
-    return this.userRepository.find();
-  }
-
-  // Metodo para buscar un usuario por id
-  async findOne(id: number): Promise<User> {
-    const user = await this.userRepository.findOne({ where: { id } });
-    if (!user) {
-      throw new Error('Usuario no encontrado');
-    }
     return user;
+  }
+
+  async remove(id: number): Promise<string> {
+    const result = await this.userRepository.delete(id);
+    if (result.affected === 0) throw new NotFoundException('Usuario no encontrado');
+
+    return 'Usuario eliminado con éxito';
   }
 }

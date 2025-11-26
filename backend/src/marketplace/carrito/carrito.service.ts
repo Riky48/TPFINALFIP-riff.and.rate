@@ -108,7 +108,7 @@ export class CarritoService {
 
   // DTO version (opcional si en el front usás esto)
   async addProduct(userId: number, data: AddProductDto): Promise<Carrito> {
-  return this.addProducto(userId, data.productId, data.quantity);
+  return this.addProducto(userId, data.productoId, data.cantidad);
 }
 
 }

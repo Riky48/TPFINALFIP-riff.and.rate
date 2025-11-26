@@ -5,6 +5,7 @@ import { Producto } from "./Producto.entity";
 import { Pedido } from "./Pedido.entity";
 import { Review } from "./Review.entity";
 import { Carrito } from "./Carrito.entity";
+import { _country } from './_country.entity';
 
 @Entity('_user')
 export class _user {
@@ -25,6 +26,10 @@ export class _user {
 
     @Column()
     is_admin: boolean;
+
+    @Column({ name: '_country', nullable: true })
+    country: string;
+
 
     @Column({name: 'code_'})
     code: string;

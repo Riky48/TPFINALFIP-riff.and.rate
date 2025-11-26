@@ -5,7 +5,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostsModule } from './pag_inicio/posts/posts.module';
 import { FeedModule } from './feed/feed.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { ProductoModule } from './marketplace/producto.module';
 import { CategoriaModule } from './marketplace/categoria/categoria.module';
@@ -15,6 +14,7 @@ import { PedidoModule } from './marketplace/pedido/pedido.module';
 
 import { PerfilModule } from './perfil/perfil.module';
 import { join } from 'path';
+import { UserModule } from './user/user.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),

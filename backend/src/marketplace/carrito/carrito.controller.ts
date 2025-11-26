@@ -11,12 +11,12 @@ export class CarritoController {
     return this.carritoService.getCarritoByUser(userId);
   }
   
-  @Post(':userId/agregar')
+  @Post(':userId/add')
 addProductoToCarrito(
   @Param('userId') userId: number,
   @Body() data: AddProductDto,
 ) {
-  return this.carritoService.addProducto(userId, data.productId, data.quantity);
+  return this.carritoService.addProducto(userId, data.productoId, data.cantidad);
 }
   
 

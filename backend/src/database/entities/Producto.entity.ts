@@ -24,18 +24,22 @@ export class Producto {
   @Column()
   stock: number;
 
+   @Column({ nullable: true })
+  img?: string;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   fechaPublicacion: Date;
 
-  @ManyToOne(() => _user, user => user.productos)
-  user: _user;
+  @ManyToOne(() => _user, (user) => user.productos, { nullable: true })
+  user?: _user;
 
   @ManyToMany(() => Categoria, categoria => categoria.productos)
   @JoinTable()
   categorias: Categoria[];
 
-  @ManyToOne(() => Marca, marca => marca.productos)
+  @ManyToOne(() => Marca, marca => marca.productos, { nullable: true })
   marca: Marca;
+
 
   @OneToMany(() => Review, review => review.producto)
   reviews: Review[];
