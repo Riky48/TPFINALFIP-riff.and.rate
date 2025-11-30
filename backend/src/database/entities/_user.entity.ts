@@ -30,4 +30,5 @@ export class _user {
 
     @OneToOne(() => _profile, (profile) => profile.user)
     profile: _profile;
+  username: any;
 }
