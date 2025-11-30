@@ -1,43 +1,47 @@
-.container {
-  max-width: 1500px;
-  width: 97%;
-  margin-top: 1rem;
-  margin-left: 1rem;
-  border-radius: 20px;
-  padding: 20px;
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  overflow-y: auto;
+  font-family: sans-serif;
+  background-color: #1e1e2f;
+}
+
+.main-content {
+  padding: 2rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto; /* habilita scroll */
+}
+
+/* Tarjeta de perfil */
+.profile-card {
+  position: relative;
+  width: 80%;
+  padding: 2.5rem;
+  border-radius: 22px;
+  backdrop-filter: blur(10px);
   background-size: cover;
   background-position: center;
-  transition: background 0.3s ease-in-out;
-
-  /* para el degrade */
   background-blend-mode: overlay;
   background-color: rgba(24, 24, 27, 0.7);
+  transition: background 0.3s ease-in-out;
+  margin-left: auto;
 }
 
-
-.profile-card {
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px);
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  display: flex;
-}
-
-/* Header perfil */
 .profile-header {
   display: flex;
-  align-items: center;
-  gap: 1rem;
+  align-items: flex-start;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
 #profileImage {
-  width: 80px;
-  height: 80px;
+  width: 95px;
+  height: 95px;
   border-radius: 50%;
   object-fit: cover;
   border: 4px solid white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -53,15 +57,16 @@
 
 .profile-info h1 {
   margin: 0 0 0.25rem 0;
-  font-size: 1.875rem;
+  font-size: 1.9rem;
   font-weight: 700;
   color: white;
 }
 
 .profile-info p.username {
-  margin: 0 0 1rem 0;
+  margin: 0 0 0.75rem 0;
   color: #ed3acf;
   font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .profile-stats {
@@ -82,17 +87,18 @@
 }
 
 .profile-stats div span.label {
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   color: floralwhite;
 }
 
 .profile-description {
   margin-bottom: 1rem;
   line-height: 1.5;
+  font-size: 1rem;
   color: floralwhite;
 }
 
-
+/* Botones */
 .btn {
   color: white;
   border: none;
@@ -101,14 +107,13 @@
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.3s ease;
-  box-shadow: 0 8px 15px rgba(59, 130, 246, 0.3);
+  font-size: 1rem;
 }
 
 .btn:hover {
-  transform: scale(1.05);
+  transform: scale(1.07);
 }
 
-/* Estilos específicos */
 #followBtn {
   background: linear-gradient(90deg, #3b82f6, #8b5cf6);
   margin-right: 10px;
@@ -116,141 +121,112 @@
 
 #followBtn.following {
   background: #22c55e;
-  box-shadow: 0 8px 15px rgba(34, 197, 94, 0.4);
 }
 
 .background-btn {
   background: linear-gradient(90deg, #3b82f6, #8b5cf6);
 }
-/* Publicaciones */
-.posts-section {
-  margin-top: 2rem;
-}
 
-.new-post {
-  background: rgba(24, 24, 27, 0.6);
-  padding: 1rem;
-  border-radius: 15px;
-  margin-bottom: 1.5rem;
-}
+/* Responsive */
+@media (max-width: 900px) {
+  .main-content {
+    padding: 1rem;
+  }
 
-.new-post textarea {
-  width: 100%;
-  min-height: 80px;
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  resize: vertical;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
-}
+  .container {
+    gap: 2rem;
+  }
 
-.new-post .preview img {
-  max-width: 100%;
-  border-radius: 10px;
-  margin-bottom: 0.5rem;
+  .profile-card {
+    padding: 1.5rem;
+  }
 }
-
-.new-post-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.small-btn {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-}
-
-.posts-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.bio-card {
-  background: rgba(24, 24, 27, 0.8);
+/* Tarjeta del formulario musical */
+.music-card {
+  position: relative;
+  width: 40%;              /* más angosta que la card de perfil */
   padding: 2rem;
-  border-radius: 15px;
-  margin: 2rem 1rem;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  border-radius: 22px;
+  backdrop-filter: blur(10px);
+  background-color: rgba(24, 24, 27, 0.8);
+  transition: background 0.3s ease-in-out;
+  margin-top: 2rem;
+  margin-left: auto;       /* empuja la tarjeta hacia la derecha */
   color: floralwhite;
 }
 
-.bio-card h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+/* Título */
+.music-card h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
-  color: #ed3acf;
+  color: white;
 }
 
-.bio-card h3 {
-  font-size: 1.3rem;
-  margin-top: 1.5rem;
-  margin-bottom: 0.8rem;
-  color: #3b82f6;
-  font-weight: 600;
-}
-
-.bio-card p {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.bio-card ul {
-  list-style-type: disc;
-  margin-left: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.bio-card ul li {
+/* Inputs y labels */
+.music-card label {
+  display: block;
   margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #ed3acf; /* mismo color que el username */
+}
+
+.music-card input[type="text"],
+.music-card input[type="number"] {
+  width: 100%;
+  padding: 0.6rem;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: floralwhite;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.music-card input[type="text"]::placeholder {
+  color: #aaa;
+}
+
+/* Grupo de checkboxes */
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+  color: floralwhite;
+}
+
+/* Botón guardar */
+.save-btn {
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease;
   font-size: 1rem;
 }
 
-.bio-card a {
-  color: #8b5cf6;
-  text-decoration: none;
-  font-weight: 600;
+.save-btn:hover {
+  transform: scale(1.07);
+  background: linear-gradient(90deg, #22c55e, #16a34a); /* verde al hover */
 }
 
-.bio-card a:hover {
-  text-decoration: underline;
+/* Responsive */
+@media (max-width: 900px) {
+  .music-card {
+    width: 100%;       /* ocupa todo el ancho en pantallas pequeñas */
+    margin-left: 0;    /* ya no se empuja a la derecha */
+  }
 }
-
-.bio-card blockquote {
-  margin-top: 1.5rem;
-  padding: 0.75rem 1rem;
-  border-left: 4px solid #ed3acf;
-  font-style: italic;
-  color: #f3f4f6;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-}
-
-.bio-image-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.bio-image {
-  width: 100%;
-  max-height: 300px;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-  cursor: pointer;
-}
-
-.bio-card .small-btn {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-
-
-
-

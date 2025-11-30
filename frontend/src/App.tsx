@@ -2,7 +2,7 @@ import './App.css';
 import { Inicio } from './Pages/feed/Inicio';
 import { Nav } from './components/Nav/Nav';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Marketplace from './Pages/Marketplace/Marketplace';
+import Marketplace from './Pages/marketplace/Marketplace';
 import { useState } from 'react';
 import CartPanel from './components/Context/CartPanel';
 import PaymentPanel from './Pages/PaymentPanel';
@@ -29,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/marketplace" element={<Nav navOpen={navOpen} setNavOpen={setNavOpen} setCartOpen={setCartOpen} />} />
             <Route path="/inicio" element={<Nav navOpen={navOpen} setNavOpen={setNavOpen} setCartOpen={setCartOpen} />} />
+            <Route path="/Perfil" element={<Nav navOpen={navOpen} setNavOpen={setNavOpen} setCartOpen={setCartOpen} />} />
           </Routes>
 
           {/* Overlay del nav */}
