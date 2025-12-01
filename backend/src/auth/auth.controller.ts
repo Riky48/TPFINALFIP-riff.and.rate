@@ -1,10 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Req } from '@nestjs/common';
 
 import { AuthService } from './auth.service';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { ApiTags } from '@nestjs/swagger';
-
+import { JwtAuthGuard } from './jwt-auth.guard'; // 👈 tu guard de JWT
 
 @ApiTags('auth')
 @Controller('auth')
@@ -19,5 +19,20 @@ export class AuthController {
   @Post('login')
   loginUser(@Body() userObjectLogin: LoginAuthDto) {
     return this.authService.login(userObjectLogin);
+  }
+
+  // 👇 NUEVO ENDPOINT
+  @UseGuards(JwtAuthGuard)
+  @Get('me')
+  async getProfile(@Req() req) {
+    const user = await this.authService.findById(req.user.id);
+
+    return {
+      id_user: user.id,
+      username: user.username,
+      nombre: user.name_,       // 👈 coincide con tu entidad
+      apellido: user.last_name, // 👈 coincide con tu entidad
+      email: user.email,
+    };
   }
 }

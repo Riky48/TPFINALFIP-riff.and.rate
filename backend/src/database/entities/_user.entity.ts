@@ -52,4 +52,5 @@ export class _user {
     @OneToOne(() => Carrito, carrito => carrito.user)
     carrito: Carrito; 
 
+  username: any;
 }

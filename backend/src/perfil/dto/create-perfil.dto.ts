@@ -1,4 +1,4 @@
-import { IsBoolean, IsDateString, IsEmail, IsNumber, IsOptional, IsString, Length } from 'class-validator';
+import { IsBoolean, IsDateString, IsEmail, IsNumber, IsString, Length } from 'class-validator';
 
 export class CreatePerfilDto {
   @IsNumber()
