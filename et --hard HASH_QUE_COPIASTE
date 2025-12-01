@@ -1,0 +1,165 @@
+[33m5f31731[m[33m ([m[1;36mHEAD -> [m[1;32mriky[m[33m)[m subiendo cambios sin conflictos
+[33ma12f359[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #49 from Riky48/valentin
+[33m16ed480[m[33m ([m[1;31morigin/valentin[m[33m)[m nuevo perfil
+[33m6513052[m market funcionando
+[33m9906c55[m[33m ([m[1;31morigin/riky[m[33m)[m arreglando todo, creo
+[33md65aff0[m cambios locales anda el market
+[33m0c22f07[m entidades arregladas
+[33m1184f69[m entidades acomodadas
+[33m14035b1[m[33m ([m[1;32mmain[m[33m)[m Merge pull request #48 from Riky48/Santiago
+[33meab7ef8[m[33m ([m[1;31morigin/Santiago[m[33m)[m Cambios en: jwt, feed, home y varios mas
+[33m64ab1fa[m acomodando back para carrito funcional 2
+[33m271f0af[m acomodando back para carrito funcional
+[33m50356ff[m acomodando front para carrito funcional
+[33m96fd7ae[m merge resuelto
+[33mab13e8f[m agregando pedidos, acomodando carrito
+[33m310ebbe[m agregando el carrito y los productos
+[33m5c845ec[m Update RegisterForm.tsx
+[33m3330829[m Conexión entre backend y frontend para Login/Registro
+[33mcb66622[m Merge pull request #47 from Riky48/Santiago
+[33md1a6842[m Validaciones front
+[33m8e23583[m Cambios de estilos, update de publicaciones, manejo de errores completo
+[33m87b5f4e[m Merge pull request #46 from Riky48/Santiago
+[33mdb7a582[m Implementacion de JWT para login y registro
+[33mbff4383[m Merge pull request #45 from Riky48/Santiago
+[33m6bb3b68[m Arreglos
+[33m41672e5[m Centralización de entities
+[33m9a3b1af[m Merge pull request #44 from Riky48/Santiago
+[33m6598ee0[m Merge pull request #43 from Riky48/Santiago
+[33me364fcb[m Implementaciones en Feed
+[33m6ab24f9[m Merge pull request #42 from Riky48/valentin
+[33m325f947[m Merge branch 'main' into valentin
+[33mb6dc597[m asd
+[33mc595da0[m agregando categorias y marcas, arreglando cagadas
+[33m3f06ffd[m Merge pull request #41 from Riky48/Santiago
+[33m347c850[m Cambios varios
+[33mdf6ae81[m servidor back andando
+[33m1e9d0b3[m arreglando cagadas
+[33md6e69d9[m agregando controller, services y dto
+[33m84b0cd6[m Merge pull request #40 from Riky48/Santiago
+[33m2c49ea6[m cambios de estilos varios
+[33m47e81b7[m Merge pull request #39 from Riky48/valentin
+[33mca9bbf6[m Merge branch 'main' into valentin
+[33m6dc5c31[m backend perfil
+[33mf19367b[m Merge branch 'main' into valentin
+[33m78481ab[m empezando con el back, entities + relaciones
+[33mc280eb1[m Merge pull request #38 from Riky48/Santiago
+[33m0d0f03e[m Cambios de los cuales no tengo ni idea de que hice.
+[33m6ac6d00[m Ajustes al login y registro
+[33m7f6c4e1[m solucinado?
+[33m3bd0e45[m ultimos cambios
+[33mbcfdf4d[m arreglando cagadas 2.0
+[33mbe00ead[m arreglando cagadas
+[33ma15e75a[m agregando home con rutas correctas
+[33m826a427[m agregando panel de compra
+[33mdc79c25[m mejorando ando
+[33m12162a3[m Merge branch 'main' into valentin
+[33madc8fc6[m Merge pull request #36 from Riky48/Santiago
+[33m1fd2209[m no pregunten
+[33mf60be59[m Merge pull request #35 from Riky48/Santiago
+[33mf4fa633[m collab con tomi
+[33m81d84ee[m Merge branch 'main' into valentin
+[33m45ede3f[m cambios varios
+[33mcae74cb[m Merge pull request #34 from Riky48/Santiago
+[33mf5626dc[m carrito funcionando con sidebar y logo
+[33m58122c0[m carrito funcionando, falta darle estilo
+[33m0373fd5[m agregando CArt content global y un panel de carrito
+[33m9e1b0b4[m Merge branch 'main' into valentin
+[33m38ad79c[m EndPoint feed, crud parcialmente hecho
+[33m2c796f4[m Merge pull request #33 from Riky48/Santiago
+[33mbdd179b[m Merge branch 'main' into valentin
+[33mbf7d3f2[m Merge pull request #32 from Riky48/valentin
+[33mfb1fada[m migracion perfil
+[33m580b2cf[m Merge pull request #31 from Riky48/Santiago
+[33m7b3dc04[m cambios back
+[33m9e57107[m Merge branch 'main' into valentin
+[33m63d3f40[m Unión de login y registro en una sola pagina, ajustes al CSS
+[33m3fbdcf1[m Merge branch 'main' into valentin
+[33m047b202[m Merge pull request #30 from Riky48/Santiago
+[33m349f4a6[m cambios varios
+[33mebf1d8d[m Migración de Login/Registro a React
+[33m5d39b01[m Merge branch 'main' into valentin
+[33m0b8fa19[m Merge pull request #29 from Riky48/Santiago
+[33ma719d8d[m organizacion de las carpetas
+[33m8162e29[m Merge pull request #28 from Riky48/riky
+[33m17f7f39[m va queriendo
+[33mce90ed2[m Merge pull request #27 from Riky48/Santiago
+[33mdd1d08c[m cambios
+[33med59eea[m marketplace en camino
+[33m7b72edf[m Merge branch 'main' into valentin
+[33m6a23d62[m testeo
+[33md1502b8[m Implementacion de Pipes, validaciones adicionales y Multer
+[33mba0ed9d[m Merge pull request #26 from Riky48/Santiago
+[33m6111d39[m Interacciones y demas correcciones.
+[33mdc86356[m Merge pull request #25 from Riky48/Santiago
+[33mdfe573e[m Interaccion de nav
+[33mebaa1ec[m Merge branch 'main' into valentin
+[33m572699b[m cositas
+[33m1e99e54[m Merge pull request #24 from Riky48/Santiago
+[33m507efd8[m Merge branch 'main' into valentin
+[33m84480ca[m Implementacion de react + backend(falta)
+[33m7b64fe8[m Merge pull request #23 from Riky48/Santiago
+[33m991f10c[m Update README.md
+[33md5f3b42[m Merge pull request #22 from Riky48/Santiago
+[33m0fb4364[m Connect con MySql
+[33md556eaa[m Merge pull request #21 from Riky48/Santiago
+[33mbe97539[m Comienzo de implementacion del backend
+[33m1d0de8a[m Merge branch 'main' into valentin
+[33m05d46f5[m Merge branch 'main' into valentin
+[33mfe7af2c[m Ajustes responsive
+[33m33a5931[m Ajustes css y responsive, hardcodeo de correo y validacion de registro
+[33mafc113b[m Merge branch 'main' into valentin
+[33m18a633c[m estilos
+[33m3e06f72[m Merge branch 'main' into valentin
+[33m267c0ee[m Merge pull request #20 from Riky48/valentin
+[33m9f6ad47[m Merge branch 'main' into valentin
+[33m96a21a6[m cambios css
+[33mb2b4935[m Merge pull request #19 from Riky48/Riky
+[33ma87f8bd[m Merge branch 'main' into Riky
+[33m226cf1b[m Merge branch 'main' into valentin
+[33m3e692d3[m subiendo cambios estilo yresponsive
+[33ma49d2f3[m Merge branch 'main' into valentin
+[33m36c0774[m Merge pull request #18 from Riky48/valentin
+[33m284e7ab[m dad
+[33md0da268[m Merge pull request #17 from Riky48/Santiago
+[33mfc7bb25[m solo dios sabe lo que hice
+[33m77dfb4f[m Merge pull request #16 from Riky48/valentin
+[33m276de13[m actualizacion
+[33m9f785d3[m Merge pull request #15 from Riky48/valentin
+[33m3672220[m modificaccion perfil
+[33m08a55a9[m Merge branch 'main' into Santiago
+[33m422298d[m a
+[33m95533d8[m Merge pull request #14 from Riky48/valentin
+[33m87b4f77[m actualizacion estilos e-comerce
+[33md96f1ef[m Merge pull request #13 from Riky48/Santiago
+[33m5e9b4a2[m Merge branch 'main' into Santiago
+[33mda1b438[m a
+[33m2afdb6b[m Update README.md
+[33m781b59b[m Update README.md
+[33mab1cebe[m Update README.md
+[33m6cf41a2[m Update README.md
+[33m71c5862[m Update README.md
+[33m95c367f[m ta bn
+[33mf591fb3[m Merge pull request #12 from Riky48/Santiago
+[33mee985b4[m Merge branch 'main' into Santiago
+[33m5de50b4[m Merge pull request #11 from Riky48/valentin
+[33m2f7f80d[m Merge branch 'main' into Santiago
+[33m83fb8ba[m actualizacion
+[33m9bf1a0a[m Footer en login/registro y ajustes al responsive
+[33mce50c86[m a
+[33m625e307[m ya se puede editar y eliminar un producto
+[33m598be05[m Merge pull request #10 from Riky48/Santiago
+[33m59c5630[m cambios varios
+[33md206189[m Inicio de sesión responsive
+[33mb7bf0c5[m Merge pull request #8 from Riky48/valentin
+[33mea4a0cc[m Resposive 2.1
+[33m2b1b650[m Merge pull request #9 from Riky48/Santiago
+[33m1e4d630[m Ajustes en el CSS del inicio de sesión
+[33mda5ab5b[m Update style.css
+[33m4e168c8[m Merge pull request #7 from Riky48/Santiago
+[33mc871264[m Adaptabilidad a dispositivos moviles
+[33m1952152[m Merge pull request #6 from Riky48/Santiago
+[33m475843f[m Cambios ligeros en estilos y nuevas resoluciones adaptadas
+[33md288fef[m Ajustes de redireccionamiento
+[33m08f285c[m Merge pull request #5 from Riky48/Santiago
+[33m0b95

@@ -72,4 +72,13 @@ export class AuthService {
 
     return { user, token };
   }
+  
+   async findById(id: number): Promise<_user> {
+  const user = await this.userRepository.findOne({ where: { id: id } });
+  if (!user) throw new HttpException("USER_NOT_FOUND", 404);
+  return user;
 }
+}
+
+ 
+

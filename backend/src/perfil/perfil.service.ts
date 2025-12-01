@@ -19,7 +19,7 @@ export class PerfilService {
 
     // Buscar usuario
     const user = await this.perfilRepository.manager.findOne(_user, {
-      where: { id_user },
+      where: { id: id_user },
     });
 
     if (!user) {

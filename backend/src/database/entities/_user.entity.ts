@@ -50,9 +50,6 @@ export class _user {
     reviews: Review[];
 
     @OneToOne(() => Carrito, carrito => carrito.user)
-    carrito: Carrito;
-
-  
-
+    carrito: Carrito; 
 
 }
