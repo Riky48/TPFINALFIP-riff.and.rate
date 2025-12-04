@@ -13,5 +13,5 @@ export class RegisterAuthDto {
   @IsNotEmpty()
   password: string;
 
-  country?: string;
+
 }

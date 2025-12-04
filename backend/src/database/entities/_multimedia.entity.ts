@@ -16,7 +16,7 @@ export class _multimedia {
     created_at: Date;
 
     @Column()
-    id_user: number;
+    id: number;
 
     @Column({length:50})
     type: string; // tipo de multimedia: imagen, video, audio, documento

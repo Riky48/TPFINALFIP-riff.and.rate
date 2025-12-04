@@ -43,7 +43,7 @@ export class FeedController {
             : file.mimetype.startsWith("video")
               ? "video"
               : "file",
-          id_user: req.user.id,
+          id: req.user.id,
         });
 
         multimediaIds.push(media.id_multimedia);

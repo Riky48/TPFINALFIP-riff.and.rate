@@ -50,9 +50,8 @@ import { ComentariosModule } from './comentarios/comentarios.module';
     CategoriaModule,
     CarritoModule,
     PedidoModule,
-
     PerfilModule,
-    PerfilModule,
+    
     ComentariosModule
   ],
   controllers: [AppController],

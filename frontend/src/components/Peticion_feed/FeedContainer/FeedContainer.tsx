@@ -76,7 +76,7 @@ export const FeedContainer = () => {
           "Content-Type": "application/json",
           "Authorization": `Bearer ${token}`,
         },
-        body: JSON.stringify({ title, content }), // Enviamos id_user
+        body: JSON.stringify({ title, content }), // Enviamos id
       });
 
       if (!response.ok) throw new Error(`Error ${response.status} al editar el post`);

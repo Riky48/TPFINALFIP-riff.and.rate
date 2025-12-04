@@ -7,7 +7,7 @@ import { _country } from "./_country.entity";
 export class _profile {
 
     @PrimaryColumn()
-    id_user: number;
+    id: number;
 
     @Column()
     gender: boolean;
@@ -40,7 +40,7 @@ export class _profile {
     is_verified: boolean;
 
     @OneToOne(() => _user, user => user.profile,{onDelete: 'CASCADE'})
-    @JoinColumn({ name: 'id_user' })
+    @JoinColumn({ name: 'id' })
     user: _user;
 
 

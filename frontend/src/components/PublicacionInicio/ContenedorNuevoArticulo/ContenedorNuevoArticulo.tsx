@@ -53,7 +53,7 @@ export const ContenedorNuevoArticulo: React.FC<Props> = ({ onClose }) => {
       const formData = new FormData();
       files.forEach((file) => formData.append('files', file));
       formData.append('title', descripcion.toString());
-      formData.append('id_user', userId.toString());
+      formData.append('id', userId.toString());
       formData.append('content', content.toString());
       formData.append('type', type.toString());
       await PostFeed({ formData, handleCloseClick })

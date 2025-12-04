@@ -7,7 +7,7 @@ export class _like {
     id_like: number;
 
     @Column()
-    id_user: number;
+    id: number;
 
     @Column()
     id_comment: number;

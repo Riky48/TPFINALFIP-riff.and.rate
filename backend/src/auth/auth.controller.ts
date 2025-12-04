@@ -28,7 +28,7 @@ export class AuthController {
     const user = await this.authService.findById(req.user.id);
 
     return {
-      id_user: user.id,
+      id: user.id,
       username: user.username,
       nombre: user.name_,       // 👈 coincide con tu entidad
       apellido: user.last_name, // 👈 coincide con tu entidad

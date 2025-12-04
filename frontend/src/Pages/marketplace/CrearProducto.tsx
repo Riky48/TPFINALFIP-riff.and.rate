@@ -1,6 +1,6 @@
 import { useState } from "react";
-import "./CrearProducto.css"; 
-import { crearProducto } from "../../services/api"; 
+import API from "../../services/api"; // axios con JWT
+import "./CrearProducto.css";
 
 export default function CrearProducto() {
   const [form, setForm] = useState({
@@ -8,33 +8,41 @@ export default function CrearProducto() {
     descripcion: "",
     precio: "",
     stock: "",
-    categorias: "", // input del usuario, se convertirá en array
-    marca: "",      // input del usuario, se convertirá en array
+    categorias: "",
+    marca: "",
     img: "",
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  // const [debug, setDebug] = useState<string>(""); // <- debug comentado
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const userId = 1; // después lo sacamos del usuario logueado
 
-      // Transformar los datos antes de enviar al backend
+    try {
       const payload = {
         nombre: form.nombre,
         descripcion: form.descripcion,
         precio: Number(form.precio),
         stock: Number(form.stock),
-        categorias: form.categorias ? [form.categorias.trim()] : [], // array de strings
+        categorias: form.categorias ? [form.categorias.trim()] : [],
         marca: form.marca,
         img: form.img || undefined,
-        userId,
       };
 
-      await crearProducto(userId, payload);
+      // console.log("Payload a enviar:", payload);
+      // setDebug(`Payload a enviar:\n${JSON.stringify(payload, null, 2)}`);
+
+      const response = await API.post("/productos", payload);
+
+      // console.log("Respuesta del backend:", response);
+      // setDebug(prev => prev + `\nRespuesta del backend:\n${JSON.stringify(response.data, null, 2)}`);
+
       alert("Producto creado con éxito!");
 
       // resetear form
@@ -47,9 +55,15 @@ export default function CrearProducto() {
         marca: "",
         img: "",
       });
-    } catch (error) {
-      console.error(error);
-      alert("Hubo un error creando el producto");
+    } catch (error: any) {
+      console.error("Error en creación:", error);
+      // if (error.response) {
+      //   setDebug(`Error del backend (${error.response.status}):\n${JSON.stringify(error.response.data, null, 2)}`);
+      // } else {
+      //   setDebug(`Error en frontend:\n${error.message}`);
+      // }
+
+      alert("Hubo un error creando el producto. Revisá la consola.");
     }
   };
 
@@ -71,17 +85,29 @@ export default function CrearProducto() {
             value={form.descripcion}
             onChange={handleChange}
             required
-          ></textarea>
+          />
         </div>
 
         <div className="form-group">
           <label>Precio</label>
-          <input name="precio" type="number" value={form.precio} onChange={handleChange} required />
+          <input
+            name="precio"
+            type="number"
+            value={form.precio}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <div className="form-group">
           <label>Stock</label>
-          <input name="stock" type="number" value={form.stock} onChange={handleChange} required />
+          <input
+            name="stock"
+            type="number"
+            value={form.stock}
+            onChange={handleChange}
+            required
+          />
         </div>
 
         <div className="form-group">
@@ -99,8 +125,18 @@ export default function CrearProducto() {
           <input name="img" value={form.img} onChange={handleChange} />
         </div>
 
-        <button className="btn-crear" type="submit">Publicar</button>
+        <button className="btn-crear" type="submit">
+          Publicar
+        </button>
       </form>
+
+      {/* {debug && (
+        <div style={{ marginTop: "20px", whiteSpace: "pre-wrap", background: "#f4f4f4", padding: "10px", borderRadius: "5px" }}>
+          <strong>Debug:</strong>
+          <br />
+          {debug}
+        </div>
+      )} */}
     </div>
   );
 }

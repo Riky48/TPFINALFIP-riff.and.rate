@@ -21,13 +21,13 @@ export class PerfilService {
 
   // ---------------- PERFIL PERSONAL ----------------
   async create(createDto: CreatePerfilDto): Promise<_profile> {
-    const { id_user, country_id, ...rest } = createDto;
+    const { id, country_id, ...rest } = createDto;
 
     const user = await this.perfilRepository.manager.findOne(_user, {
-      where: { id: id_user },
+      where: { id: id },
     });
     if (!user) {
-      throw new NotFoundException(`El usuario con id ${id_user} no existe`);
+      throw new NotFoundException(`El usuario con id ${id} no existe`);
     }
 
     let country: _country | undefined = undefined;
@@ -39,7 +39,7 @@ export class PerfilService {
     }
 
     const perfil = this.perfilRepository.create({
-      id_user,
+      id,
       user,
       ...(country ? { country } : {}),
       ...rest,
@@ -52,84 +52,93 @@ export class PerfilService {
     return this.perfilRepository.find({ relations: ['country'] });
   }
 
-  async findOne(id_user: number): Promise<_profile> {
+  async findOne(id: number): Promise<_profile> {
     const perfil = await this.perfilRepository.findOne({
-      where: { id_user },
+      where: { id },
       relations: ['country'],
     });
 
     if (!perfil) {
-      throw new NotFoundException(`Perfil con id ${id_user} no encontrado`);
+      throw new NotFoundException(`Perfil con id ${id} no encontrado`);
     }
 
     return perfil;
   }
 
-  async update(id_user: number, updateDto: UpdatePerfilDto): Promise<_profile> {
-    const perfil = await this.findOne(id_user);
+  async update(id: number, updateDto: UpdatePerfilDto): Promise<_profile> {
+    const perfil = await this.findOne(id);
     const updated = Object.assign(perfil, updateDto);
     return this.perfilRepository.save(updated);
   }
 
-  async remove(id_user: number): Promise<void> {
-    const perfil = await this.findOne(id_user);
+  async remove(id: number): Promise<void> {
+    const perfil = await this.findOne(id);
     await this.perfilRepository.remove(perfil);
   }
 
   // ---------------- PERFIL MUSICAL ----------------
 
-  async saveMusicianProfile(id_user: number, dto: CreateMusicianProfileDto): Promise<_musician_profile> {
-    const user = await this.perfilRepository.manager.findOne(_user, { where: { id: id_user } });
-    if (!user) throw new NotFoundException(`Usuario con id ${id_user} no existe`);
+  async saveMusicianProfile(id: number, dto: CreateMusicianProfileDto): Promise<_musician_profile> {
+  const user = await this.perfilRepository.manager.findOne(_user, {
+    where: { id }
+  });
 
-    const existing = await this.musicianRepository.findOne({ where: { id_user } });
+  if (!user) throw new NotFoundException(`Usuario con id ${id} no existe`);
 
-    if (existing) {
-      Object.assign(existing, dto);
-      return this.musicianRepository.save(existing);
-    }
+  // Ahora buscamos POR user.id, no por id del perfil musical
+  const existing = await this.musicianRepository.findOne({
+    where: { user: { id } },
+    relations: ['user'],
+  });
 
-    const profile = this.musicianRepository.create({ id_user, user, ...dto });
-    return this.musicianRepository.save(profile);
+  if (existing) {
+    Object.assign(existing, dto);
+    return this.musicianRepository.save(existing);
   }
 
-  /**
-   * 🔥 ALGO IMPORTANTE:
-   * Si NO existe perfil musical, devolvemos uno vacío
-   * Esto evita errores en el frontend.
-   */
-  async getMusicianProfile(id_user: number): Promise<_musician_profile | any> {
-    const profile = await this.musicianRepository.findOne({ where: { id_user } });
+  const profile = this.musicianRepository.create({
+    user,
+    ...dto
+  });
 
-    if (!profile) {
-      // Devolvemos datos vacíos que espera el frontend
-      return {
-        genres: '',
-        instrument: '',
-        experience_years: 0,
-        skill_level: '',
-        influences: '',
-        projects: '',
-        availability: '',
-        music_link: '',
-        equipment: '',
-      };
-    }
+  return this.musicianRepository.save(profile);
+}
 
-    return profile;
+async getMusicianProfile(id: number) {
+  const profile = await this.musicianRepository.findOne({
+    where: { user: { id } },
+    relations: ['user'],
+  });
+
+  if (!profile) {
+    return {
+      genres: '',
+      instrument: '',
+      experience_years: 0,
+      skill_level: '',
+      influences: '',
+      projects: '',
+      availability: '',
+      music_link: '',
+      equipment: '',
+    };
   }
 
-  async updateMusicianProfile(id_user: number, dto: CreateMusicianProfileDto): Promise<_musician_profile> {
-    const profile = await this.musicianRepository.findOne({ where: { id_user } });
-    if (!profile) throw new NotFoundException(`Perfil musical con id ${id_user} no encontrado`);
+  return profile;
+}
+
+
+  async updateMusicianProfile(id: number, dto: CreateMusicianProfileDto): Promise<_musician_profile> {
+    const profile = await this.musicianRepository.findOne({ where: { id } });
+    if (!profile) throw new NotFoundException(`Perfil musical con id ${id} no encontrado`);
 
     Object.assign(profile, dto);
     return this.musicianRepository.save(profile);
   }
 
-  async removeMusicianProfile(id_user: number): Promise<void> {
-    const profile = await this.musicianRepository.findOne({ where: { id_user } });
-    if (!profile) throw new NotFoundException(`Perfil musical con id ${id_user} no encontrado`);
+  async removeMusicianProfile(id: number): Promise<void> {
+    const profile = await this.musicianRepository.findOne({ where: { id } });
+    if (!profile) throw new NotFoundException(`Perfil musical con id ${id} no encontrado`);
 
     await this.musicianRepository.remove(profile);
   }

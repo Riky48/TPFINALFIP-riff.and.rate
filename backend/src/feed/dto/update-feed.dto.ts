@@ -5,7 +5,7 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 export class UpdateFeedDto extends PartialType(CreateFeedDto) {
 
     @IsNumber()
-    id_user:number;
+    id:number;
     
     @IsString()
     @IsOptional()

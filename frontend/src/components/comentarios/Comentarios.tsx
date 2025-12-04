@@ -6,7 +6,7 @@ type Comment = {
     content: string;
     created_at: string;
     user: {
-        id_user: number;
+        id: number;
         name_: string; // ajustado a tu entidad real
         last_name: string;
     };

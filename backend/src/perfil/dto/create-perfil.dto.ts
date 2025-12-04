@@ -2,7 +2,7 @@ import { IsBoolean, IsDateString, IsEmail, IsNumber, IsString, Length } from 'cl
 
 export class CreatePerfilDto {
   @IsNumber()
-  id_user: number;
+  id: number;
 
   @IsBoolean()
   gender: boolean;

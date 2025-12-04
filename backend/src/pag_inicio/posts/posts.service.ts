@@ -24,7 +24,7 @@ export class PostsService {
 
   async createPostWithFiles(createPostDto: CreatePostDto, files: Express.Multer.File[]): Promise<_post> {
     const profile = await this.profileRepository.findOne({
-      where: { id_user: createPostDto.id_user },
+      where: { id: createPostDto.id },
       relations: ['user'],
     });
 
@@ -66,7 +66,7 @@ export class PostsService {
         src: `/uploads/${file.filename}`,
         title: createPostDto.title ?? 'Sin título',
         created_at: now,
-        id_user: profile.user.id,
+        id: profile.user.id,
         type,
       };
     });

@@ -10,7 +10,7 @@ export class CreatePostDto {
     @Type(() => Number)
     @IsInt()
     @IsNotEmpty()
-    id_user: number;
+    id: number;
 
     @IsString()
     type: string;

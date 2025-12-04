@@ -11,7 +11,7 @@ export class _comment_of_comment {
     id_comment: number;
 
     @Column()
-    id_user: number;
+    id: number;
 
     @Column()
     content: string;

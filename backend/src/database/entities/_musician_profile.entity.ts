@@ -4,10 +4,10 @@ import { _user } from './_user.entity';
 @Entity({ name: '_musician_profile' })
 export class _musician_profile {
   @PrimaryColumn()
-  id_user: number;
+  id: number;
 
   @OneToOne(() => _user)
-  @JoinColumn({ name: 'id_user' })
+  @JoinColumn({ name: 'id' })
   user: _user;
 
   @Column({ nullable: true })

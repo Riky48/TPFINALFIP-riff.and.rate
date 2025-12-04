@@ -1,19 +1,28 @@
-import { BadRequestException, HttpException, Injectable } from "@nestjs/common";
-import { LoginAuthDto } from "./dto/login-auth.dto";
-import { compare, hash } from "bcrypt";
-import { _user } from "src/database/entities/_user.entity";
-import { RegisterAuthDto } from "./dto/register-auth.dto";
-import { Repository } from "typeorm";
-import { InjectRepository } from "@nestjs/typeorm";
-import { JwtService } from "@nestjs/jwt";
+import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
+import { LoginAuthDto } from './dto/login-auth.dto';
+import { compare, hash } from 'bcrypt';
+import { _user } from 'src/database/entities/_user.entity';
+import { RegisterAuthDto } from './dto/register-auth.dto';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { JwtService } from '@nestjs/jwt';
+import { _profile } from 'src/database/entities/_profile.entity';
+import { _country } from 'src/database/entities/_country.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(_user)
     private readonly userRepository: Repository<_user>,
-    private jwtService: JwtService
-  ) { }
+
+    @InjectRepository(_profile)
+    private readonly perfilRepository: Repository<_profile>,
+
+    @InjectRepository(_country)
+    private readonly countryRepository: Repository<_country>,
+
+    private jwtService: JwtService,
+  ) {}
 
   async register(dto: RegisterAuthDto) {
     try {
@@ -27,15 +36,33 @@ export class AuthService {
 
       // Mapear correctamente a los campos de _user
       const userToSave: Partial<_user> = {
-        name_: name,          // <-- CAMPO CORRECTO
-        last_name: lastName,  // <-- CAMPO CORRECTO
+        name_: name, // <-- CAMPO CORRECTO
+        last_name: lastName, // <-- CAMPO CORRECTO
         email,
-        password: hashed,     // Se guarda en password_ por el @Column()
+        password: hashed, // Se guarda en password_ por el @Column()
         is_admin: false,
-        code: '0000',         // O lo que corresponda
+        code: '0000', // O lo que corresponda
       };
 
       const user = await this.userRepository.save(userToSave);
+      const defaultCountry = await this.countryRepository.findOne({
+        where: { country_id: 1 },
+      });
+      await this.perfilRepository.save({
+        user: { id: user.id }, 
+        gender: false,
+        phone_number: '',
+        birthday: new Date(),
+        bio: '',
+        image_: '',
+        image_header: '',
+        is_premium: false,
+        email_perfil: user.email,
+        is_verified: false,
+        ...(defaultCountry
+          ? { country: { country_id: defaultCountry.country_id } }
+          : {}),
+      });
 
       const payload = { id: user.id, email: user.email };
       const token = this.jwtService.sign(payload);
@@ -74,11 +101,8 @@ export class AuthService {
   }
 
   async findById(id: number): Promise<_user> {
-  const user = await this.userRepository.findOne({ where: { id: id} });
-  if (!user) throw new HttpException("USER_NOT_FOUND", 404);
-  return user;
+    const user = await this.userRepository.findOne({ where: { id: id } });
+    if (!user) throw new HttpException('USER_NOT_FOUND', 404);
+    return user;
+  }
 }
-}
-
- 
-

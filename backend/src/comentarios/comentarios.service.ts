@@ -30,7 +30,7 @@ export class ComentariosService {
       throw new NotFoundException('Post not found');
     }
 
-    const user = await this.userRepo.findOneBy({ id_user: userPayload.id });
+    const user = await this.userRepo.findOneBy({ id: userPayload.id });
     if (!user) throw new NotFoundException('User not found');
 
     const newComment = this.commentRepo.create({
@@ -54,14 +54,14 @@ export class ComentariosService {
   async findByPostId(postId: number) {
     const rawComments = await this.commentRepo
       .createQueryBuilder('c')
-      .leftJoin('_user', 'u', 'u.id_user = c.id_user')
+      .leftJoin('_user', 'u', 'u.id = c.id_user')
       .where('c.id_post = :postId', { postId })
       .orderBy('c.created_at', 'DESC')
       .select([
         'c.id_comment AS id_comment',
         'c.content AS content',
         'c.created_at AS created_at',
-        'u.id_user AS id_user',
+        'u.id AS id',
         'u.name_ AS name_',
         'u.last_name AS last_name',
       ])
@@ -73,7 +73,7 @@ export class ComentariosService {
       content: c.content,
       created_at: c.created_at,
       user: {
-        id_user: c.id_user,
+        id: c.id,
         name_: c.name_,
         last_name: c.last_name,
       }

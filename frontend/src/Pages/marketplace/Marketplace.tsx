@@ -18,7 +18,7 @@ export default function Marketplace() {
   const [searchTerm, setSearchTerm] = useState("");
   const [productos, setProductos] = useState<any[]>([]);
   const { addToCart, removeFromCart } = useCart();
-  const userId = 1; // temporal, después sacalo del usuario logueado
+  
 
   useEffect(() => {
     getProductos()
@@ -33,73 +33,93 @@ export default function Marketplace() {
       p.nombre.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleAddToCart = async (producto: any) => {
-    // Primero lo agregamos al carrito local
-    addToCart(producto);
 
-    try {
-      const res = await addProductoCarrito(userId, producto.id, 1);
-      console.log("Producto agregado al carrito en back:", res.data);
-    } catch (err) {
-      console.error("Error agregando al carrito en backend:", err);
-      // Opcional: revertir el addToCart si falla el backend
-      removeFromCart(producto.id);
-      alert("No se pudo agregar el producto al carrito. Intenta de nuevo.");
-    }
+    const handleAddToCart = async (producto: any) => {
+      // Agregamos al carrito local primero
+      addToCart(producto);
+
+      try {
+        // Revisamos que userId y productoId existan y sean números
+        if ( !producto.id) {
+          throw new Error("userId o productoId inválidos");
+        }
+
+        console.log("Intentando agregar al carrito en backend:", {
+          
+          productoId: producto.id,
+          cantidad: 1,
+        });
+
+        const res = await addProductoCarrito(producto.id, 1);
+
+        console.log("✅ Producto agregado al backend:", res.data);
+      } catch (err: any) {
+        console.error("❌ Error agregando al carrito en backend:", err);
+
+        // Revertir la acción local si falla el backend
+        removeFromCart(producto.id);
+
+        // Mostrar alert al usuario
+        alert(
+          err.response?.data?.message ||
+            "No se pudo agregar el producto al carrito. Revisá la consola."
+        );
+      }
+    };
+
+    return (
+      <div className="marketplace-container">
+        <h1>Marketplace de Instrumentos</h1>
+        <p>Aquí vas a poder comprar y vender instrumentos</p>
+
+        <Link to="/crear-producto" className="boton-crear">
+          Subir producto
+        </Link>
+
+        {/* Buscador */}
+        <div className="search-marketplace">
+          <input
+            type="search"
+            placeholder="Buscar productos..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+
+        {/* Categorías */}
+        <div className="categories-bar">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              className={`category-chip ${
+                activeCategory === cat ? "active" : ""
+              }`}
+              onClick={() => setActiveCategory(cat)}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Grid de productos */}
+        <div className="productos-grid">
+          {filteredProducts.map((producto) => (
+            <div key={producto.id} className="producto-card">
+              <img
+                src={producto.img || "/placeholder.jpg"}
+                alt={producto.nombre}
+              />
+              <h3>{producto.nombre}</h3>
+              <p className="precio">
+                ${Number(producto.precio).toLocaleString("es-AR")}
+              </p>
+              <button onClick={() => handleAddToCart(producto)}>
+                Agregar al carrito
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   };
 
-  return (
-    <div className="marketplace-container">
-      <h1>Marketplace de Instrumentos</h1>
-      <p>Aquí vas a poder comprar y vender instrumentos</p>
-
-      <Link to="/crear-producto" className="boton-crear">
-        Subir producto
-      </Link>
-
-      {/* Buscador */}
-      <div className="search-marketplace">
-        <input
-          type="search"
-          placeholder="Buscar productos..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-      </div>
-
-      {/* Categorías */}
-      <div className="categories-bar">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            className={`category-chip ${
-              activeCategory === cat ? "active" : ""
-            }`}
-            onClick={() => setActiveCategory(cat)}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {/* Grid de productos */}
-      <div className="productos-grid">
-        {filteredProducts.map((producto) => (
-          <div key={producto.id} className="producto-card">
-            <img
-              src={producto.img || "/placeholder.jpg"}
-              alt={producto.nombre}
-            />
-            <h3>{producto.nombre}</h3>
-            <p className="precio">
-              ${Number(producto.precio).toLocaleString("es-AR")}
-            </p>
-            <button onClick={() => handleAddToCart(producto)}>
-              Agregar al carrito
-            </button>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}

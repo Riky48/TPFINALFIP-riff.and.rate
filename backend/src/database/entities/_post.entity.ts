@@ -22,7 +22,7 @@ export class _post {
   created_at: Date;
 
   @ManyToOne(() => _profile, (profile) => profile.posts, { eager: true })
-  @JoinColumn({ name: 'id_user' })
+  @JoinColumn({ name: 'id_profile' })
   profile: _profile;
 
   @OneToMany(() => _like, (like) => like.post)

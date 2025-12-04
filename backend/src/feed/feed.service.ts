@@ -42,7 +42,7 @@ export class FeedService {
         throw new BadRequestException('El perfil (profile_id) es obligatorio');
       }
       const profile = await this.profileRepository.findOne({
-        where: { id_user: createFeedDto.user_id },
+        where: { id: createFeedDto.user_id },
       });
       if (!profile) throw new NotFoundException('Perfil no encontrado');
 
@@ -97,7 +97,7 @@ export class FeedService {
   }
 
   // feed.service.ts
-  async joinFeed(id_user?: number): Promise<any[]> {
+  async joinFeed(id?: number): Promise<any[]> {
     try {
       const query = this.postRepository
         .createQueryBuilder('post')
@@ -108,8 +108,8 @@ export class FeedService {
         .leftJoinAndSelect('comment.comment_of_comments', 'comment_of_comment')
         .leftJoinAndSelect('post.likes', 'likes');
 
-      if (id_user) {
-        query.where('profile.id_user = :id_user', { id_user });
+      if (id) {
+        query.where('profile.id = :id', { id });
       }
 
       const posts = await query.getMany();

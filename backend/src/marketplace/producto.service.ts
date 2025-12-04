@@ -26,38 +26,43 @@ export class ProductoService {
   // ============================================================
   //  CREAR PRODUCTO
   // ============================================================
-  async create(data: CreateProductoDto): Promise<Producto> {
+ async create(data: CreateProductoDto): Promise<Producto> {
+  try {
+    console.log('🚀 Datos recibidos para crear producto:', data);
 
     // Usuario (opcional)
     let user: _user | null = null;
     if (data.userId) {
       user = await this.userRepository.findOne({ where: { id: data.userId } });
+      console.log('👤 Usuario encontrado:', user);
       if (!user) throw new NotFoundException(`Usuario ${data.userId} no encontrado`);
     }
 
     // MARCA (solo UNA)
     let marca: Marca | null = null;
-
     if (data.marca) {
       marca = await this.marcaRepository.findOne({ where: { nombre: data.marca } });
+      console.log('🏷 Marca encontrada:', marca);
       if (!marca) {
         marca = this.marcaRepository.create({ nombre: data.marca });
         marca = await this.marcaRepository.save(marca);
+        console.log('🏷 Marca creada:', marca);
       }
     }
 
     // CATEGORIAS (MANY TO MANY)
     const categorias: Categoria[] = [];
-
     if (data.categorias?.length) {
       for (const catNombre of data.categorias) {
         const nombre = catNombre.trim();
         if (!nombre) continue;
 
         let categoria = await this.categoriaRepository.findOne({ where: { nombre } });
+        console.log('📂 Categoria encontrada:', categoria);
         if (!categoria) {
           categoria = this.categoriaRepository.create({ nombre });
           categoria = await this.categoriaRepository.save(categoria);
+          console.log('📂 Categoria creada:', categoria);
         }
 
         categorias.push(categoria);
@@ -77,8 +82,18 @@ export class ProductoService {
       user: user || undefined,
     });
 
-    return await this.productoRepository.save(producto);
+    console.log('🛠 Producto a guardar:', producto);
+
+    const savedProducto = await this.productoRepository.save(producto);
+    console.log('✅ Producto guardado:', savedProducto);
+
+    return savedProducto;
+  } catch (error) {
+    console.error('❌ Error en create:', error);
+    throw error;
   }
+}
+
 
   // ============================================================
   // 🔄 UPDATE

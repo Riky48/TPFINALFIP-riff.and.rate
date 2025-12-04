@@ -25,25 +25,9 @@ function Perfil() {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followersCount, setFollowersCount] = useState(0);
 
-  // Usuario autenticado (nombre, apellido, username)
+  // Usuario autenticado (datos reales)
   const [user, setUser] = useState<any>(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) return;
-
-    fetch('http://localhost:3000/auth/me', {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => {
-        if (!res.ok) throw new Error(`Error ${res.status}`);
-        return res.json();
-      })
-      .then((data) => setUser(data))
-      .catch((err) => console.error('Error cargando usuario:', err));
-  }, []);
+  const [userId, setUserId] = useState<number | null>(null);
 
   // Perfil musical
   const [genres, setGenres] = useState<string[]>([]);
@@ -56,16 +40,33 @@ function Perfil() {
   const [musicLink, setMusicLink] = useState('');
   const [equipment, setEquipment] = useState('');
   const [savedData, setSavedData] = useState<SavedData | null>(null);
-  const [feedback, setFeedback] = useState<string>('');
 
+  const [feedback, setFeedback] = useState('');
   const token = localStorage.getItem('token');
 
-  const fetchMusicianProfile = async () => {
+  // ------------------ OBTENER USUARIO REAL ------------------
+  useEffect(() => {
+    if (!token) return;
+
+    fetch('http://localhost:3000/auth/me', {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error(`Error ${res.status}`);
+        return res.json();
+      })
+      .then((data) => {
+        setUser(data);
+        setUserId(data.id); // <--- EL ID REAL DEL USUARIO
+      })
+      .catch((err) => console.error('Error cargando usuario:', err));
+  }, []);
+
+  // ------------------ CARGAR PERFIL MUSICAL ------------------
+  const fetchMusicianProfile = async (id: number) => {
     try {
-      const response = await fetch('http://localhost:3000/perfil/musical/1', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const response = await fetch(`http://localhost:3000/perfil/musical/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       if (response.status === 401) {
@@ -73,13 +74,14 @@ function Perfil() {
         return;
       }
 
-      if (!response.ok) throw new Error('Error al obtener el perfil musical');
+      if (!response.ok) throw new Error('Error al obtener perfil musical');
 
       const data = await response.json();
 
-      // Si guardás CSV en DB, dividimos por coma-espacio
       const loadedGenres = data.genres ? data.genres.split(', ') : [];
-      const loadedAvailability = data.availability ? data.availability.split(', ') : [];
+      const loadedAvailability = data.availability
+        ? data.availability.split(', ')
+        : [];
 
       setGenres(loadedGenres);
       setInstrument(data.instrument || '');
@@ -104,22 +106,22 @@ function Perfil() {
       });
 
       setFeedback('🎵 Perfil musical cargado correctamente.');
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
       setFeedback('❌ No se pudo cargar el perfil musical.');
     }
   };
 
   useEffect(() => {
-    fetchMusicianProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (userId) fetchMusicianProfile(userId);
+  }, [userId]);
 
+  // ------------------ GUARDAR PERFIL MUSICAL ------------------
   const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!token) {
-      setFeedback('❌ No hay token. Debes iniciar sesión.');
+    if (!token || !userId) {
+      setFeedback('❌ Error: no se encontró el usuario autenticado.');
       return;
     }
 
@@ -136,7 +138,7 @@ function Perfil() {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/perfil/musical/1', {
+      const response = await fetch(`http://localhost:3000/perfil/musical/${userId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -146,20 +148,21 @@ function Perfil() {
       });
 
       if (response.status === 401) {
-        setFeedback('❌ Sesión expirada. Volvé a iniciar sesión.');
+        setFeedback('❌ Sesión expirada. Iniciá sesión otra vez.');
         return;
       }
 
-      if (!response.ok) throw new Error('Error al guardar el perfil musical');
+      if (!response.ok) throw new Error('Error al guardar perfil musical');
 
-      await fetchMusicianProfile();
+      await fetchMusicianProfile(userId);
       setFeedback('✅ Perfil musical guardado correctamente.');
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
       setFeedback('❌ Error al guardar el perfil musical.');
     }
   };
 
+  // ------------------ MANEJO DE IMÁGENES ------------------
   const handleImageClick = () => profileImageUploadRef.current?.click();
   const handleBackgroundClick = () => backgroundUploadRef.current?.click();
 
@@ -176,15 +179,17 @@ function Perfil() {
       };
       reader.readAsDataURL(file);
     } else {
-      alert('Por favor, selecciona un archivo de imagen válido.');
+      alert('Por favor, seleccioná una imagen válida.');
     }
   };
 
+  // ------------------ FOLLOW ------------------
   const handleFollowClick = () => {
     setFollowersCount(isFollowing ? followersCount - 1 : followersCount + 1);
     setIsFollowing(!isFollowing);
   };
 
+  // ------------------ CHECKBOXES ------------------
   const handleGenreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setGenres((prev) =>
@@ -199,6 +204,7 @@ function Perfil() {
     );
   };
 
+  // ------------------ RENDER ------------------
   return (
     <div className="main-content">
       {/* TARJETA DE PERFIL */}
@@ -224,10 +230,7 @@ function Perfil() {
           />
 
           <div className="profile-info">
-            {/* Nombre y apellido reales */}
             <h1>{user ? `${user.nombre} ${user.apellido}` : 'Usuario'}</h1>
-
-            {/* Username real */}
             <p className="username">@{user ? user.username : 'usuario'}</p>
 
             <div className="profile-stats">
@@ -242,7 +245,7 @@ function Perfil() {
             </div>
 
             <p className="profile-description">
-              Entusiasta de la tecnología y la innovación.
+              Entusiasta de la tecnología y la música.
             </p>
 
             <button
@@ -396,7 +399,6 @@ function Perfil() {
         </form>
       </section>
 
-      {/* Información guardada */}
       {savedData && (
         <section className="music-card">
           <h2>Información Musical</h2>

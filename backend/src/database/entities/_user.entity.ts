@@ -27,8 +27,7 @@ export class _user {
     @Column()
     is_admin: boolean;
 
-    @Column({ name: '_country', nullable: true })
-    country: string;
+    
 
 
     @Column({name: 'code_'})
