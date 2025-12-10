@@ -1,7 +1,7 @@
 # TPFINALFIP-riff.and.rate
 Desarrollo de la pagina web Riff &amp; Rate, que tenemos que crear para el trabajo final  de FIP 2do año
 
-Link a la carpeta con la documentación: https://drive.google.com/drive/folders/1HjXgWRJA8LCvgq7NS_2OKsXx3G88wKQ0
+Link a la carpeta con la documentación: https://drive.google.com/drive/folders/1Y_cH_0UrD7ECRuHYhWh7tAR_tvveCFHJ?usp=drive_link
 
 <h2>🎸 Riff & Rate</h2><br>
 Riff & Rate es una red social pensada exclusivamente para músicos. La plataforma permite a los usuarios compartir contenido musical (como publicaciones, imágenes y reels), descubrir otros artistas, y conectar con la comunidad mediante reacciones y comentarios.
