@@ -41,7 +41,7 @@ export function Home() {
         0
       );
 
-      // mitad (porque duplicamos el set)
+      
       const half = totalWidth / 2;
 
       track.style.setProperty("--half-width", `${half}px`);
@@ -58,7 +58,7 @@ export function Home() {
 
       <header className="hero">
         <img src={logo} alt="Logo" className="icon" />
-        <div>
+        <div className="hero-text">
           <h1>RIFF AND RATE</h1>
           <p>La escena se arma acá. Sumate a la comunidad que vibra música.<br />Tu talento merece ser encontrado</p>
         </div>
