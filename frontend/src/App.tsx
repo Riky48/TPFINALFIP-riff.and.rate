@@ -2,24 +2,23 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
-import { Inicio } from "./Pages/feed/Inicio";
-import { Nav } from "./components/Nav/Nav";
+import { Inicio } from './Pages/feed/Inicio';
+import { Nav } from './components/Nav/Nav';
+import CartPanel from './components/Context/CartPanel';
+import PaymentPanel from './Pages/PaymentPanel';
+import Login from './Pages/Login/Login';
+import Register from './components/RegisterForm/RegisterForm';
+import { Home } from './Pages/Home';
+import Perfil from './Pages/Perfil/Perfil';
+import { ArticlePage } from './components/Peticion_feed/FeedContainer/CardFeed/ArticleCard/ArticlePage/ArticlePage';
 
-import CartPanel from "./components/Context/CartPanel";
-import PaymentPanel from "./Pages/PaymentPanel";
-import Login from "./Pages/Login/Login";
-import Register from "./components/RegisterForm/RegisterForm";
-import { Home } from "./Pages/Home";
-import Perfil from "./Pages/Perfil/Perfil";
-import { ArticlePage } from "./components/Peticion_feed/FeedContainer/CardFeed/ArticleCard/ArticlePage/ArticlePage";
-import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 
-import "primereact/resources/themes/saga-blue/theme.css";
-import "primereact/resources/primereact.min.css";
-import "primeicons/primeicons.css";
-import Marketplace from "./Pages/marketplace/Marketplace";
-import CrearProducto from "./Pages/marketplace/CrearProducto";
-
+import 'primereact/resources/themes/saga-blue/theme.css';
+import 'primereact/resources/primereact.min.css';
+import 'primeicons/primeicons.css';
+import Marketplace from './Pages/marketplace/Marketplace';
+import CrearProducto from './Pages/marketplace/CrearProducto';
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
