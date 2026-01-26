@@ -11,13 +11,14 @@ import Register from './components/RegisterForm/RegisterForm';
 import { Home } from './Pages/Home';
 import Perfil from './Pages/Perfil/Perfil';
 import { ArticlePage } from './components/Peticion_feed/FeedContainer/CardFeed/ArticleCard/ArticlePage/ArticlePage';
-import Marketplace from './Pages/Marketplace/Marketplace';
-import CrearProducto from './Pages/Marketplace/CrearProducto';
+
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
 
 import 'primereact/resources/themes/saga-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import 'primeicons/primeicons.css';
+import Marketplace from './Pages/marketplace/Marketplace';
+import CrearProducto from './Pages/marketplace/CrearProducto';
 
 function App() {
   const [cartOpen, setCartOpen] = useState(false);
